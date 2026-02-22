@@ -17,6 +17,11 @@ return new class extends Migration {
             $table->text('bio')->nullable();
             $table->string('location')->nullable();
             $table->string('website')->nullable();
+            $table->string('facebook_url')->nullable();
+            $table->string('instagram_url')->nullable();
+            $table->string('x_url')->nullable();
+            $table->string('public_email')->nullable();
+            $table->string('phone_number')->nullable();
             $table->string('avatar_path')->nullable();
             $table->boolean('is_public')->default(true);
             $table->timestamps();

@@ -87,7 +87,8 @@
                         </a>
                     </li>
                     <li class="sidebar__item">
-                        <a href="#">
+                        <a href="{{ route('public-profile.edit') }}"
+                            class="{{ request()->routeIs('public-profile.edit') ? 'active' : '' }}">
                             <x-heroicon-o-user class="nav-icon" aria-hidden="true" />
                             Public Profile
                         </a>

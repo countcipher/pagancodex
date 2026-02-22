@@ -12,6 +12,11 @@ class Profile extends Model
         'bio',
         'location',
         'website',
+        'facebook_url',
+        'instagram_url',
+        'x_url',
+        'public_email',
+        'phone_number',
         'avatar_path',
         'is_public',
     ];

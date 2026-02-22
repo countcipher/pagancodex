@@ -10,7 +10,7 @@
 
     {{-- Quick Actions --}}
     <div class="dashboard-actions" role="list" aria-label="Quick actions">
-        <a href="#" class="action-card" role="listitem">
+        <a href="{{ route('public-profile.edit') }}" class="action-card" role="listitem">
             <x-heroicon-o-user class="action-card__icon" aria-hidden="true" />
             Edit Public Profile
         </a>
@@ -32,7 +32,8 @@
     <section class="dashboard-panel" aria-labelledby="panel-profile">
         <h2 class="dashboard-panel__title" id="panel-profile">Your Public Profile</h2>
         <div class="dashboard-panel__body">
-            <p>You haven't filled out your public profile yet. Let the community know who you are — your tradition, location, and what you're seeking.</p>
+            <p>You haven't filled out your public profile yet. Let the community know who you are — your tradition,
+                location, and what you're seeking.</p>
         </div>
     </section>
 
