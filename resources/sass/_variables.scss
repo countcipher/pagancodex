@@ -1,0 +1,47 @@
+// ============================================================
+// Pagan Codex — Design Tokens
+// ============================================================
+
+// --- Colors ---
+$color-bg:           #FAFAF7;   // warm off-white page background
+$color-brown-dark:   #4A2C0A;   // deep earth brown — primary (nav, sidebar)
+$color-brown-mid:    #7A4B1F;   // mid brown — hover states, accents
+$color-brown-light:  #C9A87C;   // light brown — borders, dividers
+$color-green-dark:   #2D5A1B;   // forest green — links, active states
+$color-green-mid:    #4A8C30;   // mid green — hover states
+$color-green-light:  #A8C896;   // light green — subtle highlights
+$color-text:         #2A1A08;   // near-black warm text
+$color-text-muted:   #7A6A58;   // muted secondary text
+$color-white:        #FFFFFF;
+$color-border:       #DDD5C8;   // neutral warm border
+
+// --- Typography ---
+$font-body:          'Georgia', 'Times New Roman', serif;
+$font-ui:            'Inter', 'Segoe UI', sans-serif;
+$font-size-base:     1rem;
+$line-height-base:   1.6;
+
+// --- Spacing ---
+$spacing-xs:         0.25rem;
+$spacing-sm:         0.5rem;
+$spacing-md:         1rem;
+$spacing-lg:         1.5rem;
+$spacing-xl:         2rem;
+$spacing-2xl:        3rem;
+
+// --- Layout ---
+$sidebar-width:      260px;
+$nav-height:         64px;
+
+// --- Breakpoints ---
+$breakpoint-tablet:  768px;
+$breakpoint-desktop: 1024px;
+
+// --- Border Radius ---
+$radius-sm:          4px;
+$radius-md:          8px;
+$radius-lg:          16px;
+
+// --- Transitions ---
+$transition-speed:   0.25s;
+$transition-ease:    ease-in-out;

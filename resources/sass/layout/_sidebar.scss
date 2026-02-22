@@ -1,0 +1,119 @@
+// ============================================================
+// Pagan Codex — Left Sidebar (authenticated user actions)
+// ============================================================
+@use '../variables' as *;
+
+.sidebar {
+    position: fixed;
+    top: $nav-height;
+    left: 0;
+    bottom: 0;
+    width: $sidebar-width;
+    background-color: $color-white;
+    border-right: 1px solid $color-border;
+    overflow-y: auto;
+    z-index: 90;
+    transition: transform $transition-speed $transition-ease;
+
+    // --- User greeting / avatar area ---
+    &__header {
+        padding: $spacing-lg $spacing-md;
+        border-bottom: 1px solid $color-border;
+        background-color: $color-bg;
+
+        .sidebar__username {
+            font-family: $font-ui;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: $color-brown-dark;
+        }
+
+        .sidebar__role {
+            font-family: $font-ui;
+            font-size: 0.75rem;
+            color: $color-text-muted;
+            margin-top: $spacing-xs;
+        }
+    }
+
+    // --- Nav sections ---
+    &__section {
+        padding: $spacing-md 0;
+        border-bottom: 1px solid $color-border;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    &__section-label {
+        font-family: $font-ui;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: $color-text-muted;
+        padding: $spacing-xs $spacing-md $spacing-xs;
+    }
+
+    // --- Nav items ---
+    &__nav {
+        list-style: none;
+    }
+
+    &__item {
+        a {
+            display: flex;
+            align-items: center;
+            gap: $spacing-sm;
+            padding: $spacing-sm $spacing-md;
+            font-family: $font-ui;
+            font-size: 0.9rem;
+            color: $color-text;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+            transition: background-color $transition-speed $transition-ease,
+                        border-color $transition-speed $transition-ease,
+                        color $transition-speed $transition-ease;
+
+            &:hover,
+            &:focus {
+                background-color: $color-bg;
+                color: $color-brown-dark;
+                text-decoration: none;
+            }
+
+            &.active {
+                border-left-color: $color-green-dark;
+                background-color: rgba($color-green-light, 0.2);
+                color: $color-green-dark;
+                font-weight: 600;
+            }
+        }
+    }
+
+    // --- Responsive: tablet and below ---
+    @media (max-width: $breakpoint-tablet) {
+        transform: translateX(-100%);
+        box-shadow: 4px 0 16px rgba(0, 0, 0, 0.15);
+
+        &--open {
+            transform: translateX(0);
+        }
+    }
+}
+
+// Overlay behind sidebar on mobile
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 89;
+
+    @media (max-width: $breakpoint-tablet) {
+        &--visible {
+            display: block;
+        }
+    }
+}

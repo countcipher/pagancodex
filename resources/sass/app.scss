@@ -1,0 +1,15 @@
+// ============================================================
+// Pagan Codex — Master Stylesheet
+// ============================================================
+
+// Design tokens must come first (all other partials depend on them)
+@use 'variables';
+
+// Base reset & typography
+@use 'base';
+
+// Layout
+@use 'layout/nav';
+@use 'layout/sidebar';
+@use 'layout/dashboard';
+

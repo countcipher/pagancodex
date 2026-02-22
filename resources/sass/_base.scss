@@ -1,0 +1,106 @@
+// ============================================================
+// Pagan Codex — Base Styles & Reset
+// ============================================================
+@use 'variables' as *;
+
+// --- Heroicon sizing ---
+.nav-icon {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+}
+
+.action-card__icon {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: $font-size-base;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: $color-bg;
+    color: $color-text;
+    font-family: $font-body;
+    line-height: $line-height-base;
+    min-height: 100vh;
+}
+
+// --- Skip to content (a11y) ---
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: $spacing-md;
+    z-index: 9999;
+    padding: $spacing-sm $spacing-md;
+    background: $color-brown-dark;
+    color: $color-white;
+    font-family: $font-ui;
+    font-size: 0.875rem;
+    border-radius: $radius-sm;
+    text-decoration: none;
+    transition: top $transition-speed $transition-ease;
+
+    &:focus {
+        top: $spacing-md;
+    }
+}
+
+// --- Typography ---
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-ui;
+    font-weight: 600;
+    line-height: 1.25;
+    color: $color-brown-dark;
+}
+
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.1rem; }
+
+p {
+    margin-bottom: $spacing-md;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+a {
+    color: $color-green-dark;
+    text-decoration: none;
+    transition: color $transition-speed $transition-ease;
+
+    &:hover,
+    &:focus {
+        color: $color-green-mid;
+        text-decoration: underline;
+    }
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+// --- Focus visible (a11y) ---
+:focus-visible {
+    outline: 2px solid $color-green-dark;
+    outline-offset: 3px;
+    border-radius: $radius-sm;
+}

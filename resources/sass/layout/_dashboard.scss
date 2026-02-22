@@ -1,0 +1,150 @@
+// ============================================================
+// Pagan Codex — Dashboard Page Layout
+// ============================================================
+@use '../variables' as *;
+
+// Wrapper that sits below the fixed nav
+.dashboard-wrapper {
+    display: flex;
+    padding-top: $nav-height;
+    min-height: 100vh;
+}
+
+// Main content area — offset by sidebar width on desktop
+.dashboard-content {
+    flex: 1;
+    margin-left: $sidebar-width;
+    padding: $spacing-xl;
+    min-width: 0; // prevents flex overflow
+
+    @media (max-width: $breakpoint-tablet) {
+        margin-left: 0;
+        padding: $spacing-md;
+    }
+}
+
+// --- Page header (title + optional action button) ---
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $spacing-xl;
+    padding-bottom: $spacing-md;
+    border-bottom: 2px solid $color-brown-light;
+
+    h1 {
+        margin: 0;
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $spacing-md;
+    }
+}
+
+// --- Dashboard cards / panels ---
+.dashboard-panel {
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    padding: $spacing-lg;
+    margin-bottom: $spacing-lg;
+
+    &__title {
+        font-family: $font-ui;
+        font-size: 1rem;
+        font-weight: 600;
+        color: $color-brown-dark;
+        margin-bottom: $spacing-md;
+        padding-bottom: $spacing-sm;
+        border-bottom: 1px solid $color-border;
+    }
+
+    &__body {
+        color: $color-text-muted;
+        font-size: 0.9rem;
+    }
+}
+
+// --- Quick action buttons ---
+.dashboard-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: $spacing-md;
+    margin-bottom: $spacing-xl;
+}
+
+.action-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    padding: $spacing-lg;
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    text-align: center;
+    color: $color-brown-dark;
+    font-family: $font-ui;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color $transition-speed $transition-ease,
+                border-color $transition-speed $transition-ease,
+                color $transition-speed $transition-ease;
+
+    &:hover,
+    &:focus {
+        background-color: $color-green-dark;
+        border-color: $color-green-dark;
+        color: $color-white;
+        text-decoration: none;
+    }
+
+    .action-card__icon {
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+}
+
+// --- Mobile bar (sidebar toggle strip) ---
+// Hidden on desktop; appears above content on mobile only
+.mobile-bar {
+    display: none;
+    align-items: center;
+    padding: $spacing-sm $spacing-md;
+    margin-bottom: $spacing-md;
+    background-color: $color-bg;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+
+    &__toggle {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        background: none;
+        border: 1px solid $color-brown-light;
+        border-radius: $radius-sm;
+        padding: $spacing-xs $spacing-md;
+        font-family: $font-ui;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: $color-brown-dark;
+        cursor: pointer;
+        transition: background-color $transition-speed $transition-ease,
+                    color $transition-speed $transition-ease;
+
+        &:hover,
+        &:focus {
+            background-color: $color-brown-dark;
+            color: $color-white;
+            border-color: $color-brown-dark;
+        }
+    }
+
+    @media (max-width: $breakpoint-tablet) {
+        display: flex;
+    }
+}
