@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title', 'Dashboard') — Pagan Codex</title>
-    <meta name="description" content="@yield('description', 'Your directory of pagan people, groups, events, and resources.')">
+    <meta name="description"
+        content="@yield('description', 'Your directory of pagan people, groups, events, and resources.')">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,14 +18,15 @@
 
     @stack('head')
 </head>
+
 <body>
 
     {{-- Skip to main content (a11y) --}}
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     {{-- ==========================================
-         TOP NAVIGATION
-         Public-facing: visible to all users
+    TOP NAVIGATION
+    Public-facing: visible to all users
     =========================================== --}}
     <header role="banner">
         <nav class="site-nav" aria-label="Primary navigation">
@@ -32,13 +35,8 @@
             </a>
 
             {{-- Mobile: hamburger toggle --}}
-            <button
-                class="site-nav__toggle"
-                id="nav-toggle"
-                aria-controls="nav-links"
-                aria-expanded="false"
-                aria-label="Toggle navigation menu"
-            >
+            <button class="site-nav__toggle" id="nav-toggle" aria-controls="nav-links" aria-expanded="false"
+                aria-label="Toggle navigation menu">
                 <span class="hamburger-line" aria-hidden="true"></span>
                 <span class="hamburger-line" aria-hidden="true"></span>
                 <span class="hamburger-line" aria-hidden="true"></span>
@@ -54,7 +52,7 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a href="{{ route('logout') }}"
-                               onclick="event.preventDefault(); this.closest('form').submit();">
+                                onclick="event.preventDefault(); this.closest('form').submit();">
                                 Log Out
                             </a>
                         </form>
@@ -70,8 +68,8 @@
     <div class="dashboard-wrapper">
 
         {{-- ==========================================
-             LEFT SIDEBAR
-             Authenticated user actions only
+        LEFT SIDEBAR
+        Authenticated user actions only
         =========================================== --}}
         <aside class="sidebar" id="sidebar" aria-label="Dashboard navigation">
             <div class="sidebar__header">
@@ -83,7 +81,7 @@
                 <p class="sidebar__section-label">My Profile</p>
                 <ul class="sidebar__nav" role="list">
                     <li class="sidebar__item">
-                        <a href="#" class="{{ request()->is('dashboard') ? 'active' : '' }}">
+                        <a href="{{route('dashboard')}}" class="{{ request()->is('dashboard') ? 'active' : '' }}">
                             <x-heroicon-o-squares-2x2 class="nav-icon" aria-hidden="true" />
                             Overview
                         </a>
@@ -95,7 +93,8 @@
                         </a>
                     </li>
                     <li class="sidebar__item">
-                        <a href="#">
+                        <a href="{{ route('profile.edit') }}"
+                            class="{{ request()->routeIs('profile.edit') ? 'active' : '' }}">
                             <x-heroicon-o-cog-6-tooth class="nav-icon" aria-hidden="true" />
                             Account Settings
                         </a>
@@ -132,19 +131,14 @@
         <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
 
         {{-- ==========================================
-             MAIN CONTENT
+        MAIN CONTENT
         =========================================== --}}
         <main class="dashboard-content" id="main-content" tabindex="-1">
 
             {{-- Mobile-only bar: sidebar toggle --}}
             <div class="mobile-bar" aria-hidden="true">
-                <button
-                    class="mobile-bar__toggle"
-                    id="sidebar-toggle"
-                    aria-controls="sidebar"
-                    aria-expanded="false"
-                    aria-label="Open dashboard menu"
-                >
+                <button class="mobile-bar__toggle" id="sidebar-toggle" aria-controls="sidebar" aria-expanded="false"
+                    aria-label="Open dashboard menu">
                     <x-heroicon-o-bars-3 class="nav-icon" aria-hidden="true" />
                     Menu
                 </button>
@@ -156,14 +150,14 @@
     </div>{{-- /.dashboard-wrapper --}}
 
     {{-- ==========================================
-         SIDEBAR / NAV TOGGLE SCRIPT
+    SIDEBAR / NAV TOGGLE SCRIPT
     =========================================== --}}
     <script>
         (function () {
-            const navToggle    = document.getElementById('nav-toggle');
-            const navLinks     = document.getElementById('nav-links');
-            const sidebar      = document.getElementById('sidebar');
-            const overlay      = document.getElementById('sidebar-overlay');
+            const navToggle = document.getElementById('nav-toggle');
+            const navLinks = document.getElementById('nav-links');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
 
             // Top nav toggle (mobile)
             if (navToggle && navLinks) {
@@ -201,4 +195,5 @@
     @stack('scripts')
 
 </body>
+
 </html>

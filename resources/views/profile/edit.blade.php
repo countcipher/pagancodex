@@ -1,29 +1,32 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('layouts.dashboard')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-            </div>
+@section('title', 'Account Settings')
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
+@section('content')
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-                </div>
-            </div>
-        </div>
+    <div class="page-header">
+        <h1>Account Settings</h1>
     </div>
-</x-app-layout>
+
+    {{-- Update Name & Email --}}
+    <section class="dashboard-panel" aria-labelledby="panel-profile-info">
+        <div class="dashboard-panel__body">
+            @include('profile.partials.update-profile-information-form')
+        </div>
+    </section>
+
+    {{-- Update Password --}}
+    <section class="dashboard-panel" aria-labelledby="panel-password">
+        <div class="dashboard-panel__body">
+            @include('profile.partials.update-password-form')
+        </div>
+    </section>
+
+    {{-- Delete Account --}}
+    <section class="dashboard-panel dashboard-panel--danger" aria-labelledby="panel-delete">
+        <div class="dashboard-panel__body">
+            @include('profile.partials.delete-user-form')
+        </div>
+    </section>
+
+@endsection

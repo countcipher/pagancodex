@@ -1,0 +1,39 @@
+[36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+transforming...
+[32m✓[39m 35 modules transformed.
+[31m✗[39m Build failed in 748ms
+[31merror during build:
+[31m[vite:css] [sass] Can't find stylesheet to import.
+  ╷
+4 │ @use '../variables' as *;
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  resources\sass\_forms.scss 4:1  @use
+  resources\sass\app.scss 12:1    root stylesheet[31m
+file: [36mD:/dev-work/pagancodex/resources/sass/app.scss[31m
+[33m
+[sass] Can't find stylesheet to import.
+  ╷
+4 │ @use '../variables' as *;
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  resources\sass\_forms.scss 4:1  @use
+  resources\sass\app.scss 12:1    root stylesheet
+[31m
+Error: Can't find stylesheet to import.
+  ╷
+4 │ @use '../variables' as *;
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^
+  ╵
+  resources\sass\_forms.scss 4:1  @use
+  resources\sass\app.scss 12:1    root stylesheet
+    at Object.wrapException (D:\dev-work\pagancodex\node_modules\sass\sass.dart.js:2337:47)
+    at D:\dev-work\pagancodex\node_modules\sass\sass.dart.js:89967:25
+    at _wrapJsFunctionForAsync_closure.$protected (D:\dev-work\pagancodex\node_modules\sass\sass.dart.js:5005:15)
+    at _wrapJsFunctionForAsync_closure.call$2 (D:\dev-work\pagancodex\node_modules\sass\sass.dart.js:38601:12)
+    at _awaitOnObject_closure.call$1 (D:\dev-work\pagancodex\node_modules\sass\sass.dart.js:38589:32)
+    at Object._rootRunUnary (D:\dev-work\pagancodex\node_modules\sass\sass.dart.js:5423:18)
+    at StaticClosure.<anonymous> (D:\dev-work\pagancodex\node_modules\sass\sass.dart.js:129574:16)
+    at _CustomZone.runUnary$2$2 (D:\dev-work\pagancodex\node_modules\sass\sass.dart.js:40032:39)
+    at _Future__propagateToListeners_handleValueCallback.call$0 (D:\dev-work\pagancodex\node_modules\sass\sass.dart.js:39090:51)
+    at Object._Future__propagateToListeners (D:\dev-work\pagancodex\node_modules\sass\sass.dart.js:5215:93)[39m

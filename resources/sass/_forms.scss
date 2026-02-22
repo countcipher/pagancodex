@@ -1,0 +1,166 @@
+// ============================================================
+// Pagan Codex — Forms & Buttons
+// ============================================================
+@use 'sass:color';
+@use 'variables' as *;
+
+// --- Form section header (from Breeze partial <header>) ---
+.form-section-header {
+    margin-bottom: $default-component-margin;
+
+    h2 {
+        font-family: $font-ui;
+        font-size: 1rem;
+        font-weight: 600;
+        color: $color-brown-dark;
+        margin: 0 0 $spacing-sm;
+    }
+
+    p {
+        font-size: 0.875rem;
+        color: $color-text-muted;
+        margin: 0;
+    }
+}
+
+// --- Form field group ---
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+    margin-bottom: $default-component-margin;
+}
+
+// --- Label ---
+.form-label {
+    font-family: $font-ui;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $color-text;
+}
+
+// --- Text input ---
+.form-input {
+    width: 100%;
+    max-width: 28rem;
+    padding: $spacing-sm $spacing-md;
+    font-family: $font-ui;
+    font-size: 0.9rem;
+    color: $color-text;
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    transition: border-color $transition-speed $transition-ease,
+                box-shadow $transition-speed $transition-ease;
+
+    &:focus {
+        outline: none;
+        border-color: $color-green-dark;
+        box-shadow: 0 0 0 3px rgba($color-green-dark, 0.15);
+    }
+
+    &:disabled {
+        background-color: color.adjust($color-bg, $lightness: -3%);
+        color: $color-text-muted;
+        cursor: not-allowed;
+    }
+}
+
+// --- Validation errors ---
+.form-errors {
+    list-style: none;
+    padding: 0;
+    margin: $spacing-xs 0 0;
+    font-size: 0.8rem;
+    color: $color-danger;
+}
+
+// --- Inline text button (e.g. "resend verification email") ---
+.btn-link {
+    background: none;
+    border: none;
+    padding: 0;
+    color: $color-green-dark;
+    font-size: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+        color: $color-green-mid;
+    }
+}
+
+// --- Unverified email notice ---
+.form-unverified {
+    font-size: 0.875rem;
+    color: $color-text-muted;
+    margin-top: $spacing-sm;
+}
+
+// --- Form action row (button + status message) ---
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-top: $spacing-lg;
+}
+
+.form-saved {
+    font-size: 0.875rem;
+    color: $color-green-dark;
+}
+
+// --- Buttons ---
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    padding: $spacing-sm $spacing-lg;
+    font-family: $font-ui;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: $radius-sm;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color $transition-speed $transition-ease,
+                color $transition-speed $transition-ease,
+                border-color $transition-speed $transition-ease;
+
+    &--primary {
+        background-color: $color-brown-dark;
+        color: $color-white;
+        border-color: $color-brown-dark;
+
+        &:hover,
+        &:focus {
+            background-color: color.adjust($color-brown-dark, $lightness: -8%);
+            border-color: color.adjust($color-brown-dark, $lightness: -8%);
+        }
+    }
+
+    &--secondary {
+        background-color: $color-white;
+        color: $color-brown-dark;
+        border-color: $color-border;
+
+        &:hover,
+        &:focus {
+            background-color: $color-bg;
+            border-color: $color-brown-light;
+        }
+    }
+
+    &--danger {
+        background-color: $color-danger;
+        color: $color-white;
+        border-color: $color-danger;
+
+        &:hover,
+        &:focus {
+            background-color: color.adjust($color-danger, $lightness: -8%);
+            border-color: color.adjust($color-danger, $lightness: -8%);
+        }
+    }
+}

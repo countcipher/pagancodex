@@ -14,6 +14,7 @@ $color-text:         #2A1A08;   // near-black warm text
 $color-text-muted:   #7A6A58;   // muted secondary text
 $color-white:        #FFFFFF;
 $color-border:       #DDD5C8;   // neutral warm border
+$color-danger:       #9B1C1C;   // deep red for destructive actions
 
 // --- Typography ---
 $font-body:          'Georgia', 'Times New Roman', serif;
@@ -28,6 +29,8 @@ $spacing-md:         1rem;
 $spacing-lg:         1.5rem;
 $spacing-xl:         2rem;
 $spacing-2xl:        3rem;
+
+$default-component-margin: 1.25rem; // space between form fields, section elements, etc.
 
 // --- Layout ---
 $sidebar-width:      260px;

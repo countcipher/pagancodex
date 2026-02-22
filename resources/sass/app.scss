@@ -8,8 +8,12 @@
 // Base reset & typography
 @use 'base';
 
+// Forms & buttons
+@use 'forms';
+
 // Layout
 @use 'layout/nav';
 @use 'layout/sidebar';
 @use 'layout/dashboard';
+@use 'layout/auth';
 
