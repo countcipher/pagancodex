@@ -75,6 +75,13 @@
     color: $color-danger;
 }
 
+// --- Helper / hint text below an input ---
+.form-hint {
+    font-size: 0.8rem;
+    color: $color-text-muted;
+    margin: $spacing-xs 0 0;
+}
+
 // --- Inline text button (e.g. "resend verification email") ---
 .btn-link {
     background: none;

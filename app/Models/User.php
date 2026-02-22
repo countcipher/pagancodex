@@ -45,4 +45,23 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the profile associated with the user.
+     */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    /**
+     * The "booted" method of the model.
+     * Automatically creates a blank profile when a user is registered.
+     */
+    protected static function booted(): void
+    {
+        static::created(function (User $user) {
+            $user->profile()->create([]);
+        });
+    }
 }
