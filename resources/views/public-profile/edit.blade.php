@@ -21,9 +21,24 @@
                     class="form-saved">Profile saved.</p>
             @endif
 
-            <form method="POST" action="{{ route('public-profile.update') }}">
+            <form method="POST" action="{{ route('public-profile.update') }}" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
+
+                {{-- Profile Photo --}}
+                <div class="form-group">
+                    <x-input-label for="avatar" :value="__('Profile Photo')" />
+
+                    @if ($profile?->avatar_path)
+                        <div class="avatar-preview">
+                            <img src="{{ Storage::url($profile->avatar_path) }}" alt="Current profile photo">
+                        </div>
+                    @endif
+
+                    <input id="avatar" type="file" name="avatar" accept="image/*" class="form-file-input">
+                    <p class="form-hint">JPG, PNG, or GIF. Max 2MB. Recommended: square, at least 200×200px.</p>
+                    <x-input-error :messages="$errors->get('avatar')" />
+                </div>
 
                 {{-- Tradition --}}
                 <div class="form-group">

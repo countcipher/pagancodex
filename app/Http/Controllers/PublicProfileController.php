@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class PublicProfileController extends Controller
@@ -35,7 +36,23 @@ class PublicProfileController extends Controller
             'public_email' => ['nullable', 'email', 'max:255'],
             'phone_number' => ['nullable', 'string', 'max:50'],
             'is_public' => ['boolean'],
+            'avatar' => ['nullable', 'image', 'max:2048'],
         ]);
+
+        // Handle avatar upload
+        if ($request->hasFile('avatar')) {
+            $profile = $request->user()->profile;
+
+            // Delete old avatar if one exists
+            if ($profile?->avatar_path) {
+                Storage::disk('public')->delete($profile->avatar_path);
+            }
+
+            $validated['avatar_path'] = $request->file('avatar')->store('avatars', 'public');
+        }
+
+        // Remove the raw file key — only avatar_path is stored in the DB
+        unset($validated['avatar']);
 
         $request->user()->profile()->updateOrCreate(
             ['user_id' => $request->user()->id],

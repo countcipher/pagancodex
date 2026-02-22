@@ -82,6 +82,43 @@
     margin: $spacing-xs 0 0;
 }
 
+// --- Current avatar preview ---
+.avatar-preview {
+    margin-bottom: $spacing-sm;
+
+    img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid $color-border;
+    }
+}
+
+// --- File input ---
+.form-file-input {
+    display: block;
+    margin-top: $spacing-xs;
+    font-size: 0.875rem;
+    color: $color-text;
+
+    &::file-selector-button {
+        font-family: $font-ui;
+        font-size: 0.8rem;
+        padding: $spacing-xs $spacing-sm;
+        background-color: $color-white;
+        border: 1px solid $color-border;
+        border-radius: $radius-sm;
+        cursor: pointer;
+        margin-right: $spacing-sm;
+        color: $color-text;
+
+        &:hover {
+            background-color: $color-bg;
+        }
+    }
+}
+
 // --- Inline text button (e.g. "resend verification email") ---
 .btn-link {
     background: none;
