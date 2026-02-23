@@ -12,13 +12,31 @@
         <div class="dashboard-panel__body">
             <header class="form-section-header">
                 <h2>Your Public Profile</h2>
-                <p>This information will be visible to all visitors to the Pagan Codex if your profile is set to be listed in the public directory. Fill in only what you're
-                    comfortable sharing.</p>
             </header>
+
+            <div class="notice notice--warning" role="note">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="notice__icon" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
+                </svg>
+                <div>
+                    <strong>Privacy notice:</strong> Any information you enter here will be visible to <em>all visitors</em> to Pagan Codex — including people who are not logged in — if your profile is listed in the public directory. Only share what you are comfortable making public.
+                </div>
+            </div>
 
             <form method="POST" action="{{ route('public-profile.update') }}" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
+
+                {{-- Visibility --}}
+                <div class="form-group">
+                    <label for="is_public" class="form-toggle">
+                        <input id="is_public" type="checkbox" name="is_public" value="1" {{ old('is_public', $profile?->is_public ?? true) ? 'checked' : '' }}>
+                        <span>List me in the public directory</span>
+                    </label>
+                    <p class="form-hint">Uncheck to hide your profile from search results and the member directory.</p>
+                </div>
+
+                <hr class="form-divider">
 
                 {{-- Profile Photo --}}
                 <div class="form-group">
@@ -184,17 +202,6 @@
                     <x-text-input id="phone_number" type="text" name="phone_number" :value="old('phone_number', $profile?->phone_number)" placeholder="Optional — only share if you're comfortable" />
                     <p class="form-hint">This phone number will be visible on your public profile.</p>
                     <x-input-error :messages="$errors->get('phone_number')" />
-                </div>
-
-                <hr class="form-divider">
-
-                {{-- Visibility --}}
-                <div class="form-group">
-                    <label for="is_public" class="form-toggle">
-                        <input id="is_public" type="checkbox" name="is_public" value="1" {{ old('is_public', $profile?->is_public ?? true) ? 'checked' : '' }}>
-                        <span>List me in the public directory</span>
-                    </label>
-                    <p class="form-hint">Uncheck to hide your profile from search results and the member directory.</p>
                 </div>
 
                 <div class="form-actions">

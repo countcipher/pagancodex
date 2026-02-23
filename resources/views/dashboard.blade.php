@@ -29,11 +29,47 @@
     </div>
 
     {{-- Profile Summary --}}
+    @php
+        $hasProfileData = $profile && ($profile->tradition || $profile->bio || $profile->city || $profile->avatar_path || $profile->website);
+    @endphp
     <section class="dashboard-panel" aria-labelledby="panel-profile">
         <h2 class="dashboard-panel__title" id="panel-profile">Your Public Profile</h2>
         <div class="dashboard-panel__body">
-            <p>You haven't filled out your public profile yet. Let the community know who you are — your tradition,
-                location, and what you're seeking.</p>
+            @if (!$hasProfileData)
+                <p>You haven't filled out your public profile yet. Let the community know who you are — your tradition,
+                    location, and what you're seeking.</p>
+                <div class="panel-cta">
+                    <a href="{{ route('public-profile.edit') }}" class="btn btn--primary">Complete Your Profile</a>
+                </div>
+            @else
+                <div class="profile-summary">
+                    @if ($profile->avatar_path)
+                        <img src="{{ Storage::url($profile->avatar_path) }}" alt="Profile photo" class="profile-summary__avatar">
+                    @endif
+                    <div class="profile-summary__details">
+                        <p class="profile-summary__name">{{ auth()->user()->name }}
+                            @if ($profile->clergy)
+                                <span class="profile-badge">Clergy</span>
+                            @endif
+                        </p>
+                        @if ($profile->tradition)
+                            <p class="profile-summary__meta">{{ $profile->tradition }}</p>
+                        @endif
+                        @if ($profile->city || $profile->state_province || $profile->country)
+                            <p class="profile-summary__meta">
+                                {{ collect([$profile->city, $profile->state_province, $profile->country])->filter()->join(', ') }}
+                            </p>
+                        @endif
+                        <p class="profile-summary__visibility">
+                            @if ($profile->is_public)
+                                <span class="status-dot status-dot--active"></span> Listed in directory
+                            @else
+                                <span class="status-dot status-dot--inactive"></span> Hidden from directory
+                            @endif
+                        </p>
+                    </div>
+                </div>
+            @endif
         </div>
     </section>
 

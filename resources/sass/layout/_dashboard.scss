@@ -157,3 +157,78 @@
         display: flex;
     }
 }
+
+// --- Panel CTA (empty state call-to-action) ---
+.panel-cta {
+    margin-top: $spacing-md;
+}
+
+// --- Compact profile summary on dashboard ---
+.profile-summary {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-md;
+
+    &__avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid $color-border;
+        flex-shrink: 0;
+    }
+
+    &__details {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-xs;
+    }
+
+    &__name {
+        font-family: $font-body;
+        font-size: 1rem;
+        font-weight: 600;
+        color: $color-text;
+        display: flex;
+        align-items: center;
+        gap: $spacing-xs;
+    }
+
+    &__meta {
+        font-size: 0.875rem;
+        color: $color-text-muted;
+    }
+
+    &__visibility {
+        font-size: 0.8rem;
+        color: $color-text-muted;
+        display: flex;
+        align-items: center;
+        gap: $spacing-xs;
+    }
+}
+
+// --- Clergy / role badge ---
+.profile-badge {
+    font-family: $font-ui;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 6px;
+    border-radius: $radius-sm;
+    background-color: $color-brown-dark;
+    color: $color-white;
+}
+
+// --- Status dot (active/inactive indicator) ---
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    &--active   { background-color: $color-green-dark; }
+    &--inactive { background-color: $color-text-muted; }
+}

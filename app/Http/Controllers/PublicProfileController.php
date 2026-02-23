@@ -45,6 +45,9 @@ class PublicProfileController extends Controller
         // Radio buttons submit '1' or '0' as strings; cast to boolean and default to false if missing
         $validated['clergy'] = (bool) ($validated['clergy'] ?? false);
 
+        // Unchecked checkboxes send nothing — explicitly default to false so the column is always updated
+        $validated['is_public'] = (bool) ($validated['is_public'] ?? false);
+
         // Handle avatar upload
         if ($request->hasFile('avatar')) {
             $profile = $request->user()->profile;

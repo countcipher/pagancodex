@@ -91,6 +91,32 @@
     margin: $spacing-xs 0 0;
 }
 
+// --- Contextual notice block ---
+.notice {
+    display: flex;
+    gap: $spacing-sm;
+    align-items: flex-start;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $radius-sm;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: $spacing-lg;
+
+    &--warning {
+        background-color: #fdf6e3;
+        border-left: 4px solid #c9952a;
+        color: #6b4f12;
+    }
+
+    &__icon {
+        width: 1.1rem;
+        height: 1.1rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+        color: #c9952a;
+    }
+}
+
 // --- Radio button group ---
 .form-radio-group {
     display: flex;
