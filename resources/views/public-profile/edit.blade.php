@@ -47,6 +47,22 @@
                     <x-input-error :messages="$errors->get('tradition')" />
                 </div>
 
+                {{-- Clergy --}}
+                <div class="form-group">
+                    <x-input-label :value="__('Are you legal clergy?')" />
+                    <div class="form-radio-group">
+                        <label class="form-radio">
+                            <input type="radio" name="clergy" value="1" {{ old('clergy', $profile?->clergy) == '1' ? 'checked' : '' }}>
+                            <span>Yes</span>
+                        </label>
+                        <label class="form-radio">
+                            <input type="radio" name="clergy" value="0" {{ old('clergy', $profile?->clergy ?? 0) == '0' ? 'checked' : '' }}>
+                            <span>No</span>
+                        </label>
+                    </div>
+                    <x-input-error :messages="$errors->get('clergy')" />
+                </div>
+
                 {{-- Bio --}}
                 <div class="form-group">
                     <x-input-label for="bio" :value="__('Bio')" />

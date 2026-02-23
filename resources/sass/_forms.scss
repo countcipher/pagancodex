@@ -82,6 +82,30 @@
     margin: $spacing-xs 0 0;
 }
 
+// --- Radio button group ---
+.form-radio-group {
+    display: flex;
+    gap: $spacing-lg;
+    margin-top: $spacing-xs;
+}
+
+.form-radio {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-xs;
+    cursor: pointer;
+    font-family: $font-ui;
+    font-size: 0.9rem;
+    color: $color-text;
+
+    input[type="radio"] {
+        width: 1rem;
+        height: 1rem;
+        accent-color: $color-brown-dark;
+        cursor: pointer;
+    }
+}
+
 // --- Current avatar preview ---
 .avatar-preview {
     margin-bottom: $spacing-sm;

@@ -19,6 +19,7 @@ class Profile extends Model
         'phone_number',
         'avatar_path',
         'is_public',
+        'clergy'
     ];
 
     /**

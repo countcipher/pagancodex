@@ -36,8 +36,12 @@ class PublicProfileController extends Controller
             'public_email' => ['nullable', 'email', 'max:255'],
             'phone_number' => ['nullable', 'string', 'max:50'],
             'is_public' => ['boolean'],
+            'clergy' => ['nullable', 'boolean'],
             'avatar' => ['nullable', 'image', 'max:2048'],
         ]);
+
+        // Radio buttons submit '1' or '0' as strings; cast to boolean and default to false if missing
+        $validated['clergy'] = (bool) ($validated['clergy'] ?? false);
 
         // Handle avatar upload
         if ($request->hasFile('avatar')) {
