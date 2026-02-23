@@ -24,6 +24,9 @@
     {{-- Skip to main content (a11y) --}}
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
+    {{-- Toast notifications --}}
+    <x-toast :status="session('status')" />
+
     {{-- ==========================================
     TOP NAVIGATION
     Public-facing: visible to all users

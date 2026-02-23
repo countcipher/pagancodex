@@ -9,8 +9,11 @@ class Profile extends Model
     protected $fillable = [
         'user_id',
         'tradition',
+        'clergy',
         'bio',
-        'location',
+        'city',
+        'state_province',
+        'country',
         'website',
         'facebook_url',
         'instagram_url',
@@ -19,7 +22,6 @@ class Profile extends Model
         'phone_number',
         'avatar_path',
         'is_public',
-        'clergy'
     ];
 
     /**

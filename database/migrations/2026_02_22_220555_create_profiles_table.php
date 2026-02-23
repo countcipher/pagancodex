@@ -14,8 +14,11 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('tradition')->nullable();
+            $table->boolean('clergy')->default(false);
             $table->text('bio')->nullable();
-            $table->string('location')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state_province')->nullable();
+            $table->string('country', 2)->nullable()->comment('US or CA');
             $table->string('website')->nullable();
             $table->string('facebook_url')->nullable();
             $table->string('instagram_url')->nullable();

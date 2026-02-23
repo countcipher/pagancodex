@@ -28,7 +28,9 @@ class PublicProfileController extends Controller
         $validated = $request->validate([
             'tradition' => ['nullable', 'string', 'max:255'],
             'bio' => ['nullable', 'string', 'max:2000'],
-            'location' => ['nullable', 'string', 'max:255'],
+            'city' => ['nullable', 'string', 'max:255'],
+            'state_province' => ['nullable', 'string', 'max:2'],
+            'country' => ['nullable', 'in:US,CA'],
             'website' => ['nullable', 'url', 'max:255'],
             'facebook_url' => ['nullable', 'url', 'max:255'],
             'instagram_url' => ['nullable', 'url', 'max:255'],
@@ -64,6 +66,6 @@ class PublicProfileController extends Controller
         );
 
         return redirect()->route('public-profile.edit')
-            ->with('status', 'profile-updated');
+            ->with('status', 'public-profile-updated');
     }
 }

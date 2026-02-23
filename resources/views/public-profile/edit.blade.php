@@ -12,14 +12,9 @@
         <div class="dashboard-panel__body">
             <header class="form-section-header">
                 <h2>Your Public Profile</h2>
-                <p>This information may be visible to other members of the Pagan Codex community. Fill in only what you're
+                <p>This information will be visible to all visitors to the Pagan Codex if your profile is set to be listed in the public directory. Fill in only what you're
                     comfortable sharing.</p>
             </header>
-
-            @if (session('status') === 'profile-updated')
-                <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 3000)"
-                    class="form-saved">Profile saved.</p>
-            @endif
 
             <form method="POST" action="{{ route('public-profile.update') }}" enctype="multipart/form-data">
                 @csrf
@@ -71,12 +66,75 @@
                     <x-input-error :messages="$errors->get('bio')" />
                 </div>
 
-                {{-- Location --}}
+                {{-- Country --}}
                 <div class="form-group">
-                    <x-input-label for="location" :value="__('Location')" />
-                    <x-text-input id="location" type="text" name="location" :value="old('location', $profile?->location)"
-                        placeholder="e.g. Salem, MA or Pacific Northwest" />
-                    <x-input-error :messages="$errors->get('location')" />
+                    <x-input-label for="country" :value="__('Country')" />
+                    <select id="country" name="country" class="form-input form-select">
+                        <option value="">— Select a country —</option>
+                        <option value="US" {{ old('country', $profile?->country) === 'US' ? 'selected' : '' }}>United States</option>
+                        <option value="CA" {{ old('country', $profile?->country) === 'CA' ? 'selected' : '' }}>Canada</option>
+                    </select>
+                    <x-input-error :messages="$errors->get('country')" />
+                </div>
+
+                {{-- State / Province --}}
+                <div class="form-group" id="state-province-group" style="display: none;">
+                    <label for="state_province" class="form-label" id="state-province-label">State</label>
+
+                    {{-- US States & Territories --}}
+                    <select id="state_province_us" name="state_province" class="form-input form-select" style="display: none;">
+                        <option value="">— Select a state —</option>
+                        @foreach([
+                            'AL' => 'Alabama', 'AK' => 'Alaska', 'AS' => 'American Samoa',
+                            'AZ' => 'Arizona', 'AR' => 'Arkansas', 'CA' => 'California',
+                            'CO' => 'Colorado', 'CT' => 'Connecticut', 'DE' => 'Delaware',
+                            'DC' => 'District of Columbia', 'FL' => 'Florida', 'GA' => 'Georgia',
+                            'GU' => 'Guam', 'HI' => 'Hawaii', 'ID' => 'Idaho',
+                            'IL' => 'Illinois', 'IN' => 'Indiana', 'IA' => 'Iowa',
+                            'KS' => 'Kansas', 'KY' => 'Kentucky', 'LA' => 'Louisiana',
+                            'ME' => 'Maine', 'MD' => 'Maryland', 'MA' => 'Massachusetts',
+                            'MI' => 'Michigan', 'MN' => 'Minnesota', 'MS' => 'Mississippi',
+                            'MO' => 'Missouri', 'MT' => 'Montana', 'NE' => 'Nebraska',
+                            'NV' => 'Nevada', 'NH' => 'New Hampshire', 'NJ' => 'New Jersey',
+                            'NM' => 'New Mexico', 'NY' => 'New York', 'NC' => 'North Carolina',
+                            'ND' => 'North Dakota', 'MP' => 'Northern Mariana Islands',
+                            'OH' => 'Ohio', 'OK' => 'Oklahoma', 'OR' => 'Oregon',
+                            'PA' => 'Pennsylvania', 'PR' => 'Puerto Rico', 'RI' => 'Rhode Island',
+                            'SC' => 'South Carolina', 'SD' => 'South Dakota', 'TN' => 'Tennessee',
+                            'TX' => 'Texas', 'UT' => 'Utah', 'VT' => 'Vermont',
+                            'VI' => 'U.S. Virgin Islands', 'VA' => 'Virginia', 'WA' => 'Washington',
+                            'WV' => 'West Virginia', 'WI' => 'Wisconsin', 'WY' => 'Wyoming',
+                        ] as $abbr => $name)
+                            <option value="{{ $abbr }}" {{ old('state_province', $profile?->state_province) === $abbr ? 'selected' : '' }}>
+                                {{ $name }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    {{-- Canadian Provinces & Territories --}}
+                    <select id="state_province_ca" name="state_province" class="form-input form-select" style="display: none;">
+                        <option value="">— Select a province —</option>
+                        @foreach([
+                            'AB' => 'Alberta', 'BC' => 'British Columbia', 'MB' => 'Manitoba',
+                            'NB' => 'New Brunswick', 'NL' => 'Newfoundland and Labrador',
+                            'NS' => 'Nova Scotia', 'NT' => 'Northwest Territories', 'NU' => 'Nunavut',
+                            'ON' => 'Ontario', 'PE' => 'Prince Edward Island', 'QC' => 'Quebec',
+                            'SK' => 'Saskatchewan', 'YT' => 'Yukon',
+                        ] as $abbr => $name)
+                            <option value="{{ $abbr }}" {{ old('state_province', $profile?->state_province) === $abbr ? 'selected' : '' }}>
+                                {{ $name }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    <x-input-error :messages="$errors->get('state_province')" />
+                </div>
+
+                {{-- City --}}
+                <div class="form-group">
+                    <x-input-label for="city" :value="__('City')" />
+                    <x-text-input id="city" type="text" name="city" :value="old('city', $profile?->city)" placeholder="Your city or nearest town" />
+                    <x-input-error :messages="$errors->get('city')" />
                 </div>
 
                 {{-- Website --}}
@@ -147,3 +205,44 @@
     </section>
 
 @endsection
+
+@push('scripts')
+<script>
+(function () {
+    const countrySelect     = document.getElementById('country');
+    const stateGroup        = document.getElementById('state-province-group');
+    const stateLabel        = document.getElementById('state-province-label');
+    const stateSelectUS     = document.getElementById('state_province_us');
+    const stateSelectCA     = document.getElementById('state_province_ca');
+
+    function updateStateProvince(country) {
+        if (country === 'US') {
+            stateGroup.style.display   = '';
+            stateLabel.textContent     = 'State / Territory';
+            stateSelectUS.style.display = '';
+            stateSelectUS.name         = 'state_province';
+            stateSelectCA.style.display = 'none';
+            stateSelectCA.name         = '';
+        } else if (country === 'CA') {
+            stateGroup.style.display   = '';
+            stateLabel.textContent     = 'Province / Territory';
+            stateSelectCA.style.display = '';
+            stateSelectCA.name         = 'state_province';
+            stateSelectUS.style.display = 'none';
+            stateSelectUS.name         = '';
+        } else {
+            stateGroup.style.display   = 'none';
+            stateSelectUS.name         = '';
+            stateSelectCA.name         = '';
+        }
+    }
+
+    // Run on page load (restores state for saved profiles)
+    updateStateProvince(countrySelect.value);
+
+    countrySelect.addEventListener('change', function () {
+        updateStateProvince(this.value);
+    });
+})();
+</script>
+@endpush
