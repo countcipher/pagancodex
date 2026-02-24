@@ -115,12 +115,4 @@
         </div>
     </section>
 
-    {{-- Account --}}
-    <section class="dashboard-panel" aria-labelledby="panel-account">
-        <h2 class="dashboard-panel__title" id="panel-account">Account Settings</h2>
-        <div class="dashboard-panel__body">
-            <p>Manage your email address, password, and notification preferences.</p>
-        </div>
-    </section>
-
 @endsection
