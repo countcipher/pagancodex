@@ -40,6 +40,10 @@ class PublicProfileController extends Controller
             'is_public' => ['boolean'],
             'clergy' => ['nullable', 'boolean'],
             'avatar' => ['nullable', 'image', 'max:2048'],
+        ], [
+            'avatar.uploaded' => 'The profile photo failed to upload. It may be larger than the server allows (maximum 2MB) or an unsupported file type.',
+            'avatar.max' => 'The profile photo must not be larger than 2MB.',
+            'avatar.image' => 'The profile photo must be an image file (JPG, PNG, GIF, etc).',
         ]);
 
         // Convert empty strings to null so cleared fields write null to the DB, not ""

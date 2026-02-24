@@ -223,6 +223,27 @@
     color: $color-green-dark;
 }
 
+// --- Avatar Upload UI ---
+.avatar-upload {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-sm;
+
+    &__preview {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid $color-border;
+        background-color: $color-bg;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $color-text-muted;
+    }
+}
+
 // ============================================================
 // Toast notification
 // ============================================================

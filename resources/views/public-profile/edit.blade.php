@@ -42,13 +42,17 @@
                 <div class="form-group">
                     <x-input-label for="avatar" :value="__('Profile Photo')" />
 
-                    @if ($profile?->avatar_path)
-                        <div class="avatar-preview">
-                            <img src="{{ Storage::url($profile->avatar_path) }}" alt="Current profile photo">
-                        </div>
-                    @endif
+                    <div class="avatar-upload">
+                        <img id="avatar-preview-img" 
+                             src="{{ $profile?->avatar_path ? Storage::url($profile->avatar_path) : '' }}" 
+                             alt="Profile photo preview" 
+                             class="avatar-upload__preview"
+                             style="{{ $profile?->avatar_path ? '' : 'display: none;' }}">
+                             
+                        <label for="avatar" class="btn btn--secondary">Choose File</label>
+                        <input id="avatar" type="file" name="avatar" accept="image/*" class="sr-only">
+                    </div>
 
-                    <input id="avatar" type="file" name="avatar" accept="image/*" class="form-file-input">
                     <p class="form-hint">JPG, PNG, or GIF. Max 2MB. Recommended: square, at least 200×200px.</p>
                     <x-input-error :messages="$errors->get('avatar')" />
                 </div>
@@ -259,6 +263,24 @@
     countrySelect.addEventListener('change', function () {
         updateLocationFields(this.value);
     });
+
+    // Avatar live preview
+    const avatarInput = document.getElementById('avatar');
+    const avatarPreviewImg = document.getElementById('avatar-preview-img');
+
+    if (avatarInput && avatarPreviewImg) {
+        avatarInput.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    avatarPreviewImg.src = e.target.result;
+                    avatarPreviewImg.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    }
 })();
 </script>
 @endpush
