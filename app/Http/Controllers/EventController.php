@@ -90,6 +90,7 @@ class EventController extends Controller
 
         // Clean up any empty strings sent by form
         $validated = array_map(fn($v) => $v === '' ? null : $v, $validated);
+        $validated['is_public'] = $request->boolean('is_public');
 
         $event->update($validated);
 

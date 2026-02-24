@@ -53,6 +53,28 @@
                     <x-input-error :messages="$errors->get('details')" />
                 </div>
 
+                <hr class="form-divider">
+
+                {{-- Visibility Toggle --}}
+                <div class="form-group">
+                    <p class="form-section-subheading" style="margin-bottom: $spacing-md;">Privacy & Verification</p>
+                    <div class="notice" style="margin-bottom: 1.5rem;">
+                        <x-heroicon-o-shield-check class="notice__icon" />
+                        <div class="notice__content">
+                            <h4 class="notice__title">Directory Listing</h4>
+                            <p>Do you want this event to appear in the public Pagan Codex directory? If unlisted, it will
+                                only be accessible via direct link.</p>
+                        </div>
+                    </div>
+
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="is_public" name="is_public" value="1"
+                            class="form-input form-input--checkbox" checked>
+                        <label for="is_public" class="checkbox-label" style="font-weight: 500; font-size: 1rem;">List
+                            event publicly in the directory</label>
+                    </div>
+                </div>
+
                 <div class="form-actions">
                     <button type="submit" class="btn btn--primary">Create Event</button>
                     <a href="{{ route('dashboard') }}" class="btn btn--secondary">Cancel</a>

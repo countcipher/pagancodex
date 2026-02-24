@@ -14,6 +14,7 @@ class Event extends Model
         'city',
         'start_date',
         'end_date',
+        'is_public',
     ];
 
     public function user()

@@ -33,7 +33,16 @@
                         <tbody>
                             @foreach($events as $event)
                                 <tr>
-                                    <td style="font-weight: 600; color: #2A1A08;">{{ $event->title }}</td>
+                                    <td>
+                                        <div style="font-weight: 600; color: #2A1A08;">{{ $event->title }}</div>
+                                        <div style="margin-top: 0.25rem; font-size: 0.85rem; color: #7A6A58;">
+                                            @if ($event->is_public)
+                                                <span class="status-dot status-dot--active"></span> Listed in directory
+                                            @else
+                                                <span class="status-dot status-dot--inactive"></span> Hidden from directory
+                                            @endif
+                                        </div>
+                                    </td>
                                     <td>
                                         {{ \Carbon\Carbon::parse($event->start_date)->format('M j, Y') }}
                                         @if($event->end_date && $event->end_date !== $event->start_date)

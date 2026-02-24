@@ -74,82 +74,86 @@
         LEFT SIDEBAR
         Authenticated user actions only
         =========================================== --}}
-        <aside class="sidebar" id="sidebar" aria-label="Dashboard navigation">
-            <div class="sidebar__header">
-                <p class="sidebar__username">{{ auth()->user()->name ?? 'Your Name' }}</p>
-                <p class="sidebar__role">Member</p>
-            </div>
+        @auth
+            <aside class="sidebar" id="sidebar" aria-label="Dashboard navigation">
+                <div class="sidebar__header">
+                    <p class="sidebar__username">{{ auth()->user()->name ?? 'Your Name' }}</p>
+                    <p class="sidebar__role">Member</p>
+                </div>
 
-            <div class="sidebar__section">
-                <p class="sidebar__section-label">My Profile</p>
-                <ul class="sidebar__nav" role="list">
-                    <li class="sidebar__item">
-                        <a href="{{route('dashboard')}}" class="{{ request()->is('dashboard') ? 'active' : '' }}">
-                            <x-heroicon-o-squares-2x2 class="nav-icon" aria-hidden="true" />
-                            Overview
-                        </a>
-                    </li>
-                    <li class="sidebar__item">
-                        <a href="{{ route('public-profile.edit') }}"
-                            class="{{ request()->routeIs('public-profile.edit') ? 'active' : '' }}">
-                            <x-heroicon-o-user class="nav-icon" aria-hidden="true" />
-                            Public Profile
-                        </a>
-                    </li>
-                    <li class="sidebar__item">
-                        <a href="{{ route('profile.edit') }}"
-                            class="{{ request()->routeIs('profile.edit') ? 'active' : '' }}">
-                            <x-heroicon-o-cog-6-tooth class="nav-icon" aria-hidden="true" />
-                            Account Settings
-                        </a>
-                    </li>
-                </ul>
-            </div>
+                <div class="sidebar__section">
+                    <p class="sidebar__section-label">My Profile</p>
+                    <ul class="sidebar__nav" role="list">
+                        <li class="sidebar__item">
+                            <a href="{{route('dashboard')}}" class="{{ request()->is('dashboard') ? 'active' : '' }}">
+                                <x-heroicon-o-squares-2x2 class="nav-icon" aria-hidden="true" />
+                                Overview
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="{{ route('public-profile.edit') }}"
+                                class="{{ request()->routeIs('public-profile.edit') ? 'active' : '' }}">
+                                <x-heroicon-o-user class="nav-icon" aria-hidden="true" />
+                                Public Profile
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="{{ route('profile.edit') }}"
+                                class="{{ request()->routeIs('profile.edit') ? 'active' : '' }}">
+                                <x-heroicon-o-cog-6-tooth class="nav-icon" aria-hidden="true" />
+                                Account Settings
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
-            <div class="sidebar__section">
-                <p class="sidebar__section-label">My Listings</p>
-                <ul class="sidebar__nav" role="list">
-                    <li class="sidebar__item">
-                        <a href="{{ route('events.index') }}"
-                            class="{{ request()->routeIs('events.*') ? 'active' : '' }}">
-                            <x-heroicon-o-calendar-days class="nav-icon" aria-hidden="true" />
-                            Events
-                        </a>
-                    </li>
-                    <li class="sidebar__item">
-                        <a href="{{ route('groups.index') }}"
-                            class="{{ request()->routeIs('groups.*') ? 'active' : '' }}">
-                            <x-heroicon-o-user-group class="nav-icon" aria-hidden="true" />
-                            Groups
-                        </a>
-                    </li>
-                    <li class="sidebar__item">
-                        <a href="{{ route('shops.index') }}"
-                            class="{{ request()->routeIs('shops.*') ? 'active' : '' }}">
-                            <x-heroicon-o-shopping-bag class="nav-icon" aria-hidden="true" />
-                            Shops
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </aside>
+                <div class="sidebar__section">
+                    <p class="sidebar__section-label">My Listings</p>
+                    <ul class="sidebar__nav" role="list">
+                        <li class="sidebar__item">
+                            <a href="{{ route('events.index') }}"
+                                class="{{ request()->routeIs('events.*') ? 'active' : '' }}">
+                                <x-heroicon-o-calendar-days class="nav-icon" aria-hidden="true" />
+                                Events
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="{{ route('groups.index') }}"
+                                class="{{ request()->routeIs('groups.*') ? 'active' : '' }}">
+                                <x-heroicon-o-user-group class="nav-icon" aria-hidden="true" />
+                                Groups
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="{{ route('shops.index') }}"
+                                class="{{ request()->routeIs('shops.*') ? 'active' : '' }}">
+                                <x-heroicon-o-shopping-bag class="nav-icon" aria-hidden="true" />
+                                Shops
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
 
-        {{-- Overlay for mobile sidebar --}}
-        <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+            {{-- Overlay for mobile sidebar --}}
+            <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+        @endauth
 
         {{-- ==========================================
         MAIN CONTENT
         =========================================== --}}
-        <main class="dashboard-content" id="main-content" tabindex="-1">
+        <main class="dashboard-content" id="main-content" tabindex="-1" @guest style="margin-left: 0;" @endguest>
 
-            {{-- Mobile-only bar: sidebar toggle --}}
-            <div class="mobile-bar" aria-hidden="true">
-                <button class="mobile-bar__toggle" id="sidebar-toggle" aria-controls="sidebar" aria-expanded="false"
-                    aria-label="Open dashboard menu">
-                    <x-heroicon-o-bars-3 class="nav-icon" aria-hidden="true" />
-                    Menu
-                </button>
-            </div>
+            @auth
+                {{-- Mobile-only bar: sidebar toggle --}}
+                <div class="mobile-bar" aria-hidden="true">
+                    <button class="mobile-bar__toggle" id="sidebar-toggle" aria-controls="sidebar" aria-expanded="false"
+                        aria-label="Open dashboard menu">
+                        <x-heroicon-o-bars-3 class="nav-icon" aria-hidden="true" />
+                        Menu
+                    </button>
+                </div>
+            @endauth
 
             @yield('content')
         </main>
