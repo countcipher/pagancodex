@@ -13,6 +13,7 @@ Route::get('/dashboard', function () {
         'profile' => auth()->user()->profile,
         'eventsCount' => auth()->user()->events()->count(),
         'groupsCount' => auth()->user()->groups()->count(),
+        'shopsCount' => auth()->user()->shops()->count(),
     ]);
 })->middleware(['auth'])->name('dashboard');
 
@@ -37,6 +38,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/groups/{group}/edit', [\App\Http\Controllers\GroupController::class, 'edit'])->name('groups.edit');
     Route::put('/groups/{group}', [\App\Http\Controllers\GroupController::class, 'update'])->name('groups.update');
     Route::delete('/groups/{group}', [\App\Http\Controllers\GroupController::class, 'destroy'])->name('groups.destroy');
+
+    Route::get('/shops', [\App\Http\Controllers\ShopController::class, 'index'])->name('shops.index');
+    Route::get('/shops/create', [\App\Http\Controllers\ShopController::class, 'create'])->name('shops.create');
+    Route::post('/shops', [\App\Http\Controllers\ShopController::class, 'store'])->name('shops.store');
+    Route::get('/shops/{shop}/edit', [\App\Http\Controllers\ShopController::class, 'edit'])->name('shops.edit');
+    Route::put('/shops/{shop}', [\App\Http\Controllers\ShopController::class, 'update'])->name('shops.update');
+    Route::delete('/shops/{shop}', [\App\Http\Controllers\ShopController::class, 'destroy'])->name('shops.destroy');
 });
 
 require __DIR__ . '/auth.php';

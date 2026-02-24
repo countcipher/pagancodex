@@ -124,7 +124,8 @@
                         </a>
                     </li>
                     <li class="sidebar__item">
-                        <a href="#">
+                        <a href="{{ route('shops.index') }}"
+                            class="{{ request()->routeIs('shops.*') ? 'active' : '' }}">
                             <x-heroicon-o-shopping-bag class="nav-icon" aria-hidden="true" />
                             Shops
                         </a>

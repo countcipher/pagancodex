@@ -9,6 +9,11 @@
         'event-updated' => 'Event updated successfully.',
         'event-deleted' => 'Event deleted.',
         'group-created' => 'Your group has been successfully created.',
+        'group-updated' => 'Group updated successfully.',
+        'group-deleted' => 'Group deleted.',
+        'shop-created' => 'Your shop has been successfully created.',
+        'shop-updated' => 'Shop updated successfully.',
+        'shop-deleted' => 'Shop deleted.',
     ];
 
     $message = $status ? ($messages[$status] ?? null) : null;

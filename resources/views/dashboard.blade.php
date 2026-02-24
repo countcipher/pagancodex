@@ -22,7 +22,7 @@
             <x-heroicon-o-user-group class="action-card__icon" aria-hidden="true" />
             New Group
         </a>
-        <a href="#" class="action-card" role="listitem">
+        <a href="{{ route('shops.create') }}" class="action-card" role="listitem">
             <x-heroicon-o-shopping-bag class="action-card__icon" aria-hidden="true" />
             New Shop
         </a>
@@ -109,14 +109,18 @@
                     @endif
                 </div>
 
-                {{-- Shops Metric (Placeholder for future) --}}
+                {{-- Shops Metric --}}
                 <div class="metric-card">
                     <div class="metric-card__header">
                         <x-heroicon-o-shopping-bag class="metric-card__icon" aria-hidden="true" />
                         <h3 class="metric-card__title">Shops Owned</h3>
                     </div>
-                    <p class="metric-card__value">0</p>
-                    <a href="#" class="metric-card__link">Create a Shop &rarr;</a>
+                    <p class="metric-card__value">{{ $shopsCount }}</p>
+                    @if ($shopsCount > 0)
+                        <a href="{{ route('shops.index') }}" class="metric-card__link">Manage Shops &rarr;</a>
+                    @else
+                        <a href="{{ route('shops.create') }}" class="metric-card__link">Create a Shop &rarr;</a>
+                    @endif
                 </div>
 
             </div>

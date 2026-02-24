@@ -71,6 +71,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the shops created by the user.
+     */
+    public function shops()
+    {
+        return $this->hasMany(Shop::class);
+    }
+
+    /**
      * The "booted" method of the model.
      * Automatically creates a blank profile when a user is registered.
      */
