@@ -11,8 +11,8 @@
             @else
                 <option value="" disabled selected hidden>— Select a country —</option>
             @endif
-            <option value="US">United States</option>
-            <option value="CA">Canada</option>
+            <option value="US" {{ old('country', $country) === 'US' ? 'selected' : '' }}>United States</option>
+            <option value="CA" {{ old('country', $country) === 'CA' ? 'selected' : '' }}>Canada</option>
         </select>
         <x-input-error :messages="$errors->get('country')" />
     </div>
@@ -83,9 +83,9 @@
                     'WI' => 'Wisconsin',
                     'WY' => 'Wyoming',
                 ] as $abbr => $name)
-                    <option value="{{ $abbr }}" {{ old('state_province', $stateProvince) === $abbr ? 'selected' : '' }}>
-                        {{ $name }}
-                    </option>
+                        <option value="{{ $abbr }}" {{ old('state_province', $stateProvince) === $abbr ? 'selected' : '' }}>
+                            {{ $name }}
+                        </option>
 
                @endforeach
         </select>
@@ -108,9 +108,9 @@
                     'SK' => 'Saskatchewan',
                     'YT' => 'Yukon',
                 ] as $abbr => $name)
-                    <option value="{{ $abbr }}" {{ old('state_province', $stateProvince) === $abbr ? 'selected' : '' }}>
-                        {{ $name }}
-                    </option>
+                        <option value="{{ $abbr }}" {{ old('state_province', $stateProvince) === $abbr ? 'selected' : '' }}>
+                            {{ $name }}
+                        </option>
             @endforeach
         </select>
 

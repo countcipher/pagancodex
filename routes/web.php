@@ -23,8 +23,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/public-profile', [PublicProfileController::class, 'edit'])->name('public-profile.edit');
     Route::patch('/public-profile', [PublicProfileController::class, 'update'])->name('public-profile.update');
 
+    Route::get('/events', [\App\Http\Controllers\EventController::class, 'index'])->name('events.index');
     Route::get('/events/create', [\App\Http\Controllers\EventController::class, 'create'])->name('events.create');
     Route::post('/events', [\App\Http\Controllers\EventController::class, 'store'])->name('events.store');
+    Route::get('/events/{event}/edit', [\App\Http\Controllers\EventController::class, 'edit'])->name('events.edit');
+    Route::put('/events/{event}', [\App\Http\Controllers\EventController::class, 'update'])->name('events.update');
+    Route::delete('/events/{event}', [\App\Http\Controllers\EventController::class, 'destroy'])->name('events.destroy');
 });
 
 require __DIR__ . '/auth.php';

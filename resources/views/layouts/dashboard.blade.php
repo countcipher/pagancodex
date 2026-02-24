@@ -110,7 +110,8 @@
                 <p class="sidebar__section-label">My Listings</p>
                 <ul class="sidebar__nav" role="list">
                     <li class="sidebar__item">
-                        <a href="#">
+                        <a href="{{ route('events.index') }}"
+                            class="{{ request()->routeIs('events.*') ? 'active' : '' }}">
                             <x-heroicon-o-calendar-days class="nav-icon" aria-hidden="true" />
                             Events
                         </a>

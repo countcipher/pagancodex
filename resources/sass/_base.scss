@@ -117,3 +117,49 @@ ul, ol {
     white-space: nowrap;
     border-width: 0;
 }
+
+// --- Data Tables ---
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: $spacing-md;
+
+    th, td {
+        padding: $spacing-sm $spacing-md;
+        text-align: left;
+        border-bottom: 1px solid $color-border;
+    }
+
+    th {
+        font-family: $font-ui;
+        font-weight: 600;
+        font-size: 0.875rem;
+        color: $color-text-muted;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        background-color: $color-bg;
+    }
+
+    td {
+        font-size: 0.95rem;
+        vertical-align: middle;
+    }
+
+    tbody tr {
+        transition: background-color $transition-speed $transition-ease;
+        
+        &:hover {
+            background-color: rgba($color-brown-light, 0.1);
+        }
+        
+        &:last-child td {
+            border-bottom: none;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        gap: $spacing-sm;
+        justify-content: flex-end;
+    }
+}

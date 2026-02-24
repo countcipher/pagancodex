@@ -88,7 +88,7 @@
                         <h3 class="metric-card__title">Events Hosted</h3>
                     </div>
                     <p class="metric-card__value">{{ $eventsCount }}</p>
-                    <a href="#" class="metric-card__link">Manage Events &rarr;</a>
+                    <a href="{{ route('events.index') }}" class="metric-card__link">Manage Events &rarr;</a>
                 </div>
 
                 {{-- Groups Metric (Placeholder for future) --}}
