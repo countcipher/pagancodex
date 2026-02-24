@@ -33,7 +33,16 @@
                         <tbody>
                             @foreach($groups as $group)
                                 <tr>
-                                    <td style="font-weight: 600; color: #2A1A08;">{{ $group->name }}</td>
+                                    <td>
+                                        <div style="font-weight: 600; color: #2A1A08;">{{ $group->name }}</div>
+                                        <div style="margin-top: 0.25rem; font-size: 0.85rem; color: #7A6A58;">
+                                            @if ($group->is_public)
+                                                <span class="status-dot status-dot--active"></span> Listed in directory
+                                            @else
+                                                <span class="status-dot status-dot--inactive"></span> Hidden from directory
+                                            @endif
+                                        </div>
+                                    </td>
                                     <td>
                                         {{ $group->tradition ?? '—' }}
                                     </td>
