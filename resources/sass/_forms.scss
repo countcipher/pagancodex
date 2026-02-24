@@ -192,6 +192,15 @@
     &:focus {
         color: $color-green-mid;
     }
+
+    &--danger {
+        color: $color-danger;
+
+        &:hover,
+        &:focus {
+            color: darken($color-danger, 10%);
+        }
+    }
 }
 
 // --- Unverified email notice ---

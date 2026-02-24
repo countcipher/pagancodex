@@ -88,7 +88,7 @@
                 <div class="form-group">
                     <x-input-label for="country" :value="__('Country')" />
                     <select id="country" name="country" class="form-input form-select">
-                        <option value="">— Select a country —</option>
+                        <option value="">Don't Show Location</option>
                         <option value="US" {{ old('country', $profile?->country) === 'US' ? 'selected' : '' }}>United States</option>
                         <option value="CA" {{ old('country', $profile?->country) === 'CA' ? 'selected' : '' }}>Canada</option>
                     </select>
@@ -149,7 +149,7 @@
                 </div>
 
                 {{-- City --}}
-                <div class="form-group">
+                <div class="form-group" id="city-group">
                     <x-input-label for="city" :value="__('City')" />
                     <x-text-input id="city" type="text" name="city" :value="old('city', $profile?->city)" placeholder="Your city or nearest town" />
                     <x-input-error :messages="$errors->get('city')" />
@@ -222,33 +222,42 @@
     const stateSelectUS     = document.getElementById('state_province_us');
     const stateSelectCA     = document.getElementById('state_province_ca');
 
-    function updateStateProvince(country) {
+    const cityGroup = document.getElementById('city-group');
+
+    function updateLocationFields(country) {
         if (country === 'US') {
-            stateGroup.style.display   = '';
-            stateLabel.textContent     = 'State / Territory';
+            stateGroup.style.display    = '';
+            stateLabel.textContent      = 'State / Territory';
             stateSelectUS.style.display = '';
-            stateSelectUS.name         = 'state_province';
+            stateSelectUS.name          = 'state_province';
             stateSelectCA.style.display = 'none';
-            stateSelectCA.name         = '';
+            stateSelectCA.name          = '';
+            cityGroup.style.display     = '';
         } else if (country === 'CA') {
-            stateGroup.style.display   = '';
-            stateLabel.textContent     = 'Province / Territory';
+            stateGroup.style.display    = '';
+            stateLabel.textContent      = 'Province / Territory';
             stateSelectCA.style.display = '';
-            stateSelectCA.name         = 'state_province';
+            stateSelectCA.name          = 'state_province';
             stateSelectUS.style.display = 'none';
-            stateSelectUS.name         = '';
+            stateSelectUS.name          = '';
+            cityGroup.style.display     = '';
         } else {
-            stateGroup.style.display   = 'none';
-            stateSelectUS.name         = '';
-            stateSelectCA.name         = '';
+            // "Don't Show Location" — hide everything and clear values
+            stateGroup.style.display    = 'none';
+            stateSelectUS.name          = '';
+            stateSelectCA.name          = '';
+            stateSelectUS.value         = '';
+            stateSelectCA.value         = '';
+            cityGroup.style.display     = 'none';
+            document.getElementById('city').value = '';
         }
     }
 
-    // Run on page load (restores state for saved profiles)
-    updateStateProvince(countrySelect.value);
+    // Run on page load
+    updateLocationFields(countrySelect.value);
 
     countrySelect.addEventListener('change', function () {
-        updateStateProvince(this.value);
+        updateLocationFields(this.value);
     });
 })();
 </script>

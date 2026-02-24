@@ -42,11 +42,22 @@ class PublicProfileController extends Controller
             'avatar' => ['nullable', 'image', 'max:2048'],
         ]);
 
+        // Convert empty strings to null so cleared fields write null to the DB, not ""
+        $validated = array_map(fn($v) => $v === '' ? null : $v, $validated);
+
         // Radio buttons submit '1' or '0' as strings; cast to boolean and default to false if missing
         $validated['clergy'] = (bool) ($validated['clergy'] ?? false);
 
         // Unchecked checkboxes send nothing — explicitly default to false so the column is always updated
         $validated['is_public'] = (bool) ($validated['is_public'] ?? false);
+
+        // "Don't Show Location" — if country is blank, null all three location fields in the DB
+        if (empty($validated['country'])) {
+            $validated['country'] = null;
+            $validated['state_province'] = null;
+            $validated['city'] = null;
+        }
+
 
         // Handle avatar upload
         if ($request->hasFile('avatar')) {
