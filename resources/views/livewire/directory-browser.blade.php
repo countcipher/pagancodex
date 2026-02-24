@@ -75,7 +75,8 @@
             @else
                 <div class="profile-grid">
                     @foreach($profiles as $profile)
-                        <a href="#" class="profile-card" aria-label="View {{ $profile->user->name }}'s profile">
+                        <a href="{{ route('practitioners.show', $profile) }}" class="profile-card"
+                            aria-label="View {{ $profile->user->name }}'s profile">
 
                             @if($profile->avatar_path)
                                 <img src="{{ Storage::url($profile->avatar_path) }}" alt="{{ $profile->user->name }}'s avatar"

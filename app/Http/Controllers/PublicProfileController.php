@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -85,5 +86,30 @@ class PublicProfileController extends Controller
 
         return redirect()->route('public-profile.edit')
             ->with('status', 'public-profile-updated');
+    }
+
+    /**
+     * Display the public profile of a practitioner.
+     */
+    public function show(Profile $profile): View
+    {
+        // Security: Only allow viewing public profiles
+        if (!$profile->is_public) {
+            abort(404);
+        }
+
+        // Load the user relationship
+        $profile->load('user');
+
+        // Map of country codes to full names for display
+        $countryNames = [
+            'US' => 'United States',
+            'CA' => 'Canada',
+        ];
+
+        return view('public-profile.show', [
+            'profile' => $profile,
+            'countryNames' => $countryNames,
+        ]);
     }
 }
