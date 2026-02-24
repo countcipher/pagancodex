@@ -46,7 +46,7 @@
             </button>
 
             <ul class="site-nav__links" id="nav-links" role="list">
-                <li><a href="#">Directory</a></li>
+                <li><a href="{{ route('directory') }}">Directory</a></li>
                 <li><a href="#">Events</a></li>
                 <li><a href="#">Groups</a></li>
                 <li><a href="#">Shops</a></li>
@@ -155,6 +155,7 @@
                 </div>
             @endauth
 
+            {{ $slot ?? '' }}
             @yield('content')
         </main>
 

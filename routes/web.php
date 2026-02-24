@@ -5,6 +5,7 @@ use App\Http\Controllers\PublicProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/directory', \App\Livewire\DirectoryBrowser::class)->name('directory');
 
 Route::get('/dashboard', function () {
     return view('dashboard', [

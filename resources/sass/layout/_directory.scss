@@ -1,0 +1,206 @@
+// ============================================================
+// Pagan Codex — Directory Page
+// ============================================================
+@use '../variables' as *;
+
+// ---- Page Layout ----
+.directory-wrapper {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+
+    @media (max-width: $breakpoint-tablet) {
+        flex-direction: column;
+    }
+}
+
+// ---- Filter Sidebar ----
+.directory-filters {
+    width: 240px;
+    flex-shrink: 0;
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    padding: $spacing-lg;
+    position: sticky;
+    top: calc(#{$nav-height} + #{$spacing-lg});
+
+    @media (max-width: $breakpoint-tablet) {
+        width: 100%;
+        position: static;
+    }
+
+    &__title {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: $color-text-muted;
+        margin: 0 0 $spacing-md 0;
+    }
+
+    &__group {
+        margin-bottom: $spacing-md;
+    }
+
+    &__label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: $color-text-muted;
+        margin-bottom: 0.35rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    &__input,
+    &__select {
+        width: 100%;
+        padding: 0.5rem 0.65rem;
+        background: $color-bg;
+        border: 1px solid $color-border;
+        border-radius: $radius-sm;
+        font-size: 0.9rem;
+        color: $color-text;
+        box-sizing: border-box;
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+
+    &__reset {
+        display: block;
+        text-align: center;
+        margin-top: $spacing-lg;
+        font-size: 0.85rem;
+        color: $color-brown-dark;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0;
+        text-decoration: underline;
+
+        &:hover {
+            color: $color-green-dark;
+        }
+    }
+}
+
+// ---- Results Pane ----
+.directory-results {
+    flex: 1;
+    min-width: 0;
+
+    &__header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: $spacing-lg;
+        border-bottom: 2px solid $color-brown-light;
+        padding-bottom: $spacing-sm;
+    }
+
+    &__title {
+        font-family: $font-body;
+        font-size: 1.75rem;
+        color: $color-brown-dark;
+        margin: 0;
+    }
+
+    &__count {
+        font-size: 0.9rem;
+        color: $color-text-muted;
+    }
+}
+
+// ---- Profile Card Grid ----
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: $spacing-lg;
+}
+
+.profile-card {
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    padding: $spacing-lg;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(74, 44, 10, 0.12);
+        border-color: $color-brown-dark;
+    }
+
+    &__avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid $color-bg;
+        box-shadow: 0 0 0 1px $color-border;
+        margin-bottom: $spacing-md;
+    }
+
+    &__avatar-placeholder {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: $color-border;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: $spacing-md;
+        color: $color-text-muted;
+        font-size: 2rem;
+        font-weight: 700;
+        font-family: $font-body;
+    }
+
+    &__name {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: $color-brown-dark;
+        margin-bottom: 0.25rem;
+    }
+
+    &__tradition {
+        font-size: 0.8rem;
+        color: $color-text-muted;
+        font-style: italic;
+        margin-bottom: 0.5rem;
+    }
+
+    &__location {
+        font-size: 0.8rem;
+        color: $color-text-muted;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+    }
+}
+
+// ---- Directory Empty State ----
+.directory-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: $color-text-muted;
+    background: $color-white;
+    border: 1px dashed $color-border;
+    border-radius: $radius-md;
+}
+
+// ---- Pagination wrapper ----
+.directory-pagination {
+    margin-top: $spacing-xl;
+}

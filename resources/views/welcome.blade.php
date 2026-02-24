@@ -223,7 +223,7 @@
 
         <section class="hero-panel" aria-labelledby="hero-title">
             <h1 id="hero-title" class="hero-panel__title">The Wheel is Turning. Connect with Your Community.</h1>
-            <p class="hero-panel__subtitle">Pagan Codex is a directory and resource hub helping witches, pagans, and magical
+            <p class="hero-panel__subtitle">Pagan Codex is a directory and resource hub helping Witches, Pagans, and magical
                 practitioners find each other, local events, and trusted merchants.</p>
 
             <div class="hero-panel__stats">
