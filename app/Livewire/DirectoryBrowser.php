@@ -65,7 +65,7 @@ class DirectoryBrowser extends Component
             $query->where('city', $this->city);
         }
 
-        $profiles = $query->latest()->paginate(12);
+        $profiles = $query->latest()->paginate(30);
 
         // --- Filter Dropdown Data (only show what exists in DB) ---
         $basePublic = Profile::where('is_public', true);

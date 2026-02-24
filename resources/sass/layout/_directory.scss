@@ -97,6 +97,8 @@
         display: flex;
         align-items: baseline;
         justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.5rem;
         margin-bottom: $spacing-lg;
         border-bottom: 2px solid $color-brown-light;
         padding-bottom: $spacing-sm;
@@ -118,8 +120,18 @@
 // ---- Profile Card Grid ----
 .profile-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: $spacing-lg;
+
+    @media (max-width: $breakpoint-tablet) {
+        grid-template-columns: repeat(3, 1fr);
+        gap: $spacing-md;
+    }
+
+    @media (max-width: 480px) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: $spacing-sm;
+    }
 }
 
 .profile-card {
