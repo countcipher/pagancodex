@@ -117,7 +117,8 @@
                         </a>
                     </li>
                     <li class="sidebar__item">
-                        <a href="#">
+                        <a href="{{ route('groups.index') }}"
+                            class="{{ request()->routeIs('groups.*') ? 'active' : '' }}">
                             <x-heroicon-o-user-group class="nav-icon" aria-hidden="true" />
                             Groups
                         </a>

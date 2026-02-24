@@ -63,6 +63,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the groups created by the user.
+     */
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
+    }
+
+    /**
      * The "booted" method of the model.
      * Automatically creates a blank profile when a user is registered.
      */

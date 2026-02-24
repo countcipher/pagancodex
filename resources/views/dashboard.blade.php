@@ -18,7 +18,7 @@
             <x-heroicon-o-calendar-days class="action-card__icon" aria-hidden="true" />
             New Event
         </a>
-        <a href="#" class="action-card" role="listitem">
+        <a href="{{ route('groups.create') }}" class="action-card" role="listitem">
             <x-heroicon-o-user-group class="action-card__icon" aria-hidden="true" />
             New Group
         </a>
@@ -88,17 +88,25 @@
                         <h3 class="metric-card__title">Events Hosted</h3>
                     </div>
                     <p class="metric-card__value">{{ $eventsCount }}</p>
-                    <a href="{{ route('events.index') }}" class="metric-card__link">Manage Events &rarr;</a>
+                    @if ($eventsCount > 0)
+                        <a href="{{ route('events.index') }}" class="metric-card__link">Manage Events &rarr;</a>
+                    @else
+                        <a href="{{ route('events.create') }}" class="metric-card__link">Create an Event &rarr;</a>
+                    @endif
                 </div>
 
-                {{-- Groups Metric (Placeholder for future) --}}
+                {{-- Groups Metric --}}
                 <div class="metric-card">
                     <div class="metric-card__header">
                         <x-heroicon-o-user-group class="metric-card__icon" aria-hidden="true" />
                         <h3 class="metric-card__title">Groups Managed</h3>
                     </div>
-                    <p class="metric-card__value">0</p>
-                    <a href="#" class="metric-card__link">Create a Group &rarr;</a>
+                    <p class="metric-card__value">{{ $groupsCount }}</p>
+                    @if ($groupsCount > 0)
+                        <a href="{{ route('groups.index') }}" class="metric-card__link">Manage Groups &rarr;</a>
+                    @else
+                        <a href="{{ route('groups.create') }}" class="metric-card__link">Create a Group &rarr;</a>
+                    @endif
                 </div>
 
                 {{-- Shops Metric (Placeholder for future) --}}

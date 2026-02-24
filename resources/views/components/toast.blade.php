@@ -8,6 +8,7 @@
         'event-created' => 'Your event has been successfully created.',
         'event-updated' => 'Event updated successfully.',
         'event-deleted' => 'Event deleted.',
+        'group-created' => 'Your group has been successfully created.',
     ];
 
     $message = $status ? ($messages[$status] ?? null) : null;

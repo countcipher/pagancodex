@@ -12,6 +12,7 @@ Route::get('/dashboard', function () {
     return view('dashboard', [
         'profile' => auth()->user()->profile,
         'eventsCount' => auth()->user()->events()->count(),
+        'groupsCount' => auth()->user()->groups()->count(),
     ]);
 })->middleware(['auth'])->name('dashboard');
 
@@ -29,6 +30,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/events/{event}/edit', [\App\Http\Controllers\EventController::class, 'edit'])->name('events.edit');
     Route::put('/events/{event}', [\App\Http\Controllers\EventController::class, 'update'])->name('events.update');
     Route::delete('/events/{event}', [\App\Http\Controllers\EventController::class, 'destroy'])->name('events.destroy');
+
+    Route::get('/groups', [\App\Http\Controllers\GroupController::class, 'index'])->name('groups.index');
+    Route::get('/groups/create', [\App\Http\Controllers\GroupController::class, 'create'])->name('groups.create');
+    Route::post('/groups', [\App\Http\Controllers\GroupController::class, 'store'])->name('groups.store');
+    Route::get('/groups/{group}/edit', [\App\Http\Controllers\GroupController::class, 'edit'])->name('groups.edit');
+    Route::put('/groups/{group}', [\App\Http\Controllers\GroupController::class, 'update'])->name('groups.update');
+    Route::delete('/groups/{group}', [\App\Http\Controllers\GroupController::class, 'destroy'])->name('groups.destroy');
 });
 
 require __DIR__ . '/auth.php';
