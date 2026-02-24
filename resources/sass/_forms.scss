@@ -405,3 +405,112 @@
         }
     }
 }
+
+// ============================================================
+// Custom Alpine Calendar
+// ============================================================
+.calendar {
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    padding: $spacing-md;
+    width: 100%;
+    max-width: 320px;
+    font-family: $font-ui;
+
+    &__display {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: $spacing-md;
+        font-size: 0.9rem;
+        color: $color-brown-dark;
+        font-weight: 600;
+        min-height: 24px;
+    }
+
+    &__display-text {
+        color: $color-text;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: $spacing-sm;
+    }
+
+    &__month-year {
+        font-weight: 600;
+        color: $color-text;
+    }
+
+    &__nav-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: $spacing-xs $spacing-sm;
+        font-size: 1.2rem;
+        color: $color-text-muted;
+        transition: color $transition-speed $transition-ease;
+
+        &:hover {
+            color: $color-brown-dark;
+        }
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 2px;
+        text-align: center;
+    }
+
+    &__day-name {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: $color-text-muted;
+        padding-bottom: $spacing-xs;
+    }
+
+    &__day {
+        background: none;
+        border: none;
+        padding: $spacing-sm 0;
+        font-size: 0.875rem;
+        color: $color-text;
+        cursor: pointer;
+        border-radius: $radius-sm;
+        transition: all $transition-speed $transition-ease;
+
+        &:hover:not(.empty) {
+            background-color: $color-bg;
+            color: $color-brown-dark;
+        }
+
+        &.is-today {
+            font-weight: bold;
+            color: $color-green-dark;
+        }
+
+        &.is-selected {
+            background-color: $color-green-dark;
+            color: $color-white;
+
+            &:hover {
+                background-color: $color-green-mid;
+                color: $color-white;
+            }
+        }
+
+        &.is-range {
+            background-color: mix($color-white, $color-green-dark, 90%);
+            color: $color-green-dark;
+            border-radius: 0; 
+        }
+
+        &.empty {
+            cursor: default;
+        }
+    }
+}

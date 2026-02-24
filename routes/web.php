@@ -11,6 +11,7 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard', [
         'profile' => auth()->user()->profile,
+        'eventsCount' => auth()->user()->events()->count(),
     ]);
 })->middleware(['auth'])->name('dashboard');
 
@@ -21,6 +22,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/public-profile', [PublicProfileController::class, 'edit'])->name('public-profile.edit');
     Route::patch('/public-profile', [PublicProfileController::class, 'update'])->name('public-profile.update');
+
+    Route::get('/events/create', [\App\Http\Controllers\EventController::class, 'create'])->name('events.create');
+    Route::post('/events', [\App\Http\Controllers\EventController::class, 'store'])->name('events.store');
 });
 
 require __DIR__ . '/auth.php';

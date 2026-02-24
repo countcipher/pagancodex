@@ -55,6 +55,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the events created by the user.
+     */
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
+    /**
      * The "booted" method of the model.
      * Automatically creates a blank profile when a user is registered.
      */

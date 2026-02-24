@@ -14,7 +14,7 @@
             <x-heroicon-o-user class="action-card__icon" aria-hidden="true" />
             Edit Public Profile
         </a>
-        <a href="#" class="action-card" role="listitem">
+        <a href="{{ route('events.create') }}" class="action-card" role="listitem">
             <x-heroicon-o-calendar-days class="action-card__icon" aria-hidden="true" />
             New Event
         </a>
@@ -73,11 +73,45 @@
         </div>
     </section>
 
-    {{-- My Listings --}}
-    <section class="dashboard-panel" aria-labelledby="panel-listings">
-        <h2 class="dashboard-panel__title" id="panel-listings">My Listings</h2>
+    {{-- Community Impact (Summary) --}}
+    <section class="dashboard-panel" aria-labelledby="panel-impact">
+        <div class="dashboard-panel__header-flex">
+            <h2 class="dashboard-panel__title" id="panel-impact" style="margin-bottom: 0;">Community Impact</h2>
+        </div>
         <div class="dashboard-panel__body">
-            <p>You haven't created any listings yet. Add an event, group, or shop to appear in the directory.</p>
+            <div class="metrics-grid">
+
+                {{-- Events Metric --}}
+                <div class="metric-card">
+                    <div class="metric-card__header">
+                        <x-heroicon-o-calendar class="metric-card__icon" aria-hidden="true" />
+                        <h3 class="metric-card__title">Events Hosted</h3>
+                    </div>
+                    <p class="metric-card__value">{{ $eventsCount }}</p>
+                    <a href="#" class="metric-card__link">Manage Events &rarr;</a>
+                </div>
+
+                {{-- Groups Metric (Placeholder for future) --}}
+                <div class="metric-card">
+                    <div class="metric-card__header">
+                        <x-heroicon-o-user-group class="metric-card__icon" aria-hidden="true" />
+                        <h3 class="metric-card__title">Groups Managed</h3>
+                    </div>
+                    <p class="metric-card__value">0</p>
+                    <a href="#" class="metric-card__link">Create a Group &rarr;</a>
+                </div>
+
+                {{-- Shops Metric (Placeholder for future) --}}
+                <div class="metric-card">
+                    <div class="metric-card__header">
+                        <x-heroicon-o-shopping-bag class="metric-card__icon" aria-hidden="true" />
+                        <h3 class="metric-card__title">Shops Owned</h3>
+                    </div>
+                    <p class="metric-card__value">0</p>
+                    <a href="#" class="metric-card__link">Create a Shop &rarr;</a>
+                </div>
+
+            </div>
         </div>
     </section>
 

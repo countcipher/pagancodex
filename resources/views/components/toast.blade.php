@@ -5,6 +5,7 @@
         'profile-updated' => 'Profile information saved.',
         'public-profile-updated' => 'Public profile saved.',
         'password-updated' => 'Password updated successfully.',
+        'event-created' => 'Your event has been successfully created.',
     ];
 
     $message = $status ? ($messages[$status] ?? null) : null;

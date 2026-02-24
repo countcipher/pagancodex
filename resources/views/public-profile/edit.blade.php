@@ -15,11 +15,16 @@
             </header>
 
             <div class="notice notice--warning" role="note">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="notice__icon" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="notice__icon"
+                    aria-hidden="true">
+                    <path fill-rule="evenodd"
+                        d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+                        clip-rule="evenodd" />
                 </svg>
                 <div>
-                    <strong>Privacy notice:</strong> Any information you enter here will be visible to <em>all visitors</em> to Pagan Codex — including people who are not logged in — if your profile is listed in the public directory. Only share what you are comfortable making public.
+                    <strong>Privacy notice:</strong> Any information you enter here will be visible to <em>all visitors</em>
+                    to Pagan Codex — including people who are not logged in — if your profile is listed in the public
+                    directory. Only share what you are comfortable making public.
                 </div>
             </div>
 
@@ -43,12 +48,11 @@
                     <x-input-label for="avatar" :value="__('Profile Photo')" />
 
                     <div class="avatar-upload">
-                        <img id="avatar-preview-img" 
-                             src="{{ $profile?->avatar_path ? Storage::url($profile->avatar_path) : '' }}" 
-                             alt="Profile photo preview" 
-                             class="avatar-upload__preview"
-                             style="{{ $profile?->avatar_path ? '' : 'display: none;' }}">
-                             
+                        <img id="avatar-preview-img"
+                            src="{{ $profile?->avatar_path ? Storage::url($profile->avatar_path) : '' }}"
+                            alt="Profile photo preview" class="avatar-upload__preview"
+                            style="{{ $profile?->avatar_path ? '' : 'display: none;' }}">
+
                         <label for="avatar" class="btn btn--secondary">Choose File</label>
                         <input id="avatar" type="file" name="avatar" accept="image/*" class="sr-only">
                     </div>
@@ -88,76 +92,9 @@
                     <x-input-error :messages="$errors->get('bio')" />
                 </div>
 
-                {{-- Country --}}
-                <div class="form-group">
-                    <x-input-label for="country" :value="__('Country')" />
-                    <select id="country" name="country" class="form-input form-select">
-                        <option value="">Don't Show Location</option>
-                        <option value="US" {{ old('country', $profile?->country) === 'US' ? 'selected' : '' }}>United States</option>
-                        <option value="CA" {{ old('country', $profile?->country) === 'CA' ? 'selected' : '' }}>Canada</option>
-                    </select>
-                    <x-input-error :messages="$errors->get('country')" />
-                </div>
-
-                {{-- State / Province --}}
-                <div class="form-group" id="state-province-group" style="display: none;">
-                    <label for="state_province" class="form-label" id="state-province-label">State</label>
-
-                    {{-- US States & Territories --}}
-                    <select id="state_province_us" name="state_province" class="form-input form-select" style="display: none;">
-                        <option value="">— Select a state —</option>
-                        @foreach([
-                            'AL' => 'Alabama', 'AK' => 'Alaska', 'AS' => 'American Samoa',
-                            'AZ' => 'Arizona', 'AR' => 'Arkansas', 'CA' => 'California',
-                            'CO' => 'Colorado', 'CT' => 'Connecticut', 'DE' => 'Delaware',
-                            'DC' => 'District of Columbia', 'FL' => 'Florida', 'GA' => 'Georgia',
-                            'GU' => 'Guam', 'HI' => 'Hawaii', 'ID' => 'Idaho',
-                            'IL' => 'Illinois', 'IN' => 'Indiana', 'IA' => 'Iowa',
-                            'KS' => 'Kansas', 'KY' => 'Kentucky', 'LA' => 'Louisiana',
-                            'ME' => 'Maine', 'MD' => 'Maryland', 'MA' => 'Massachusetts',
-                            'MI' => 'Michigan', 'MN' => 'Minnesota', 'MS' => 'Mississippi',
-                            'MO' => 'Missouri', 'MT' => 'Montana', 'NE' => 'Nebraska',
-                            'NV' => 'Nevada', 'NH' => 'New Hampshire', 'NJ' => 'New Jersey',
-                            'NM' => 'New Mexico', 'NY' => 'New York', 'NC' => 'North Carolina',
-                            'ND' => 'North Dakota', 'MP' => 'Northern Mariana Islands',
-                            'OH' => 'Ohio', 'OK' => 'Oklahoma', 'OR' => 'Oregon',
-                            'PA' => 'Pennsylvania', 'PR' => 'Puerto Rico', 'RI' => 'Rhode Island',
-                            'SC' => 'South Carolina', 'SD' => 'South Dakota', 'TN' => 'Tennessee',
-                            'TX' => 'Texas', 'UT' => 'Utah', 'VT' => 'Vermont',
-                            'VI' => 'U.S. Virgin Islands', 'VA' => 'Virginia', 'WA' => 'Washington',
-                            'WV' => 'West Virginia', 'WI' => 'Wisconsin', 'WY' => 'Wyoming',
-                        ] as $abbr => $name)
-                            <option value="{{ $abbr }}" {{ old('state_province', $profile?->state_province) === $abbr ? 'selected' : '' }}>
-                                {{ $name }}
-                            </option>
-                        @endforeach
-                    </select>
-
-                    {{-- Canadian Provinces & Territories --}}
-                    <select id="state_province_ca" name="state_province" class="form-input form-select" style="display: none;">
-                        <option value="">— Select a province —</option>
-                        @foreach([
-                            'AB' => 'Alberta', 'BC' => 'British Columbia', 'MB' => 'Manitoba',
-                            'NB' => 'New Brunswick', 'NL' => 'Newfoundland and Labrador',
-                            'NS' => 'Nova Scotia', 'NT' => 'Northwest Territories', 'NU' => 'Nunavut',
-                            'ON' => 'Ontario', 'PE' => 'Prince Edward Island', 'QC' => 'Quebec',
-                            'SK' => 'Saskatchewan', 'YT' => 'Yukon',
-                        ] as $abbr => $name)
-                            <option value="{{ $abbr }}" {{ old('state_province', $profile?->state_province) === $abbr ? 'selected' : '' }}>
-                                {{ $name }}
-                            </option>
-                        @endforeach
-                    </select>
-
-                    <x-input-error :messages="$errors->get('state_province')" />
-                </div>
-
-                {{-- City --}}
-                <div class="form-group" id="city-group">
-                    <x-input-label for="city" :value="__('City')" />
-                    <x-text-input id="city" type="text" name="city" :value="old('city', $profile?->city)" placeholder="Your city or nearest town" />
-                    <x-input-error :messages="$errors->get('city')" />
-                </div>
+                {{-- Location --}}
+                <x-location-select :country="$profile?->country" :stateProvince="$profile?->state_province"
+                    :city="$profile?->city" :allowEmpty="true" />
 
                 {{-- Website --}}
                 <div class="form-group">
@@ -218,69 +155,27 @@
 @endsection
 
 @push('scripts')
-<script>
-(function () {
-    const countrySelect     = document.getElementById('country');
-    const stateGroup        = document.getElementById('state-province-group');
-    const stateLabel        = document.getElementById('state-province-label');
-    const stateSelectUS     = document.getElementById('state_province_us');
-    const stateSelectCA     = document.getElementById('state_province_ca');
+    <script>
+        (function () {
+            // Location logic has been extracted to Alpine.js in x-location-select component
 
-    const cityGroup = document.getElementById('city-group');
+            // Avatar live preview
+            const avatarInput = document.getElementById('avatar');
+            const avatarPreviewImg = document.getElementById('avatar-preview-img');
 
-    function updateLocationFields(country) {
-        if (country === 'US') {
-            stateGroup.style.display    = '';
-            stateLabel.textContent      = 'State / Territory';
-            stateSelectUS.style.display = '';
-            stateSelectUS.name          = 'state_province';
-            stateSelectCA.style.display = 'none';
-            stateSelectCA.name          = '';
-            cityGroup.style.display     = '';
-        } else if (country === 'CA') {
-            stateGroup.style.display    = '';
-            stateLabel.textContent      = 'Province / Territory';
-            stateSelectCA.style.display = '';
-            stateSelectCA.name          = 'state_province';
-            stateSelectUS.style.display = 'none';
-            stateSelectUS.name          = '';
-            cityGroup.style.display     = '';
-        } else {
-            // "Don't Show Location" — hide everything and clear values
-            stateGroup.style.display    = 'none';
-            stateSelectUS.name          = '';
-            stateSelectCA.name          = '';
-            stateSelectUS.value         = '';
-            stateSelectCA.value         = '';
-            cityGroup.style.display     = 'none';
-            document.getElementById('city').value = '';
-        }
-    }
-
-    // Run on page load
-    updateLocationFields(countrySelect.value);
-
-    countrySelect.addEventListener('change', function () {
-        updateLocationFields(this.value);
-    });
-
-    // Avatar live preview
-    const avatarInput = document.getElementById('avatar');
-    const avatarPreviewImg = document.getElementById('avatar-preview-img');
-
-    if (avatarInput && avatarPreviewImg) {
-        avatarInput.addEventListener('change', function (e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    avatarPreviewImg.src = e.target.result;
-                    avatarPreviewImg.style.display = 'block';
-                }
-                reader.readAsDataURL(file);
+            if (avatarInput && avatarPreviewImg) {
+                avatarInput.addEventListener('change', function (e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            avatarPreviewImg.src = e.target.result;
+                            avatarPreviewImg.style.display = 'block';
+                        }
+                        reader.readAsDataURL(file);
+                    }
+                });
             }
-        });
-    }
-})();
-</script>
+        })();
+    </script>
 @endpush
