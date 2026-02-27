@@ -48,7 +48,7 @@ class HomeController extends Controller
         $newProfiles = Profile::with('user')
             ->where('is_public', true)
             ->latest()
-            ->take(4)
+            ->take(9)
             ->get();
 
         return view('welcome', compact(

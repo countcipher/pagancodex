@@ -1,0 +1,62 @@
+@use '../variables' as *;
+
+.pagination {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    margin: $spacing-xl 0;
+    font-family: $font-body;
+}
+
+.page-item {
+    &.disabled .page-link {
+        color: $color-text-muted;
+        pointer-events: none;
+        background-color: transparent;
+        border-color: transparent;
+    }
+
+    &.active .page-link {
+        z-index: 3;
+        color: $color-white;
+        background-color: $color-brown-dark;
+        border-color: $color-brown-dark;
+    }
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: $color-brown-dark;
+    text-decoration: none;
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    transition: all 0.2s ease-in-out;
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    &:hover {
+        z-index: 2;
+        color: $color-green-dark;
+        background-color: $color-bg;
+        border-color: $color-brown-light;
+    }
+
+    svg {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+}
+
+// Adjust summary text ("Showing 1 to 24 of 50 results")
+p.small.text-muted {
+    text-align: center;
+    color: $color-text-muted;
+    font-size: 0.85rem;
+    margin-top: $spacing-md;
+}
