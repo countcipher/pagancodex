@@ -14,7 +14,7 @@
             <div class="hero-panel__stats">
                 <div class="stat-block">
                     <span class="stat-block__value">{{ $stats['users'] ?? 0 }}</span>
-                    <span class="stat-block__label">Practitioners</span>
+                    <span class="stat-block__label">Members</span>
                 </div>
                 <div class="stat-block">
                     <span class="stat-block__value">{{ $stats['groups'] ?? 0 }}</span>
@@ -76,7 +76,7 @@
         <section class="home-section-card" aria-labelledby="groups-title">
             <header class="home-section-header">
                 <h2 id="groups-title" class="home-section-header__title">Discover Local Communities</h2>
-                <a href="#" class="home-section-header__link">View Directory &rarr;</a>
+                <a href="{{ route('groups.browse') }}" class="home-section-header__link">View Directory &rarr;</a>
             </header>
 
             @if($discoverGroups->isEmpty())
@@ -86,7 +86,7 @@
             @else
                 <div class="home-grid">
                     @foreach($discoverGroups as $group)
-                        <article class="home-item-card">
+                        <a href="{{ route('groups.show', $group) }}" class="home-item-card">
                             <h3 class="home-item-card__title">{{ $group->name }}</h3>
                             <div class="home-item-card__meta home-item-card__meta--highlight">
                                 {{ $group->tradition ?? 'Eclectic / All Paths Welcome' }}
@@ -98,7 +98,7 @@
                             @if($group->description)
                                 <p class="home-item-card__desc">{{ Str::limit($group->description, 120) }}</p>
                             @endif
-                        </article>
+                        </a>
                     @endforeach
                 </div>
             @endif

@@ -90,7 +90,7 @@
                         @endphp
                         @if($location)
                             <div class="profile-card__location">
-                                <x-heroicon-o-map-pin style="width:0.85rem;height:0.85rem;" />
+                                <x-heroicon-o-map-pin class="profile-card__icon" />
                                 {{ $location }}
                             </div>
                         @endif

@@ -8,6 +8,8 @@ Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('h
 Route::get('/directory', \App\Livewire\DirectoryBrowser::class)->name('directory');
 Route::get('/browse-events', \App\Livewire\EventBrowser::class)->name('events.browse');
 Route::get('/browse-events/{event}', [\App\Http\Controllers\PublicEventController::class, 'show'])->name('events.show');
+Route::get('/browse-groups', \App\Livewire\GroupBrowser::class)->name('groups.browse');
+Route::get('/browse-groups/{group}', [\App\Http\Controllers\PublicGroupController::class, 'show'])->name('groups.show');
 Route::get('/member/{profile}', [PublicProfileController::class, 'show'])->name('practitioners.show');
 
 Route::get('/dashboard', function () {

@@ -48,7 +48,7 @@
             <ul class="site-nav__links" id="nav-links" role="list">
                 <li><a href="{{ route('directory') }}">Directory</a></li>
                 <li><a href="{{ route('events.browse') }}">Events</a></li>
-                <li><a href="#">Groups</a></li>
+                <li><a href="{{ route('groups.browse') }}">Groups</a></li>
                 <li><a href="#">Shops</a></li>
                 @auth
                     <li>
