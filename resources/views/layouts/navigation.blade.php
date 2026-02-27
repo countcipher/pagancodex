@@ -15,6 +15,18 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('directory')" :active="request()->routeIs('directory')">
+                        {{ __('Members') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('events.browse')" :active="request()->routeIs('events.browse')">
+                        {{ __('Events') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('groups.browse')" :active="request()->routeIs('groups.browse')">
+                        {{ __('Groups') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('shops.browse')" :active="request()->routeIs('shops.browse')">
+                        {{ __('Shops') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -76,6 +88,18 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('directory')" :active="request()->routeIs('directory')">
+                {{ __('Members') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('events.browse')" :active="request()->routeIs('events.browse')">
+                {{ __('Events') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('groups.browse')" :active="request()->routeIs('groups.browse')">
+                {{ __('Groups') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('shops.browse')" :active="request()->routeIs('shops.browse')">
+                {{ __('Shops') }}
             </x-responsive-nav-link>
         </div>
 

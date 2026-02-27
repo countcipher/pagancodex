@@ -10,6 +10,7 @@ Route::get('/browse-events', \App\Livewire\EventBrowser::class)->name('events.br
 Route::get('/browse-events/{event}', [\App\Http\Controllers\PublicEventController::class, 'show'])->name('events.show');
 Route::get('/browse-groups', \App\Livewire\GroupBrowser::class)->name('groups.browse');
 Route::get('/browse-groups/{group}', [\App\Http\Controllers\PublicGroupController::class, 'show'])->name('groups.show');
+Route::get('/browse-shops', \App\Livewire\ShopBrowser::class)->name('shops.browse');
 Route::get('/member/{profile}', [PublicProfileController::class, 'show'])->name('practitioners.show');
 
 Route::get('/dashboard', function () {

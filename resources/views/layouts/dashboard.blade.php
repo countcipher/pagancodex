@@ -49,7 +49,7 @@
                 <li><a href="{{ route('directory') }}">Directory</a></li>
                 <li><a href="{{ route('events.browse') }}">Events</a></li>
                 <li><a href="{{ route('groups.browse') }}">Groups</a></li>
-                <li><a href="#">Shops</a></li>
+                <li><a href="{{ route('shops.browse') }}">Shops</a></li>
                 @auth
                     <li>
                         <form method="POST" action="{{ route('logout') }}">

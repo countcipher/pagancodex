@@ -108,26 +108,26 @@
         <section class="home-section-card" aria-labelledby="shops-title">
             <header class="home-section-header">
                 <h2 id="shops-title" class="home-section-header__title">Featured Merchants & Shops</h2>
-                <a href="#" class="home-section-header__link">View All Shops &rarr;</a>
+                <a href="{{ route('shops.browse') }}" class="home-section-header__link">Explore All Shops &rarr;</a>
             </header>
 
             @if($featuredShops->isEmpty())
                 <div class="home-empty">
-                    <p>Are you a creator or shop owner? List your business here for free to connect with the community.</p>
+                    <p>Support your local esoteric community. Add your shop to our growing directory.</p>
                 </div>
             @else
                 <div class="home-grid">
                     @foreach($featuredShops as $shop)
-                        <article class="home-item-card">
+                        <a href="{{ route('shops.browse') }}" class="home-item-card">
                             <h3 class="home-item-card__title">{{ $shop->name }}</h3>
                             <div class="home-item-card__meta">
                                 <x-heroicon-o-map-pin class="home-item-card__meta-icon" />
-                                {{ collect([$shop->city, $shop->state_province])->filter()->join(', ') ?: 'Online Shop' }}
+                                {{ $shop->city }}, {{ $shop->state_province }}
                             </div>
                             @if($shop->description)
                                 <p class="home-item-card__desc">{{ Str::limit($shop->description, 120) }}</p>
                             @endif
-                        </article>
+                        </a>
                     @endforeach
                 </div>
             @endif
