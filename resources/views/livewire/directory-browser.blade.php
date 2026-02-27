@@ -1,7 +1,7 @@
 <div>
     {{-- Page Header --}}
     <div class="page-header">
-        <h1>Practitioner Directory</h1>
+        <h1>Members Directory</h1>
     </div>
 
     <div class="directory-wrapper" wire:loading.class="opacity-50">
@@ -63,14 +63,14 @@
         <section class="directory-results" aria-live="polite" aria-label="Directory results">
 
             <header class="directory-results__header">
-                <h2 class="directory-results__title">Practitioners</h2>
+                <h2 class="directory-results__title">Members</h2>
                 <span class="directory-results__count">{{ $profiles->total() }}
                     {{ Str::plural('result', $profiles->total()) }}</span>
             </header>
 
             @if($profiles->isEmpty())
                 <div class="directory-empty">
-                    <p>No practitioners found matching your filters. Try broadening your search!</p>
+                    <p>No members found matching your filters. Try broadening your search!</p>
                 </div>
             @else
                 <div class="profile-grid">
@@ -82,9 +82,7 @@
                                 <img src="{{ Storage::url($profile->avatar_path) }}" alt="{{ $profile->user->name }}'s avatar"
                                     class="profile-card__avatar" loading="lazy">
                             @else
-                                <div class="profile-card__avatar-placeholder" aria-hidden="true">
-                                    {{ strtoupper(substr($profile->user->name, 0, 1)) }}
-                                </div>
+                                <img src="/images/default-avatar.png" alt="Default avatar" class="profile-card__avatar">
                             @endif
 
                             <div class="profile-card__name">{{ $profile->user->name }}</div>

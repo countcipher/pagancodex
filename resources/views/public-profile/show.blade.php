@@ -3,7 +3,7 @@
 @section('content')
     <div class="profile-details">
         <div class="page-header">
-            <h1>Practitioner Details</h1>
+            <h1>Member Details</h1>
         </div>
 
         <div class="profile-header">
@@ -12,9 +12,7 @@
                     <img src="{{ Storage::url($profile->avatar_path) }}" alt="{{ $profile->user->name }}"
                         class="profile-avatar">
                 @else
-                    <div class="profile-avatar-placeholder">
-                        {{ strtoupper(substr($profile->user->name, 0, 1)) }}
-                    </div>
+                    <img src="/images/default-avatar.png" alt="Default avatar" class="profile-avatar">
                 @endif
             </div>
             <div class="profile-header__info">

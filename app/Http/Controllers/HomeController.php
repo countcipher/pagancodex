@@ -47,7 +47,6 @@ class HomeController extends Controller
         // 5. New Faces (4 Recent Profiles with Avatars)
         $newProfiles = Profile::with('user')
             ->where('is_public', true)
-            ->whereNotNull('avatar_path')
             ->latest()
             ->take(4)
             ->get();

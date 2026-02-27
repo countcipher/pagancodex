@@ -307,7 +307,7 @@
                                 <x-heroicon-o-map-pin class="entity-card__meta-icon" />
                                 {{ collect([$group->city, $group->state_province])->filter()->join(', ') ?: 'Online / Undisclosed' }}
                             </div>
-                            <p class="entity-card__desc">{{ Str::limit($group->description, 120) }}</p>
+                            {{-- <p class="entity-card__desc">{{ Str::limit($group->description, 120) }}</p> --}}
                         </article>
                     @endforeach
                 </div>
@@ -349,9 +349,9 @@
 
                 <div class="faces-grid">
                     @foreach($newProfiles as $profile)
-                        <a href="#" class="face-card">
-                            <img src="{{ Storage::url($profile->avatar_path) }}" alt="{{ $profile->user->name }}'s Avatar"
-                                class="face-avatar" loading="lazy">
+                        <a href="{{ route('practitioners.show', $profile) }}" class="face-card">
+                            <img src="{{ $profile->avatar_path ? Storage::url($profile->avatar_path) : '/images/default-avatar.png' }}"
+                                alt="{{ $profile->user->name }}'s Avatar" class="face-avatar" loading="lazy">
                             <div class="face-name">{{ explode(' ', trim($profile->user->name))[0] }}</div>
                         </a>
                     @endforeach
