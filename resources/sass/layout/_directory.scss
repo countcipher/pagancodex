@@ -88,6 +88,73 @@
     }
 }
 
+// ---- Custom Toggle Switch ----
+.directory-toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: $spacing-sm;
+    margin-top: $spacing-md;
+
+    &__input {
+        // Hide standard checkbox
+        appearance: none;
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+
+        // When checked, style the switch span
+        &:checked + .directory-toggle__switch {
+            background-color: $color-green-dark;
+            border-color: $color-green-dark;
+
+            &::after {
+                transform: translateX(18px);
+                background-color: $color-white;
+            }
+        }
+        
+        // Focus state for accessibility
+        &:focus-visible + .directory-toggle__switch {
+            outline: 2px solid $color-green-light;
+            outline-offset: 2px;
+        }
+    }
+
+    &__switch {
+        display: inline-block;
+        width: 40px;
+        height: 22px;
+        background-color: $color-border;
+        border: 2px solid $color-border;
+        border-radius: 20px;
+        position: relative;
+        transition: background-color 0.2s, border-color 0.2s;
+        flex-shrink: 0;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 14px;
+            height: 14px;
+            background-color: $color-white;
+            border-radius: 50%;
+            transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+    }
+
+    &__label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: $color-brown-dark;
+        user-select: none;
+    }
+}
+
 // ---- Results Pane ----
 .directory-results {
     flex: 1;
@@ -183,6 +250,21 @@
         font-size: 1.05rem;
         color: $color-brown-dark;
         margin-bottom: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+    }
+
+    &__clergy-badge {
+        display: inline-flex;
+        color: #d97706; // Amber/Gold color
+        align-items: center;
+    }
+
+    &__clergy-icon {
+        width: 1.15rem;
+        height: 1.15rem;
     }
 
     &__tradition {

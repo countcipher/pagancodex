@@ -44,9 +44,19 @@
             </select>
         </div>
 
+        {{-- Clergy Filter --}}
+        <div class="directory-filters__group directory-filters__group--toggle">
+            <label class="directory-toggle">
+                <input type="checkbox" wire:model.live="clergyOnly" class="directory-toggle__input">
+                <span class="directory-toggle__switch"></span>
+                <span class="directory-toggle__label">Show Clergy Only</span>
+            </label>
+        </div>
+
         {{-- Reset Filters --}}
-        @if($search || $country || $state || $city)
-            <button wire:click="$set('search', ''); $set('country', ''); $set('state', ''); $set('city', '');"
+        @if($search || $country || $state || $city || $clergyOnly)
+            <button
+                wire:click="$set('search', ''); $set('country', ''); $set('state', ''); $set('city', ''); $set('clergyOnly', false);"
                 class="directory-filters__reset">
                 Clear Filters
             </button>
@@ -79,7 +89,14 @@
                             <img src="/images/default-avatar.png" alt="Default avatar" class="profile-card__avatar">
                         @endif
 
-                        <div class="profile-card__name">{{ $profile->user->name }}</div>
+                        <div class="profile-card__name">
+                            {{ $profile->user->name }}
+                            @if($profile->clergy)
+                                <span class="profile-card__clergy-badge" title="Registered Clergy">
+                                    <x-heroicon-s-sparkles class="profile-card__clergy-icon" />
+                                </span>
+                            @endif
+                        </div>
 
                         @if($profile->tradition)
                             <div class="profile-card__tradition">{{ $profile->tradition }}</div>

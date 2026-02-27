@@ -16,11 +16,12 @@ class DirectoryBrowser extends Component
     public string $country = '';
     public string $state = '';
     public string $city = '';
+    public bool $clergyOnly = false;
 
     // Reset pagination whenever any filter changes
     public function updating(string $field): void
     {
-        if (in_array($field, ['search', 'country', 'state', 'city'])) {
+        if (in_array($field, ['search', 'country', 'state', 'city', 'clergyOnly'])) {
             $this->resetPage();
         }
     }
@@ -63,6 +64,11 @@ class DirectoryBrowser extends Component
         }
         if (!empty($this->city)) {
             $query->where('city', $this->city);
+        }
+
+        // Clergy Filter
+        if ($this->clergyOnly) {
+            $query->where('clergy', true);
         }
 
         $profiles = $query->latest()->paginate(30);
