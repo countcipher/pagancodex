@@ -278,7 +278,7 @@
                                 <x-heroicon-o-map-pin class="entity-card__meta-icon" />
                                 {{ $event->city }}, {{ $event->state_province }}
                             </div>
-                            <p class="entity-card__desc">{{ Str::limit($event->details, 120) }}</p>
+                            {{-- <p class="entity-card__desc">{{ Str::limit($event->details, 120) }}</p> --}}
                         </article>
                     @endforeach
                 </div>
