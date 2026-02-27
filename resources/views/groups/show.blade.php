@@ -87,12 +87,13 @@
                 <hr class="profile-section-divider" />
                 
                 <h3>Listed By</h3>
-                 <p>
+                <p>
                     @if($group->user->profile?->is_public)
-                        <a href="{{ route('practitioners.show', $group->user->profile) }}"
-                            class="profile-link">{{ $group->user->profile->display_name }}</a>
+                        <a href="{{ route('practitioners.show', $group->user->profile) }}" class="profile-link">
+                            {{ $group->user->name }}
+                        </a>
                     @else
-                        {{ $group->user->profile?->display_name ?? $group->user->name }}
+                        Member name not publically available.
                     @endif
                 </p>
             </div>
