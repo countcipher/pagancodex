@@ -1,5 +1,25 @@
 @use '../variables' as *;
 
+.pagination-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: $spacing-xl 0;
+    width: 100%;
+}
+
+.pagination-summary {
+    p {
+        color: $color-text-muted;
+        font-size: 0.85rem;
+        font-family: $font-body;
+        margin: 0;
+        text-align: center;
+    }
+}
+
 .pagination {
     display: flex;
     padding-left: 0;
@@ -7,7 +27,7 @@
     justify-content: center;
     align-items: center;
     gap: 0.25rem;
-    margin: $spacing-xl 0;
+    margin: 0; // Margin is now controlled by container
     font-family: $font-body;
 }
 
@@ -53,10 +73,4 @@
     }
 }
 
-// Adjust summary text ("Showing 1 to 24 of 50 results")
-p.small.text-muted {
-    text-align: center;
-    color: $color-text-muted;
-    font-size: 0.85rem;
-    margin-top: $spacing-md;
-}
+

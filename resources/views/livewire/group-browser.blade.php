@@ -13,26 +13,30 @@
             <label for="country" class="directory-filters__label">Country</label>
             <select id="country" wire:model.live="country" class="directory-filters__select">
                 <option value="">All Countries</option>
-                @foreach ($countries as $code => $name)
-                    <option value="{{ $code }}">{{ $name }}</option>
+                @foreach ($availableCountries as $code)
+                    <option value="{{ $code }}">{{ $countryNames[$code] ?? $code }}</option>
                 @endforeach
             </select>
         </div>
 
         <div class="directory-filters__group">
-            <label for="state" class="directory-filters__label">State / Province</label>
+            <label for="state" class="directory-filters__label">{{ $stateLabel }}</label>
             <select id="state" wire:model.live="state" class="directory-filters__select" {{ empty($country) ? 'disabled' : '' }}>
-                <option value="">All States</option>
-                @foreach ($states as $stateName)
-                    <option value="{{ $stateName }}">{{ $stateName }}</option>
+                <option value="">All {{ $stateLabel }}s</option>
+                @foreach ($availableStates as $s)
+                    <option value="{{ $s }}">{{ $s }}</option>
                 @endforeach
             </select>
         </div>
 
         <div class="directory-filters__group">
             <label for="city" class="directory-filters__label">City</label>
-            <input type="text" id="city" wire:model.live.debounce.300ms="city" class="directory-filters__input"
-                placeholder="e.g. Portland" {{ empty($state) ? 'disabled' : '' }}>
+            <select id="city" wire:model.live="city" class="directory-filters__select" {{ empty($state) ? 'disabled' : '' }}>
+                <option value="">All Cities</option>
+                @foreach ($availableCities as $c)
+                    <option value="{{ $c }}">{{ $c }}</option>
+                @endforeach
+            </select>
         </div>
 
         @if($search || $country || $state || $city)

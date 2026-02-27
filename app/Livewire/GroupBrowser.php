@@ -68,38 +68,66 @@ class GroupBrowser extends Component
 
         $groups = $query->paginate(24);
 
-        // --- Extracted Filter Lists (for the UI) ---
-        // Get all public groups to build distinct location lists
-        $allPublicGroups = Group::where('is_public', true)->get();
+        // --- Filter Dropdown Data (only show what exists in DB) ---
+        $basePublic = Group::where('is_public', true);
 
-        $countries = $allPublicGroups->pluck('country')->filter()->unique()->sort()->values()->toArray();
+        $availableCountries = (clone $basePublic)
+            ->whereNotNull('country')
+            ->distinct()
+            ->orderBy('country')
+            ->pluck('country');
 
-        // Based on selected country (if any), get the available states
-        $states = [];
+        $availableStates = collect();
         if (!empty($this->country)) {
-            $states = $allPublicGroups->where('country', $this->country)
-                ->pluck('state_province')
-                ->filter()
-                ->unique()
-                ->sort()
-                ->values()
-                ->toArray();
+            $availableStates = (clone $basePublic)
+                ->where('country', $this->country)
+                ->whereNotNull('state_province')
+                ->distinct()
+                ->orderBy('state_province')
+                ->pluck('state_province');
         }
+
+        $availableCities = collect();
+        if (!empty($this->state)) {
+            $citiesQuery = (clone $basePublic)
+                ->where('state_province', $this->state)
+                ->whereNotNull('city')
+                ->distinct()
+                ->orderBy('city');
+
+            // Also scope by country if one is selected
+            if (!empty($this->country)) {
+                $citiesQuery->where('country', $this->country);
+            }
+
+            $availableCities = $citiesQuery->pluck('city');
+        }
+
+        // --- State/Province Label ---
+        // DB stores 'US' and 'CA' as country codes
+        $stateLabel = match ($this->country) {
+            'US' => 'State',
+            'CA' => 'Province',
+            default => 'State / Province',
+        };
+
+        // Map of country codes to full names for the dropdown display
+        $countryNames = [
+            'US' => 'United States',
+            'GB' => 'United Kingdom',
+            'CA' => 'Canada',
+            'AU' => 'Australia',
+            'IE' => 'Ireland',
+            'NZ' => 'New Zealand',
+        ];
 
         return view('livewire.group-browser', [
             'groups' => $groups,
-            'countries' => collect($countries)->mapWithKeys(function ($code) {
-                $countryNames = [
-                    'US' => 'United States',
-                    'GB' => 'United Kingdom',
-                    'CA' => 'Canada',
-                    'AU' => 'Australia',
-                    'IE' => 'Ireland',
-                    'NZ' => 'New Zealand',
-                ];
-                return [$code => $countryNames[$code] ?? $code];
-            })->toArray(),
-            'states' => $states,
+            'availableCountries' => $availableCountries,
+            'availableStates' => $availableStates,
+            'availableCities' => $availableCities,
+            'stateLabel' => $stateLabel,
+            'countryNames' => $countryNames,
         ]);
     }
 }
