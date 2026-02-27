@@ -1,0 +1,65 @@
+// ============================================================
+// Pagan Codex — Dashboard Lists (Index Views)
+// ============================================================
+@use '../variables' as *;
+
+.page-header--flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-panel__body--flush {
+    padding: 0;
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+}
+
+.empty-state {
+    padding: 2rem;
+    text-align: center;
+
+    &__text {
+        color: $color-text-muted;
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
+}
+
+.data-table {
+    &__title {
+        font-weight: 600;
+        color: $color-text;
+    }
+
+    &__subtext {
+        margin-top: 0.25rem;
+        font-size: 0.85rem;
+        color: $color-text-muted;
+    }
+
+    &__column-right {
+        text-align: right;
+    }
+
+    &__actions {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}
+
+.btn--sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    height: auto;
+}
+
+.pagination-wrapper {
+    padding: 1.5rem;
+    border-top: 1px solid $color-border;
+}

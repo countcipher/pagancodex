@@ -1,0 +1,281 @@
+// ============================================================
+// Pagan Codex — Homepage Layout
+// ============================================================
+@use '../variables' as *;
+
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: $spacing-xl;
+
+    @media (max-width: $breakpoint-tablet) {
+        padding: $spacing-md;
+    }
+}
+
+// ---- Hero Panel ----
+.hero-panel {
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+    padding: 4rem 2rem;
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+
+    @media (max-width: $breakpoint-tablet) {
+        padding: 3rem 1.5rem;
+    }
+
+    &__title {
+        font-family: $font-body;
+        font-size: 2.5rem;
+        color: $color-brown-dark;
+        margin-bottom: $spacing-md;
+        font-weight: 700;
+
+        @media (max-width: $breakpoint-tablet) {
+            font-size: 2rem;
+        }
+    }
+
+    &__subtitle {
+        font-size: 1.125rem;
+        color: $color-text-muted;
+        max-width: 600px;
+        margin: 0 auto 2.5rem;
+        line-height: $line-height-base;
+    }
+
+    &__stats {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+
+        @media (max-width: $breakpoint-tablet) {
+            gap: 1.5rem;
+        }
+    }
+
+    &__actions {
+        margin-top: 2rem;
+    }
+
+    &__btn {
+        font-size: 1.1rem;
+        padding: 0.75rem 2rem;
+
+        // Target the second button if it's placed after another
+        &.btn--secondary {
+            margin-left: 0.5rem;
+        }
+    }
+}
+
+.stat-block {
+    text-align: center;
+
+    &__value {
+        display: block;
+        font-family: $font-body;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: $color-brown-dark;
+        line-height: 1;
+        margin-bottom: 0.25rem;
+    }
+
+    &__label {
+        font-size: 0.875rem;
+        color: $color-text-muted;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 600;
+        font-family: $font-ui;
+    }
+}
+
+// ---- Section Cards (The large wrapper) ----
+.home-section-card {
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+    padding: $spacing-xl;
+    margin-bottom: $spacing-2xl;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+
+    @media (max-width: $breakpoint-tablet) {
+        padding: $spacing-md;
+    }
+
+    &--last {
+        margin-bottom: 0;
+    }
+}
+
+.home-section-header {
+    margin-bottom: $spacing-xl;
+    border-bottom: 2px solid $color-brown-light;
+    padding-bottom: $spacing-sm;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    @media (max-width: $breakpoint-tablet) {
+        flex-direction: column;
+        gap: $spacing-sm;
+    }
+
+    &__title {
+        font-family: $font-body;
+        font-size: 1.75rem;
+        color: $color-brown-dark;
+        margin: 0;
+        font-weight: 700;
+    }
+    
+    &__link {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: $color-green-dark;
+        text-decoration: none;
+        font-family: $font-ui;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+
+// ---- Item Cards (Inner records) ----
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: $spacing-lg;
+
+    @media (max-width: $breakpoint-tablet) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.home-item-card {
+    background: $color-bg;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    padding: $spacing-lg;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transition: transform $transition-speed $transition-ease,
+                box-shadow $transition-speed $transition-ease,
+                border-color $transition-speed $transition-ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-color: $color-brown-light;
+    }
+
+    &__title {
+        font-family: $font-body;
+        font-size: 1.25rem;
+        color: $color-brown-dark;
+        margin: 0 0 0.5rem 0;
+        line-height: 1.3;
+        font-weight: 700;
+    }
+
+    &__meta {
+        font-size: 0.85rem;
+        color: $color-text-muted;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: $font-ui;
+
+        &--highlight {
+            color: $color-brown-dark;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        &-icon {
+            color: $color-green-dark;
+            width: 1rem;
+            height: 1rem;
+            flex-shrink: 0;
+        }
+    }
+
+    &__desc {
+        font-size: 0.9rem;
+        color: $color-text;
+        line-height: $line-height-base;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-top: auto;
+        border-top: 1px dashed $color-border;
+        padding-top: $spacing-md;
+    }
+}
+
+// ---- Empty States ----
+.home-empty {
+    background: $color-bg;
+    border: 1px dashed $color-border;
+    border-radius: $radius-md;
+    padding: 3rem 2rem;
+    text-align: center;
+    color: $color-text-muted;
+    font-style: italic;
+    font-family: $font-body;
+}
+
+// ---- New Faces Specific Grid ----
+.faces-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: flex-start;
+}
+
+.face-card {
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s;
+
+    &:hover {
+        transform: scale(1.05);
+
+        .face-avatar {
+            border-color: $color-brown-light;
+        }
+    }
+}
+
+.face-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid $color-bg;
+    box-shadow: 0 0 0 1px $color-border;
+    margin-bottom: 0.75rem;
+    transition: border-color 0.2s;
+}
+
+.face-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: $color-brown-dark;
+    font-family: $font-ui;
+}

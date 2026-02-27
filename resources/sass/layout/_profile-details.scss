@@ -60,8 +60,6 @@
 
             .profile-tradition {
                 margin: 0.5rem 0 0;
-                font-size: 1.1rem;
-                color: $color-text-muted;
                 font-style: italic;
 
                 &--empty {
@@ -146,6 +144,41 @@
                     height: 1rem;
                 }
             }
+        }
+    }
+}
+
+// ---- Event / Organizer Links ----
+.profile-tradition-link {
+    color: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+
+    &:hover {
+        color: $color-brown-dark;
+    }
+}
+
+.profile-link {
+    color: $color-green-dark;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.profile-back-action {
+    margin-top: $spacing-xl;
+    
+    a {
+        color: $color-green-dark;
+        font-weight: 600;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
         }
     }
 }

@@ -108,7 +108,11 @@
 
                         <div class="event-card__body">
                             {{-- Title --}}
-                            <h3 class="event-card__title">{{ $event->title }}</h3>
+                            <h3 class="event-card__title">
+                                <a href="{{ route('events.show', $event) }}" class="event-card__main-link">
+                                    {{ $event->title }}
+                                </a>
+                            </h3>
 
                             {{-- Location --}}
                             <p class="event-card__location">

@@ -63,7 +63,7 @@
 
                 {{-- Location (Required) --}}
                 <div class="form-group">
-                    <p class="form-section-subheading" style="margin-bottom: $spacing-md;">Where is this shop located?
+                    <p class="form-section-subheading">Where is this shop located?
                     </p>
                 </div>
 
@@ -72,64 +72,57 @@
                 <hr class="form-divider">
                 <p class="form-section-subheading">Operating Hours</p>
                 <div class="form-group">
-                    <p class="form-hint" style="margin-bottom: 1rem;">Enter your hours of operation, e.g. "9am - 5pm", "By
+                    <p class="form-hint">Enter your hours of operation, e.g. "9am - 5pm", "By
                         Appointment", or "Closed".</p>
                 </div>
 
-                <div class="form-group"
-                    style="display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 1rem;">
-                    <x-input-label for="hours_monday" :value="__('Monday')" style="margin-bottom: 0;" />
+                <div class="hours-grid">
+                    <x-input-label for="hours_monday" :value="__('Monday')" />
                     <x-text-input id="hours_monday" type="text" name="hours_monday" :value="old('hours_monday')"
                         placeholder="e.g. 9am - 5pm" />
-                    <div style="grid-column: 2;"><x-input-error :messages="$errors->get('hours_monday')" /></div>
+                    <div class="hours-grid__error"><x-input-error :messages="$errors->get('hours_monday')" /></div>
                 </div>
 
-                <div class="form-group"
-                    style="display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 1rem;">
-                    <x-input-label for="hours_tuesday" :value="__('Tuesday')" style="margin-bottom: 0;" />
+                <div class="hours-grid">
+                    <x-input-label for="hours_tuesday" :value="__('Tuesday')" />
                     <x-text-input id="hours_tuesday" type="text" name="hours_tuesday" :value="old('hours_tuesday')"
                         placeholder="e.g. 9am - 5pm" />
-                    <div style="grid-column: 2;"><x-input-error :messages="$errors->get('hours_tuesday')" /></div>
+                    <div class="hours-grid__error"><x-input-error :messages="$errors->get('hours_tuesday')" /></div>
                 </div>
 
-                <div class="form-group"
-                    style="display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 1rem;">
-                    <x-input-label for="hours_wednesday" :value="__('Wednesday')" style="margin-bottom: 0;" />
+                <div class="hours-grid">
+                    <x-input-label for="hours_wednesday" :value="__('Wednesday')" />
                     <x-text-input id="hours_wednesday" type="text" name="hours_wednesday" :value="old('hours_wednesday')"
                         placeholder="e.g. 9am - 5pm" />
-                    <div style="grid-column: 2;"><x-input-error :messages="$errors->get('hours_wednesday')" /></div>
+                    <div class="hours-grid__error"><x-input-error :messages="$errors->get('hours_wednesday')" /></div>
                 </div>
 
-                <div class="form-group"
-                    style="display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 1rem;">
-                    <x-input-label for="hours_thursday" :value="__('Thursday')" style="margin-bottom: 0;" />
+                <div class="hours-grid">
+                    <x-input-label for="hours_thursday" :value="__('Thursday')" />
                     <x-text-input id="hours_thursday" type="text" name="hours_thursday" :value="old('hours_thursday')"
                         placeholder="e.g. 9am - 5pm" />
-                    <div style="grid-column: 2;"><x-input-error :messages="$errors->get('hours_thursday')" /></div>
+                    <div class="hours-grid__error"><x-input-error :messages="$errors->get('hours_thursday')" /></div>
                 </div>
 
-                <div class="form-group"
-                    style="display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 1rem;">
-                    <x-input-label for="hours_friday" :value="__('Friday')" style="margin-bottom: 0;" />
+                <div class="hours-grid">
+                    <x-input-label for="hours_friday" :value="__('Friday')" />
                     <x-text-input id="hours_friday" type="text" name="hours_friday" :value="old('hours_friday')"
                         placeholder="e.g. 9am - 5pm" />
-                    <div style="grid-column: 2;"><x-input-error :messages="$errors->get('hours_friday')" /></div>
+                    <div class="hours-grid__error"><x-input-error :messages="$errors->get('hours_friday')" /></div>
                 </div>
 
-                <div class="form-group"
-                    style="display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 1rem;">
-                    <x-input-label for="hours_saturday" :value="__('Saturday')" style="margin-bottom: 0;" />
+                <div class="hours-grid">
+                    <x-input-label for="hours_saturday" :value="__('Saturday')" />
                     <x-text-input id="hours_saturday" type="text" name="hours_saturday" :value="old('hours_saturday')"
                         placeholder="e.g. 10am - 4pm" />
-                    <div style="grid-column: 2;"><x-input-error :messages="$errors->get('hours_saturday')" /></div>
+                    <div class="hours-grid__error"><x-input-error :messages="$errors->get('hours_saturday')" /></div>
                 </div>
 
-                <div class="form-group"
-                    style="display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 1rem;">
-                    <x-input-label for="hours_sunday" :value="__('Sunday')" style="margin-bottom: 0;" />
+                <div class="hours-grid">
+                    <x-input-label for="hours_sunday" :value="__('Sunday')" />
                     <x-text-input id="hours_sunday" type="text" name="hours_sunday" :value="old('hours_sunday')"
                         placeholder="e.g. Closed" />
-                    <div style="grid-column: 2;"><x-input-error :messages="$errors->get('hours_sunday')" /></div>
+                    <div class="hours-grid__error"><x-input-error :messages="$errors->get('hours_sunday')" /></div>
                 </div>
 
                 <hr class="form-divider">

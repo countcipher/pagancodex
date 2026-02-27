@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/directory', \App\Livewire\DirectoryBrowser::class)->name('directory');
 Route::get('/browse-events', \App\Livewire\EventBrowser::class)->name('events.browse');
+Route::get('/browse-events/{event}', [\App\Http\Controllers\PublicEventController::class, 'show'])->name('events.show');
 Route::get('/member/{profile}', [PublicProfileController::class, 'show'])->name('practitioners.show');
 
 Route::get('/dashboard', function () {

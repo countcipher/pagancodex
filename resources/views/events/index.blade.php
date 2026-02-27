@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="page-header page-header--flex">
         <h1>My Events</h1>
         <a href="{{ route('events.create') }}" class="btn btn--primary">
             + New Event
@@ -12,30 +12,30 @@
     </div>
 
     <section class="dashboard-panel" aria-labelledby="panel-my-events">
-        <div class="dashboard-panel__body" style="padding: 0;"> {{-- Removing padding for edge-to-edge table --}}
+        <div class="dashboard-panel__body dashboard-panel__body--flush"> {{-- Removing padding for edge-to-edge table --}}
 
             @if($events->isEmpty())
-                <div style="padding: 2rem; text-align: center;">
-                    <p style="color: #7A6A58; font-style: italic; margin-bottom: 1rem;">You haven't created any events yet.</p>
+                <div class="empty-state">
+                    <p class="empty-state__text">You haven't created any events yet.</p>
                     <a href="{{ route('events.create') }}" class="btn btn--secondary">Plan your first event</a>
                 </div>
             @else
-                <div style="overflow-x: auto;">
+                <div class="table-responsive">
                     <table class="data-table">
                         <thead>
                             <tr>
                                 <th>Event Title</th>
                                 <th>Date(s)</th>
                                 <th>Location</th>
-                                <th style="text-align: right;">Actions</th>
+                                <th class="data-table__column-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($events as $event)
                                 <tr>
                                     <td>
-                                        <div style="font-weight: 600; color: #2A1A08;">{{ $event->title }}</div>
-                                        <div style="margin-top: 0.25rem; font-size: 0.85rem; color: #7A6A58;">
+                                        <div class="data-table__title">{{ $event->title }}</div>
+                                        <div class="data-table__subtext">
                                             @if ($event->is_public)
                                                 <span class="status-dot status-dot--active"></span> Listed in directory
                                             @else
@@ -49,19 +49,17 @@
                                             — {{ \Carbon\Carbon::parse($event->end_date)->format('M j, Y') }}
                                         @endif
                                     </td>
-                                    <td style="color: #7A6A58; font-size: 0.85rem;">
+                                    <td class="data-table__subtext">
                                         {{ collect([$event->city, $event->state_province, $event->country])->filter()->join(', ') }}
                                     </td>
                                     <td>
-                                        <div class="data-table__actions"
-                                            style="display: flex; gap: 0.5rem; justify-content: flex-end; align-items: center;">
-                                            <a href="{{ route('events.edit', $event) }}" class="btn btn--secondary"
-                                                style="padding: 0.25rem 0.75rem; font-size: 0.8rem; line-height: 1.5; height: auto;">Edit</a>
+                                        <div class="data-table__actions">
+                                            <a href="{{ route('events.edit', $event) }}" class="btn btn--secondary btn--sm">Edit</a>
 
                                             {{-- Alpine powered Delete Button/Modal --}}
                                             <div x-data="{ showModal: false }" style="display: flex; align-items: center;">
-                                                <button type="button" @click="showModal = true" class="btn btn--danger"
-                                                    style="padding: 0.25rem 0.75rem; font-size: 0.8rem; line-height: 1.5; height: auto;">Delete</button>
+                                                <button type="button" @click="showModal = true"
+                                                    class="btn btn--danger btn--sm">Delete</button>
 
                                                 {{-- Modal Dialog --}}
                                                 <div x-show="showModal" class="modal-backdrop" style="display: none;"
@@ -97,7 +95,7 @@
                 </div>
 
                 {{-- Pagination Links --}}
-                <div style="padding: 1.5rem; border-top: 1px solid #DDD5C8;">
+                <div class="pagination-wrapper">
                     {{ $events->links() }}
                 </div>
             @endif
