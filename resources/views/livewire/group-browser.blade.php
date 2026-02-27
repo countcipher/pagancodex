@@ -39,8 +39,18 @@
             </select>
         </div>
 
-        @if($search || $country || $state || $city)
-            <button wire:click="$set('search', ''); $set('country', ''); $set('state', ''); $set('city', '');"
+        {{-- Clergy Filter --}}
+        <div class="directory-filters__group directory-filters__group--toggle">
+            <label class="directory-toggle">
+                <input type="checkbox" wire:model.live="clergyOnly" class="directory-toggle__input">
+                <span class="directory-toggle__switch"></span>
+                <span class="directory-toggle__label">Show Clergy Only</span>
+            </label>
+        </div>
+
+        @if($search || $country || $state || $city || $clergyOnly)
+            <button
+                wire:click="$set('search', ''); $set('country', ''); $set('state', ''); $set('city', ''); $set('clergyOnly', false);"
                 class="directory-filters__reset">
                 Clear Filters
             </button>
