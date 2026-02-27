@@ -1,0 +1,136 @@
+// ============================================================
+// Pagan Codex — Event Browser Page
+// ============================================================
+@use '../variables' as *;
+
+// ---- Event Card Grid ----
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: $spacing-lg;
+
+    @media (max-width: $breakpoint-tablet) {
+        grid-template-columns: 1fr;
+        gap: $spacing-md;
+    }
+}
+
+// ---- Event Card ----
+.event-card {
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow $transition-speed $transition-ease,
+                transform $transition-speed $transition-ease;
+
+    &:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+
+    // Date band at the top
+    &__date-band {
+        background: $color-brown-dark;
+        padding: $spacing-sm $spacing-md;
+
+        .event-date {
+            color: $color-brown-light;
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-family: $font-ui;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+    }
+
+    &__body {
+        padding: $spacing-md;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: $color-brown-dark;
+        font-family: $font-body;
+        line-height: 1.3;
+    }
+
+    &__location {
+        margin: 0;
+        font-size: 0.85rem;
+        color: $color-text-muted;
+        font-family: $font-ui;
+    }
+
+    &__details {
+        margin: 0;
+        font-size: 0.9rem;
+        color: $color-text;
+        line-height: 1.5;
+        flex-grow: 1;
+    }
+
+    &__organizer {
+        margin: 0.5rem 0 0;
+        font-size: 0.8rem;
+        color: $color-text-muted;
+        font-family: $font-ui;
+        border-top: 1px solid $color-border;
+        padding-top: 0.5rem;
+    }
+
+    &__organizer-link {
+        color: $color-green-dark;
+        text-decoration: none;
+        font-weight: 600;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+// ---- Date Quick-Filter Pills ----
+.date-filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+    margin-top: 0.25rem;
+}
+
+.date-pill {
+    padding: 0.3rem 0.75rem;
+    border: 1px solid $color-border;
+    border-radius: 999px;
+    background: $color-bg;
+    color: $color-text-muted;
+    font-size: 0.8rem;
+    font-family: $font-ui;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background $transition-speed $transition-ease,
+                color $transition-speed $transition-ease,
+                border-color $transition-speed $transition-ease;
+
+    &:hover {
+        background: $color-brown-light;
+        color: $color-white;
+        border-color: $color-brown-light;
+    }
+
+    &--active {
+        background: $color-brown-dark;
+        color: $color-white;
+        border-color: $color-brown-dark;
+    }
+}
