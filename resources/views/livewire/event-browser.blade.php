@@ -49,7 +49,15 @@
             <select id="ev-state" wire:model.live="state" class="directory-filters__select" {{ empty($country) ? 'disabled' : '' }}>
                 <option value="">All {{ $stateLabel }}s</option>
                 @foreach($availableStates as $s)
-                    <option value="{{ $s }}">{{ $s }}</option>
+                    @php
+                        $stateName = $s;
+                        if ($country === 'US') {
+                            $stateName = config('locations.states.' . $s) ?? $s;
+                        } elseif ($country === 'CA') {
+                            $stateName = config('locations.provinces.' . $s) ?? $s;
+                        }
+                    @endphp
+                    <option value="{{ $s }}">{{ $stateName }}</option>
                 @endforeach
             </select>
         </div>
