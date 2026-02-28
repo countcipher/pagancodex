@@ -1,143 +1,125 @@
 @extends('layouts.dashboard')
 
-@section('title', "{$shop->name} — Pagan Codex")
+@section('title', $shop->name . ' — Pagan Codex')
 
 @section('content')
-    <div class="directory-wrapper">
-        <section class="profile-details-container">
+    <div class="profile-details">
 
-            <div class="profile-header profile-header--flex">
-                <div class="profile-header__title-group">
-                    <h1 class="profile-header__name">{{ $shop->name }}</h1>
-
-                    @php
-                        $location = collect([$shop->city, $shop->state_province, $shop->country])->filter()->join(', ');
-                    @endphp
-                    @if($location)
-                        <div class="profile-header__location">
-                            <x-heroicon-o-map-pin class="icon" />
-                            {{ $location }}
-                        </div>
-                    @endif
-                </div>
-
-                <a href="{{ route('shops.browse') }}" class="btn btn--secondary">
-                    &larr; Back to Directory
-                </a>
+        {{-- Shop Hero Header --}}
+        <div class="profile-header">
+            <div class="profile-header__avatar">
+                {{-- Shop avatar placeholder if added in future --}}
             </div>
+            <div class="profile-header__info">
+                <h1 class="profile-name">{{ $shop->name }}</h1>
+            </div>
+        </div>
 
-            <div class="profile-card profile-card--full">
+        {{-- Detail Cards --}}
+        <div class="profile-grid">
 
-                <h2 class="profile-card__section-title">About the Shop</h2>
-                <div class="profile-card__bio">
-                    {!! nl2br(e($shop->description)) !!}
-                </div>
+            {{-- Location & Hours --}}
+            <div class="profile-card">
+                <h3>Location</h3>
+                <p><strong>City:</strong> {{ $shop->city ?? 'Not Provided' }}</p>
+                <p><strong>State / Province:</strong> {{ $shop->state_province ?? 'Not Provided' }}</p>
+                <p><strong>Country:</strong> {{ $shop->country ?? 'Not Provided' }}</p>
 
-                <h2 class="profile-card__section-title">Store Hours</h2>
-                <div class="profile-card__contact-grid">
-                    @foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $day)
+                <hr class="profile-section-divider" />
+
+                <h3>Store Hours</h3>
+                @php
+                    $days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+                    $hasHours = collect($days)->contains(fn($day) => !empty($shop->{"hours_{$day}"}));
+                @endphp
+
+                @if($hasHours)
+                    @foreach($days as $day)
                         @if($shop->{"hours_{$day}"})
-                            <div class="contact-item">
-                                <span class="contact-item__label">{{ ucfirst($day) }}:</span>
-                                <span class="contact-item__value">{{ $shop->{"hours_{$day}"} }}</span>
-                            </div>
+                            <p><strong>{{ ucfirst($day) }}:</strong> {{ $shop->{"hours_{$day}"} }}</p>
                         @endif
                     @endforeach
-
-                    @if(collect(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'])->every(fn($day) => empty($shop->{"hours_{$day}"})))
-                        <p class="contact-item__value" style="grid-column: 1 / -1;">No hours listed.</p>
-                    @endif
-                </div>
-
-                @if($shop->contact_email || $shop->phone_number || $shop->website || $shop->facebook_url || $shop->instagram_url || $shop->x_url)
-                    <h2 class="profile-card__section-title mt-xl">Contact & Socials</h2>
-                    <div class="profile-card__contact-grid">
-
-                        @if($shop->website)
-                            <div class="contact-item">
-                                <span class="contact-item__label">Website:</span>
-                                <a href="{{ $shop->website }}" target="_blank" rel="noopener noreferrer" class="contact-item__link">
-                                    {{ str_replace(['http://', 'https://'], '', rtrim($shop->website, '/')) }}
-                                </a>
-                            </div>
-                        @endif
-
-                        @if($shop->contact_email)
-                            <div class="contact-item">
-                                <span class="contact-item__label">Email:</span>
-                                <a href="mailto:{{ $shop->contact_email }}" class="contact-item__link">
-                                    {{ $shop->contact_email }}
-                                </a>
-                            </div>
-                        @endif
-
-                        @if($shop->phone_number)
-                            <div class="contact-item">
-                                <span class="contact-item__label">Phone:</span>
-                                <span class="contact-item__value">{{ $shop->phone_number }}</span>
-                            </div>
-                        @endif
-
-                        @if($shop->facebook_url)
-                            <div class="contact-item">
-                                <span class="contact-item__label">Facebook:</span>
-                                <a href="{{ $shop->facebook_url }}" target="_blank" rel="noopener noreferrer"
-                                    class="contact-item__link">
-                                    Visit Page
-                                </a>
-                            </div>
-                        @endif
-
-                        @if($shop->instagram_url)
-                            <div class="contact-item">
-                                <span class="contact-item__label">Instagram:</span>
-                                <a href="{{ $shop->instagram_url }}" target="_blank" rel="noopener noreferrer"
-                                    class="contact-item__link">
-                                    @ {{ basename(parse_url($shop->instagram_url, PHP_URL_PATH)) }}
-                                </a>
-                            </div>
-                        @endif
-
-                        @if($shop->x_url)
-                            <div class="contact-item">
-                                <span class="contact-item__label">X (Twitter):</span>
-                                <a href="{{ $shop->x_url }}" target="_blank" rel="noopener noreferrer" class="contact-item__link">
-                                    @ {{ basename(parse_url($shop->x_url, PHP_URL_PATH)) }}
-                                </a>
-                            </div>
-                        @endif
-
-                    </div>
+                @else
+                    <p>No hours listed.</p>
                 @endif
-
-                <h2 class="profile-card__section-title mt-xl">Listed By</h2>
-                <div class="profile-card__organizer">
-                    @if($shop->user && $shop->user->profile && $shop->user->profile->is_public)
-                        @if($shop->user->profile->avatar_path)
-                            <img src="{{ asset('storage/' . $shop->user->profile->avatar_path) }}" alt="{{ $shop->user->name }}"
-                                class="organizer-avatar">
-                        @else
-                            <img src="/images/default-avatar.png" alt="Default Avatar" class="organizer-avatar">
-                        @endif
-                        <div class="organizer-info">
-                            <span class="organizer-name">
-                                <a href="{{ route('practitioners.show', $shop->user->profile) }}">{{ $shop->user->name }}</a>
-                            </span>
-                            @if($shop->user->profile->tradition)
-                                <span class="organizer-tradition">{{ $shop->user->profile->tradition }}</span>
-                            @endif
-                        </div>
-                    @else
-                        <div class="organizer-info">
-                            <span class="organizer-name" style="color: var(--color-text-muted); font-style: italic;">
-                                Member name not publicly available
-                            </span>
-                        </div>
-                    @endif
-                </div>
-
             </div>
 
-        </section>
+            {{-- Contact Info --}}
+            <div class="profile-card">
+                <h3>Contact & Links</h3>
+
+                @if ($shop->contact_email)
+                    <p><strong>Email:</strong> <a href="mailto:{{ $shop->contact_email }}"
+                            class="profile-link">{{ $shop->contact_email }}</a></p>
+                @endif
+
+                @if ($shop->phone_number)
+                    <p><strong>Phone:</strong> {{ $shop->phone_number }}</p>
+                @endif
+
+                @if ($shop->website)
+                    <p><strong>Website:</strong>
+                        <a href="{{ $shop->website }}" target="_blank" rel="noopener"
+                            class="profile-link">{{ str_replace(['http://', 'https://'], '', rtrim($shop->website, '/')) }}</a>
+                    </p>
+                @endif
+
+                @if ($shop->facebook_url)
+                    <p><strong>Facebook:</strong>
+                        <a href="{{ $shop->facebook_url }}" target="_blank" rel="noopener" class="profile-link">Visit Page</a>
+                    </p>
+                @endif
+
+                @if ($shop->instagram_url)
+                    <p><strong>Instagram:</strong>
+                        <a href="{{ $shop->instagram_url }}" target="_blank" rel="noopener" class="profile-link">@
+                            {{ basename(parse_url($shop->instagram_url, PHP_URL_PATH)) }}</a>
+                    </p>
+                @endif
+
+                @if ($shop->x_url)
+                    <p><strong>X (Twitter):</strong>
+                        <a href="{{ $shop->x_url }}" target="_blank" rel="noopener" class="profile-link">@
+                            {{ basename(parse_url($shop->x_url, PHP_URL_PATH)) }}</a>
+                    </p>
+                @endif
+
+                @if (!$shop->contact_email && !$shop->phone_number && !$shop->website && !$shop->facebook_url && !$shop->instagram_url && !$shop->x_url)
+                    <p>No public contact information provided.</p>
+                @endif
+
+                <hr class="profile-section-divider" />
+
+                <h3>Listed By</h3>
+                <p>
+                    @if($shop->user && $shop->user->profile && $shop->user->profile->is_public)
+                        <a href="{{ route('practitioners.show', $shop->user->profile) }}" class="profile-link">
+                            {{ $shop->user->name }}
+                        </a>
+                    @else
+                        Member name not publicly available.
+                    @endif
+                </p>
+            </div>
+
+            {{-- Full Description --}}
+            <div class="profile-card profile-card--full">
+                <h3>About The Shop</h3>
+                @if($shop->description)
+                    <p class="profile-bio">{{ $shop->description }}</p>
+                @else
+                    <p class="profile-bio profile-bio--empty">No description provided for this shop.</p>
+                @endif
+            </div>
+
+        </div>
+
+        {{-- Back Link --}}
+        <div class="profile-back-action">
+            <a href="{{ route('shops.browse') }}">
+                ← Back to Shops Directory
+            </a>
+        </div>
+
     </div>
 @endsection
