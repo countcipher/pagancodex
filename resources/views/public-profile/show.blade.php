@@ -39,30 +39,47 @@
 
             <div class="profile-card">
                 <h3>Contact & Online</h3>
-                <p><strong>Website:</strong>
-                    @if($profile->website)
-                        <a href="{{ $profile->website }}" target="_blank" rel="noopener">{{ $profile->website }}</a>
-                    @else
-                        Not Provided
-                    @endif
-                </p>
-                <p><strong>Public Email:</strong> {{ $profile->public_email ?? 'Not Provided' }}</p>
-                <p><strong>Phone Number:</strong> {{ $profile->phone_number ?? 'Not Provided' }}</p>
 
-                <div class="social-links">
-                    @if($profile->facebook_url)
-                        <a href="{{ $profile->facebook_url }}" target="_blank" rel="noopener"
-                            title="Facebook"><x-heroicon-o-link class="social-icon" /> Facebook</a>
-                    @endif
-                    @if($profile->instagram_url)
-                        <a href="{{ $profile->instagram_url }}" target="_blank" rel="noopener"
-                            title="Instagram"><x-heroicon-o-link class="social-icon" /> Instagram</a>
-                    @endif
-                    @if($profile->x_url)
-                        <a href="{{ $profile->x_url }}" target="_blank" rel="noopener"
-                            title="X (Formerly Twitter)"><x-heroicon-o-link class="social-icon" /> X (Twitter)</a>
-                    @endif
-                </div>
+                @if($profile->website)
+                    <p><strong>Website:</strong>
+                        <a href="{{ $profile->website }}" target="_blank" rel="noopener"
+                            class="profile-link">{{ str_replace(['http://', 'https://'], '', rtrim($profile->website, '/')) }}</a>
+                    </p>
+                @endif
+
+                @if($profile->public_email)
+                    <p><strong>Public Email:</strong>
+                        <a href="mailto:{{ $profile->public_email }}" class="profile-link">{{ $profile->public_email }}</a>
+                    </p>
+                @endif
+
+                @if($profile->phone_number)
+                    <p><strong>Phone Number:</strong> {{ $profile->phone_number }}</p>
+                @endif
+
+                @if($profile->facebook_url)
+                    <p><strong>Facebook:</strong>
+                        <a href="{{ $profile->facebook_url }}" target="_blank" rel="noopener" class="profile-link">Visit
+                            Page</a>
+                    </p>
+                @endif
+
+                @if($profile->instagram_url)
+                    <p><strong>Instagram:</strong>
+                        <a href="{{ $profile->instagram_url }}" target="_blank" rel="noopener" class="profile-link">Visit
+                            Page</a>
+                    </p>
+                @endif
+
+                @if($profile->x_url)
+                    <p><strong>X (Twitter):</strong>
+                        <a href="{{ $profile->x_url }}" target="_blank" rel="noopener" class="profile-link">Visit Page</a>
+                    </p>
+                @endif
+
+                @if(!$profile->website && !$profile->public_email && !$profile->phone_number && !$profile->facebook_url && !$profile->instagram_url && !$profile->x_url)
+                    <p>No contact or online information provided.</p>
+                @endif
             </div>
 
             <div class="profile-card profile-card--full">
