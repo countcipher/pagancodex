@@ -57,7 +57,7 @@
 
         <div wire:loading.class="opacity-50" class="profile-grid">
             @forelse ($shops as $shop)
-                <article class="profile-card" aria-label="Shop: {{ $shop->name }}">
+                <a href="{{ route('shops.show', $shop) }}" class="profile-card" aria-label="Shop: {{ $shop->name }}">
 
                     <div class="profile-card__name">
                         {{ $shop->name }}
@@ -73,7 +73,7 @@
                         </div>
                     @endif
 
-                </article>
+                </a>
             @empty
                 <div class="directory-empty">
                     <p class="directory-empty__text">No shops found matching your criteria.</p>

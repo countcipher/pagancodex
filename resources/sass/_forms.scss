@@ -1,3 +1,4 @@
+
 // ============================================================
 // Pagan Codex — Forms & Buttons
 // ============================================================
@@ -504,7 +505,7 @@
         }
 
         &.is-range {
-            background-color: mix($color-white, $color-green-dark, 90%);
+            background-color: color.mix($color-white, $color-green-dark, 90%);
             color: $color-green-dark;
             border-radius: 0; 
         }

@@ -1,6 +1,7 @@
 // ============================================================
 // Pagan Codex — Auth / Guest Pages
 // ============================================================
+@use 'sass:color';
 @use '../variables' as *;
 
 .auth-wrapper {
@@ -71,7 +72,7 @@
     max-width: 400px;
     margin-bottom: $spacing-md;
     padding: $spacing-sm $spacing-md;
-    background-color: lighten($color-green-light, 15%);
+    background-color: color.mix($color-white, $color-green-light, 15%);
     border: 1px solid $color-green-light;
     border-radius: $radius-sm;
     color: $color-green-dark;
