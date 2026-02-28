@@ -34,7 +34,8 @@
     <header role="banner">
         <nav class="site-nav" aria-label="Primary navigation">
             <a href="{{ url('/') }}" class="site-nav__logo" aria-label="Pagan Codex — Home">
-                <img src="{{ asset('images/logo.png') }}" alt="" class="site-nav__logo-img" aria-hidden="true">
+                {{-- <img src="{{ asset('images/logo.png') }}" alt="" class="site-nav__logo-img" aria-hidden="true">
+                --}}
                 Pagan<span>Codex</span>
             </a>
 

@@ -7,7 +7,13 @@
     <div class="home-container">
 
         <section class="hero-panel" aria-labelledby="hero-title">
+
+            <img style="display: block; margin: auto" src="{{ asset('images/logo_cropped.jpg') }}" />
+
             <h1 id="hero-title" class="hero-panel__title">The Wheel is Turning. Connect with Your Community.</h1>
+
+
+
             <p class="hero-panel__subtitle">Pagan Codex is a directory and resource hub helping Witches, Pagans, and magical
                 practitioners find each other, local events, and trusted merchants.</p>
 
