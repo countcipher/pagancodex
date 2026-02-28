@@ -76,7 +76,7 @@
         <section class="home-section-card" aria-labelledby="groups-title">
             <header class="home-section-header">
                 <h2 id="groups-title" class="home-section-header__title">Discover Local Communities</h2>
-                <a href="{{ route('groups.browse') }}" class="home-section-header__link">View Directory &rarr;</a>
+                <a href="{{ route('groups.browse') }}" class="home-section-header__link">View All Groups &rarr;</a>
             </header>
 
             @if($discoverGroups->isEmpty())
