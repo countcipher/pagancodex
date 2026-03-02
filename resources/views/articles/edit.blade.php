@@ -49,17 +49,17 @@
                     <x-input-label for="image" :value="__('Featured Image')" />
 
                     <div x-data="{ 
-                                previewUrl: '{{ $article->image_path ? Storage::url($article->image_path) : '' }}',
-                                fileChosen(event) {
-                                    const file = event.target.files[0];
-                                    if (file) {
-                                        this.previewUrl = URL.createObjectURL(file);
-                                    }
-                                }
-                            }">
+                                        previewUrl: '{{ $article->image_path ? Storage::url($article->image_path) : '' }}',
+                                        fileChosen(event) {
+                                            const file = event.target.files[0];
+                                            if (file) {
+                                                this.previewUrl = URL.createObjectURL(file);
+                                            }
+                                        }
+                                    }">
                         <!-- Featured Image Preview Banner -->
                         <img id="image-preview-img" :src="previewUrl" alt="Featured image preview" x-show="previewUrl"
-                            style="display: {{ $article->image_path ? 'block' : 'none' }}; width: 100%; height: auto; max-height: 400px; border-radius: 8px; margin-bottom: 1rem; object-fit: cover; border: 1px solid var(--border-color);">
+                            class="article-image-preview" style="display: {{ $article->image_path ? 'block' : 'none' }};">
 
                         <div>
                             <label for="image" class="btn btn--secondary">Choose New Image...</label>
