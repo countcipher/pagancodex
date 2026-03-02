@@ -167,3 +167,95 @@
         }
     }
 }
+
+// ---- Article Browse Page ----
+.article-browse-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-lg;
+}
+
+.article-browse-card {
+    background: $color-bg;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    flex: 0 1 calc(50% - #{$spacing-lg});
+    display: flex;
+    flex-direction: column;
+    transition: transform $transition-speed $transition-ease,
+                box-shadow $transition-speed $transition-ease,
+                border-color $transition-speed $transition-ease;
+
+    @media (max-width: $breakpoint-tablet) {
+        flex: 1 1 100%;
+    }
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-color: $color-brown-light;
+    }
+
+    &__image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+    }
+
+    &__body {
+        padding: $spacing-lg;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    &__title {
+        font-family: $font-body;
+        font-size: 1.2rem;
+        color: $color-brown-dark;
+        margin: 0 0 0.5rem;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+
+    &__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $spacing-md;
+        font-size: 0.85rem;
+        color: $color-text-muted;
+        font-family: $font-ui;
+        margin-bottom: 0.75rem;
+
+        span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+    }
+
+    &__icon {
+        width: 0.9rem;
+        height: 0.9rem;
+        color: $color-green-dark;
+        flex-shrink: 0;
+    }
+
+    &__desc {
+        font-size: 0.9rem;
+        color: $color-text;
+        line-height: $line-height-base;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-top: auto;
+        border-top: 1px dashed $color-border;
+        padding-top: $spacing-sm;
+    }
+}

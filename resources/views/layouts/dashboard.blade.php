@@ -54,6 +54,7 @@
                 <li><a href="{{ route('events.browse') }}">Events</a></li>
                 <li><a href="{{ route('groups.browse') }}">Groups</a></li>
                 <li><a href="{{ route('shops.browse') }}">Shops</a></li>
+                <li><a href="{{ route('articles.browse') }}">Articles</a></li>
                 @auth
                     <li>
                         <form method="POST" action="{{ route('logout') }}">

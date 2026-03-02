@@ -15,6 +15,7 @@ Route::get('/browse-shops', \App\Livewire\ShopBrowser::class)->name('shops.brows
 Route::get('/browse-shops/{shop}', [PublicShopController::class, 'show'])->name('shops.show');
 Route::get('/member/{profile}', [PublicProfileController::class, 'show'])->name('practitioners.show');
 Route::get('/articles/{article:slug}', [\App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
+Route::get('/browse-articles', \App\Livewire\ArticleBrowser::class)->name('articles.browse');
 
 Route::get('/dashboard', function () {
     return view('dashboard', [
