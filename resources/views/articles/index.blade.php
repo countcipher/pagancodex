@@ -52,33 +52,30 @@
                                                 <button type="button" @click="showModal = true"
                                                     class="btn btn--danger btn--sm">Delete</button>
 
-                                                <template x-teleport="body">
-                                                    <div x-show="showModal" class="modal-overlay" style="display: none;">
-                                                        <div class="modal" @click.away="showModal = false">
-                                                            <div class="modal__header">
-                                                                <h2 class="modal__title">Delete Article</h2>
-                                                                <button @click="showModal = false"
-                                                                    class="modal__close">&times;</button>
-                                                            </div>
-                                                            <div class="modal__body">
-                                                                <p>Are you sure you want to delete
-                                                                    <strong>{{ $article->title }}</strong>? This action cannot be
-                                                                    undone.</p>
-                                                            </div>
-                                                            <div class="modal__footer">
-                                                                <button @click="showModal = false"
-                                                                    class="btn btn--secondary">Cancel</button>
-                                                                <form action="{{ route('articles.destroy', $article) }}"
-                                                                    method="POST" style="display: inline;">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="btn btn--danger">Yes,
-                                                                        Delete</button>
-                                                                </form>
-                                                            </div>
+                                                {{-- Modal Dialog --}}
+                                                <div x-show="showModal" class="modal-backdrop" style="display: none;"
+                                                    x-transition.opacity @keydown.escape.window="showModal = false">
+
+                                                    <div class="modal-dialog" @click.away="showModal = false">
+                                                        <h3 class="modal-title">Delete Article?</h3>
+                                                        <p>Are you sure you want to permanently delete
+                                                            <strong>{{ $article->title }}</strong>? This action cannot be undone.
+                                                        </p>
+
+                                                        <div class="modal-actions">
+                                                            <button type="button" @click="showModal = false"
+                                                                class="btn btn--secondary">Cancel</button>
+
+                                                            <form method="POST" action="{{ route('articles.destroy', $article) }}"
+                                                                style="display: inline-block;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn--danger">Yes, Delete
+                                                                    Article</button>
+                                                            </form>
                                                         </div>
                                                     </div>
-                                                </template>
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
