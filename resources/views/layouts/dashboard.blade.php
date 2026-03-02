@@ -135,6 +135,15 @@
                                 Shops
                             </a>
                         </li>
+                        @if (auth()->user()->role >= 10)
+                            <li class="sidebar__item">
+                                <a href="{{ route('articles.index') }}"
+                                    class="{{ request()->routeIs('articles.*') ? 'active' : '' }}">
+                                    <x-heroicon-o-newspaper class="nav-icon" aria-hidden="true" />
+                                    Articles
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </aside>

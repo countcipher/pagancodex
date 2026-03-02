@@ -52,6 +52,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/shops/{shop}/edit', [\App\Http\Controllers\ShopController::class, 'edit'])->name('shops.edit');
     Route::put('/shops/{shop}', [\App\Http\Controllers\ShopController::class, 'update'])->name('shops.update');
     Route::delete('/shops/{shop}', [\App\Http\Controllers\ShopController::class, 'destroy'])->name('shops.destroy');
+
+    Route::resource('articles', \App\Http\Controllers\ArticleController::class);
 });
 
 require __DIR__ . '/auth.php';
