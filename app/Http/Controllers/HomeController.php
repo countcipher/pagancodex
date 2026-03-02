@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Article;
 use App\Models\Event;
 use App\Models\Group;
 use App\Models\Profile;
@@ -51,12 +52,20 @@ class HomeController extends Controller
             ->take(9)
             ->get();
 
+        // 6. Latest Published Articles
+        $latestArticles = Article::with('user')
+            ->where('is_published', true)
+            ->latest()
+            ->take(3)
+            ->get();
+
         return view('welcome', compact(
             'stats',
             'upcomingEvents',
             'discoverGroups',
             'featuredShops',
-            'newProfiles'
+            'newProfiles',
+            'latestArticles'
         ));
     }
 }

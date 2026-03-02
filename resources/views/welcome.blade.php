@@ -45,6 +45,38 @@
             @endguest
         </section>
 
+        <!-- Latest Articles Section -->
+        @if($latestArticles->isNotEmpty())
+            <section class="home-section-card" aria-labelledby="articles-title">
+                <header class="home-section-header">
+                    <h2 id="articles-title" class="home-section-header__title">Latest Articles</h2>
+                </header>
+
+                <div class="home-grid">
+                    @foreach($latestArticles as $article)
+                        <a href="#" class="home-item-card">
+                            @if($article->image_path)
+                                <img src="{{ Storage::url($article->image_path) }}" alt="{{ $article->title }}"
+                                    class="home-item-card__image" loading="lazy">
+                            @endif
+                            <h3 class="home-item-card__title">{{ $article->title }}</h3>
+                            <div class="home-item-card__meta">
+                                <x-heroicon-o-user class="home-item-card__meta-icon" />
+                                {{ $article->user->name }}
+                            </div>
+                            <div class="home-item-card__meta">
+                                <x-heroicon-o-clock class="home-item-card__meta-icon" />
+                                {{ $article->created_at->format('M j, Y') }}
+                            </div>
+                            @if($article->description)
+                                <p class="home-item-card__desc">{{ Str::limit($article->description, 120) }}</p>
+                            @endif
+                        </a>
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
         <!-- Upcoming Events Section -->
         <section class="home-section-card" aria-labelledby="events-title">
             <header class="home-section-header">

@@ -49,14 +49,14 @@
                     <x-input-label for="image" :value="__('Featured Image')" />
 
                     <div x-data="{ 
-                                        previewUrl: '{{ old('image') ? '' : '' }}',
-                                        fileChosen(event) {
-                                            const file = event.target.files[0];
-                                            if (file) {
-                                                this.previewUrl = URL.createObjectURL(file);
-                                            }
-                                        }
-                                    }">
+                                                        previewUrl: '{{ old('image') ? '' : '' }}',
+                                                        fileChosen(event) {
+                                                            const file = event.target.files[0];
+                                                            if (file) {
+                                                                this.previewUrl = URL.createObjectURL(file);
+                                                            }
+                                                        }
+                                                    }">
                         <!-- Featured Image Preview Banner -->
                         <img id="image-preview-img" :src="previewUrl" alt="Featured image preview" x-show="previewUrl"
                             class="article-image-preview" style="display: none;">
@@ -76,7 +76,7 @@
                 {{-- Content --}}
                 <div class="form-group">
                     <x-input-label for="content" :value="__('Article Content')" />
-                    <textarea id="content" name="content" rows="15" required class="form-textarea"
+                    <textarea id="content" name="content" rows="15" class="form-textarea"
                         placeholder="Write your article here...">{{ old('content') }}</textarea>
                     <x-input-error :messages="$errors->get('content')" />
                 </div>
@@ -91,4 +91,24 @@
         </div>
     </section>
 
+    {{-- Load TinyMCE from public/vendor --}}
+    <script src="{{ asset('vendor/tinymce/tinymce.min.js') }}"></script>
+    <script>
+        tinymce.init({
+            selector: '#content',
+            license_key: 'gpl',
+            height: 500,
+            menubar: false,
+            plugins: 'lists link emoticons wordcount',
+            toolbar: 'undo redo | blocks | ' +
+                'bold italic strikethrough forecolor | alignleft aligncenter ' +
+                'alignright alignjustify | bullist numlist outdent indent | ' +
+                'link emoticons | removeformat',
+            setup: function (editor) {
+                editor.on('change', function () {
+                    editor.save(); // keeps the hidden textarea in sync
+                });
+            }
+        });
+    </script>
 @endsection
