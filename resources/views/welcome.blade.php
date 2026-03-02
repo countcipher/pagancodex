@@ -54,7 +54,7 @@
 
                 <div class="home-grid">
                     @foreach($latestArticles as $article)
-                        <a href="#" class="home-item-card">
+                        <a href="{{ route('articles.show', $article) }}" class="home-item-card">
                             @if($article->image_path)
                                 <img src="{{ Storage::url($article->image_path) }}" alt="{{ $article->title }}"
                                     class="home-item-card__image" loading="lazy">

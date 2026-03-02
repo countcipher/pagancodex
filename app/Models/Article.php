@@ -16,6 +16,14 @@ class Article extends Model
     ];
 
     /**
+     * Use slug instead of ID for route model binding.
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    /**
      * Get the user that authored the article.
      */
     public function user()

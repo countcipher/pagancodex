@@ -25,6 +25,15 @@ class ArticleController extends Controller
         return view('articles.create');
     }
 
+    public function show(Article $article)
+    {
+        abort_unless($article->is_published, 404);
+
+        $article->load('user');
+
+        return view('articles.show', compact('article'));
+    }
+
     public function store(Request $request): RedirectResponse
     {
         abort_if($request->user()->role < 10, 403, 'Unauthorized action.');
