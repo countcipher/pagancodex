@@ -79,6 +79,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the articles authored by the user.
+     */
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+
+
+    /**
      * The "booted" method of the model.
      * Automatically creates a blank profile when a user is registered.
      */
