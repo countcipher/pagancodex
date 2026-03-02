@@ -40,10 +40,25 @@
             {!! $article->content !!}
         </div>
 
-        {{-- Back Link --}}
-        <div class="article-display__back">
-            <a href="{{ route('home') }}">← Back to Home</a>
-        </div>
+        {{-- Previous / Next Article Navigation --}}
+        <nav class="article-display__nav" aria-label="Article navigation">
+            @if($previous)
+                <a href="{{ route('articles.show', $previous) }}"
+                    class="article-display__nav-link article-display__nav-link--prev">
+                    <span class="article-display__nav-direction">← Previous Article</span>
+                    <span class="article-display__nav-title">{{ $previous->title }}</span>
+                </a>
+            @else
+                <span></span>
+            @endif
+
+            @if($next)
+                <a href="{{ route('articles.show', $next) }}" class="article-display__nav-link article-display__nav-link--next">
+                    <span class="article-display__nav-direction">Next Article →</span>
+                    <span class="article-display__nav-title">{{ $next->title }}</span>
+                </a>
+            @endif
+        </nav>
 
     </article>
 @endsection

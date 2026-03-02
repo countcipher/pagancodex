@@ -27,7 +27,7 @@
     <section class="directory-results" aria-live="polite" aria-label="Article results">
 
         <header class="directory-results__header">
-            <h2 class="directory-results__title">Community Articles</h2>
+            <h2 class="directory-results__title">Articles</h2>
             <span class="directory-results__count">{{ $articles->total() }}
                 {{ Str::plural('article', $articles->total()) }}</span>
         </header>

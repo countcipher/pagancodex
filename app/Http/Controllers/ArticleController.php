@@ -31,7 +31,19 @@ class ArticleController extends Controller
 
         $article->load('user');
 
-        return view('articles.show', compact('article'));
+        // Previous article (older)
+        $previous = Article::where('is_published', true)
+            ->where('created_at', '<', $article->created_at)
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        // Next article (newer)
+        $next = Article::where('is_published', true)
+            ->where('created_at', '>', $article->created_at)
+            ->orderBy('created_at', 'asc')
+            ->first();
+
+        return view('articles.show', compact('article', 'previous', 'next'));
     }
 
     public function store(Request $request): RedirectResponse
