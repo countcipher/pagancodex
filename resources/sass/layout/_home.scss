@@ -152,12 +152,13 @@
 
 // ---- Item Cards (Inner records) ----
 .home-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: $spacing-lg;
 
     @media (max-width: $breakpoint-tablet) {
-        grid-template-columns: 1fr;
+        flex-direction: column;
     }
 }
 
@@ -170,6 +171,8 @@
     flex-direction: column;
     text-decoration: none;
     color: inherit;
+    flex: 0 1 calc(33.333% - #{$spacing-lg});
+    min-width: 280px;
     transition: transform $transition-speed $transition-ease,
                 box-shadow $transition-speed $transition-ease,
                 border-color $transition-speed $transition-ease;
