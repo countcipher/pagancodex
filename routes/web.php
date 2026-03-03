@@ -17,6 +17,9 @@ Route::get('/member/{profile}', [PublicProfileController::class, 'show'])->name(
 Route::get('/articles/{article:slug}', [\App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
 Route::get('/browse-articles', \App\Livewire\ArticleBrowser::class)->name('articles.browse');
 
+// Static Pages
+Route::view('/terms-of-use', 'pages.terms')->name('terms');
+
 Route::get('/dashboard', function () {
     return view('dashboard', [
         'profile' => auth()->user()->profile,
@@ -55,7 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/shops/{shop}', [\App\Http\Controllers\ShopController::class, 'update'])->name('shops.update');
     Route::delete('/shops/{shop}', [\App\Http\Controllers\ShopController::class, 'destroy'])->name('shops.destroy');
 
-    Route::resource('articles', \App\Http\Controllers\ArticleController::class);
+    Route::resource('articles', \App\Http\Controllers\ArticleController::class)->except(['show']);
 });
 
 require __DIR__ . '/auth.php';

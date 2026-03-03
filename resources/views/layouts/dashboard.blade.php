@@ -171,6 +171,18 @@
 
             {{ $slot ?? '' }}
             @yield('content')
+
+            {{-- ==========================================
+            GLOBAL FOOTER
+            =========================================== --}}
+            <footer class="site-footer">
+                <div class="site-footer__links">
+                    <a href="{{ route('terms') }}">Terms of Use</a>
+                    <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
+                    <a href="{{ url('/community-guidelines') }}">Community Guidelines</a>
+                </div>
+                <p class="site-footer__copy">&copy; {{ date('Y') }} Pagan Codex. All rights reserved.</p>
+            </footer>
         </main>
 
     </div>{{-- /.dashboard-wrapper --}}

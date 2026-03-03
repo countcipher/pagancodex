@@ -1,0 +1,70 @@
+// ============================================================
+// Footer Component
+// ============================================================
+@use '../variables' as *;
+
+.site-footer {
+    // Light tint of the nav color ($color-brown-dark is #4A2C0A, let's use a soft tan)
+    background-color: rgba($color-brown-light, 0.2);
+    border-top: 1px solid rgba($color-brown-dark, 0.1);
+    
+    // Counteract dashboard-content's padding to make it full bleed
+    margin-left: -$spacing-xl;
+    margin-right: -$spacing-xl;
+    margin-bottom: -$spacing-xl;
+    
+    padding: $spacing-xl $spacing-2xl;
+    margin-top: auto; // pushes footer to bottom of flex layout natively now
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    @media (max-width: $breakpoint-tablet) {
+        margin-left: -$spacing-md;
+        margin-right: -$spacing-md;
+        margin-bottom: -$spacing-md;
+        padding: $spacing-lg $spacing-md;
+    }
+
+    &__links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: $spacing-xl;
+        margin-bottom: $spacing-lg;
+        width: 100%;
+
+        @media (max-width: $breakpoint-tablet) {
+            gap: $spacing-md;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        a {
+            font-family: $font-ui;
+            font-weight: 600;
+            color: $color-brown-dark; // Same color as nav background
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color $transition-speed $transition-ease;
+
+            &:hover {
+                color: $color-green-dark;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__copy {
+        font-family: $font-ui;
+        color: $color-brown-dark;
+        opacity: 0.8;
+        font-size: 0.85rem;
+        margin: 0;
+        text-align: center;
+        width: 100%;
+    }
+}

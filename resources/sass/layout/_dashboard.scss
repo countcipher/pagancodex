@@ -8,6 +8,7 @@
     display: flex;
     padding-top: $nav-height;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 // Main content area — offset by sidebar width on desktop
@@ -16,6 +17,8 @@
     margin-left: $sidebar-width;
     padding: $spacing-xl;
     min-width: 0; // prevents flex overflow
+    display: flex;
+    flex-direction: column;
 
     @media (max-width: $breakpoint-tablet) {
         margin-left: 0;
