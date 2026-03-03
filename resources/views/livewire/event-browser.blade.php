@@ -35,7 +35,8 @@
         {{-- Country --}}
         <div class="directory-filters__group">
             <label for="ev-country" class="directory-filters__label">Country</label>
-            <select id="ev-country" wire:model.live="country" class="directory-filters__select">
+            <select id="ev-country" wire:model.live="country"
+                wire:key="country-{{ empty($country) ? 'empty' : 'filled' }}" class="directory-filters__select">
                 <option value="">All Countries</option>
                 @foreach($availableCountries as $code)
                     <option value="{{ $code }}">{{ $countryNames[$code] ?? $code }}</option>
@@ -46,7 +47,9 @@
         {{-- State / Province (label changes based on country) --}}
         <div class="directory-filters__group">
             <label for="ev-state" class="directory-filters__label">{{ $stateLabel }}</label>
-            <select id="ev-state" wire:model.live="state" class="directory-filters__select" {{ empty($country) ? 'disabled' : '' }}>
+            <select id="dir-state" wire:model.live="state"
+                wire:key="state-{{ empty($state) ? 'empty' : 'filled' }}-{{ $country }}"
+                class="directory-filters__select" {{ empty($country) ? 'disabled' : '' }}>
                 <option value="">All {{ $stateLabel }}s</option>
                 @foreach($availableStates as $s)
                     @php
@@ -65,7 +68,9 @@
         {{-- City --}}
         <div class="directory-filters__group">
             <label for="ev-city" class="directory-filters__label">City</label>
-            <select id="ev-city" wire:model.live="city" class="directory-filters__select" {{ empty($state) ? 'disabled' : '' }}>
+            <select id="dir-city" wire:model.live="city"
+                wire:key="city-{{ empty($city) ? 'empty' : 'filled' }}-{{ $state }}" class="directory-filters__select"
+                {{ empty($state) ? 'disabled' : '' }}>
                 <option value="">All Cities</option>
                 @foreach($availableCities as $c)
                     <option value="{{ $c }}">{{ $c }}</option>
@@ -75,9 +80,7 @@
 
         {{-- Clear Filters --}}
         @if($search || $country || $state || $city || $dateFilter)
-            <button
-                wire:click="$set('search', ''); $set('country', ''); $set('state', ''); $set('city', ''); $set('dateFilter', '');"
-                class="directory-filters__clear">
+            <button wire:click="clearFilters" class="directory-filters__clear">
                 ✕ Clear Filters
             </button>
         @endif

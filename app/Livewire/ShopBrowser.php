@@ -25,6 +25,12 @@ class ShopBrowser extends Component
         }
     }
 
+    public function clearFilters(): void
+    {
+        $this->reset(['search', 'country', 'state', 'city']);
+        $this->resetPage();
+    }
+
     // Cascade: changing country resets state and city
     public function updatedCountry(): void
     {

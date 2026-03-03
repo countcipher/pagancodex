@@ -11,7 +11,8 @@
 
         <div class="directory-filters__group">
             <label for="country" class="directory-filters__label">Country</label>
-            <select id="country" wire:model.live="country" class="directory-filters__select">
+            <select id="country" wire:model.live="country" wire:key="country-{{ empty($country) ? 'empty' : 'filled' }}"
+                class="directory-filters__select">
                 <option value="">All Countries</option>
                 @foreach ($availableCountries as $code)
                     <option value="{{ $code }}">{{ $countryNames[$code] ?? $code }}</option>
@@ -21,7 +22,9 @@
 
         <div class="directory-filters__group">
             <label for="state" class="directory-filters__label">{{ $stateLabel }}</label>
-            <select id="state" wire:model.live="state" class="directory-filters__select" {{ empty($country) ? 'disabled' : '' }}>
+            <select id="dir-state" wire:model.live="state"
+                wire:key="state-{{ empty($state) ? 'empty' : 'filled' }}-{{ $country }}"
+                class="directory-filters__select" {{ empty($country) ? 'disabled' : '' }}>
                 <option value="">All {{ $stateLabel }}s</option>
                 @foreach ($availableStates as $s)
                     @php
@@ -39,7 +42,9 @@
 
         <div class="directory-filters__group">
             <label for="city" class="directory-filters__label">City</label>
-            <select id="city" wire:model.live="city" class="directory-filters__select" {{ empty($state) ? 'disabled' : '' }}>
+            <select id="dir-city" wire:model.live="city"
+                wire:key="city-{{ empty($city) ? 'empty' : 'filled' }}-{{ $state }}" class="directory-filters__select"
+                {{ empty($state) ? 'disabled' : '' }}>
                 <option value="">All Cities</option>
                 @foreach ($availableCities as $c)
                     <option value="{{ $c }}">{{ $c }}</option>
@@ -57,9 +62,7 @@
         </div>
 
         @if($search || $country || $state || $city || $clergyOnly)
-            <button
-                wire:click="$set('search', ''); $set('country', ''); $set('state', ''); $set('city', ''); $set('clergyOnly', false);"
-                class="directory-filters__reset">
+            <button wire:click="clearFilters" class="directory-filters__reset">
                 Clear Filters
             </button>
         @endif
