@@ -55,7 +55,8 @@
         {{-- Clergy Filter --}}
         <div class="directory-filters__group directory-filters__group--toggle">
             <label class="directory-toggle">
-                <input type="checkbox" wire:model.live="clergyOnly" class="directory-toggle__input">
+                <input type="checkbox" wire:model.live="clergyOnly" wire:key="clergy-{{ $clergyOnly ? 'on' : 'off' }}"
+                    class="directory-toggle__input">
                 <span class="directory-toggle__switch"></span>
                 <span class="directory-toggle__label">Show Clergy Only</span>
             </label>
