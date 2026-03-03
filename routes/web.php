@@ -17,6 +17,7 @@ Route::get('/member/{profile}', [PublicProfileController::class, 'show'])->name(
 Route::get('/browse-articles', \App\Livewire\ArticleBrowser::class)->name('articles.browse');
 
 // Static Pages
+Route::view('/about', 'pages.about')->name('about');
 Route::view('/terms-of-use', 'pages.terms')->name('terms');
 Route::view('/privacy-policy', 'pages.privacy')->name('privacy');
 Route::view('/community-guidelines', 'pages.guidelines')->name('guidelines');
