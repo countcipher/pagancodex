@@ -180,6 +180,7 @@
                     <a href="{{ route('terms') }}">Terms of Use</a>
                     <a href="{{ url('/privacy-policy') }}">Privacy Policy</a>
                     <a href="{{ url('/community-guidelines') }}">Community Guidelines</a>
+                    <a href="mailto:sickle@pagancodex.com">Contact Support</a>
                 </div>
                 <p class="site-footer__copy">&copy; {{ date('Y') }} Pagan Codex. All rights reserved.</p>
             </footer>
