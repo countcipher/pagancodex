@@ -32,7 +32,7 @@
                 </div>
                 <div class="stat-block">
                     <span class="stat-block__value">{{ $stats['shops'] ?? 0 }}</span>
-                    <span class="stat-block__label">Local Shops</span>
+                    <span class="stat-block__label">Shops</span>
                 </div>
             </div>
 
