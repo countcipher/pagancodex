@@ -29,10 +29,16 @@ class EventController extends Controller
             'city' => ['required', 'string', 'max:255'],
             'start_date' => ['required', 'date'],
             'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
+            'external_organizer_name' => ['nullable', 'string', 'max:255'],
         ]);
 
         // Clean up any empty strings sent by form
         $validated = array_map(fn($v) => $v === '' ? null : $v, $validated);
+
+        $validated['is_organizer'] = $request->has('is_organizer');
+        if ($validated['is_organizer']) {
+            $validated['external_organizer_name'] = null;
+        }
 
         // Associate the event with the logged in user
         $request->user()->events()->create($validated);
@@ -86,11 +92,17 @@ class EventController extends Controller
             'city' => ['required', 'string', 'max:255'],
             'start_date' => ['required', 'date'],
             'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
+            'external_organizer_name' => ['nullable', 'string', 'max:255'],
         ]);
 
         // Clean up any empty strings sent by form
         $validated = array_map(fn($v) => $v === '' ? null : $v, $validated);
-        $validated['is_public'] = $request->boolean('is_public');
+        $validated['is_public'] = $request->has('is_public');
+        $validated['is_organizer'] = $request->has('is_organizer');
+
+        if ($validated['is_organizer']) {
+            $validated['external_organizer_name'] = null;
+        }
 
         $event->update($validated);
 

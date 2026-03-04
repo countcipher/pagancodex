@@ -141,15 +141,18 @@
 
                             {{-- Organizer --}}
                             <p class="event-card__organizer">
-
-                                @if($event->user->profile && $event->user->profile->is_public)
-                                    Hosted by <a href="{{ route('practitioners.show', $event->user->profile) }}"
-                                        class="event-card__organizer-link">{{ $event->user->name }}</a>
+                                @if($event->is_organizer)
+                                    @if($event->user->profile && $event->user->profile->is_public)
+                                        Hosted by <a href="{{ route('practitioners.show', $event->user->profile) }}"
+                                            class="event-card__organizer-link">{{ $event->user->name }}</a>
+                                    @else
+                                        <span class="event-card__organizer-hidden"
+                                            style="color: var(--color-text-muted); font-style: italic;">
+                                            Member name not publicly available
+                                        </span>
+                                    @endif
                                 @else
-                                    <span class="event-card__organizer-hidden"
-                                        style="color: var(--color-text-muted); font-style: italic;">
-                                        Member name not publicly available
-                                    </span>
+                                    Hosted by <span style="font-weight: 500;">{{ $event->external_organizer_name ?? 'Community Organizer' }}</span>
                                 @endif
                             </p>
                         </div>

@@ -43,6 +43,26 @@
 
                 <hr class="form-divider">
 
+                {{-- Organizer Info --}}
+                <div x-data="{ isOrganizer: {{ old('is_organizer', true) ? 'true' : 'false' }} }">
+                    <div class="form-group">
+                        <label for="is_organizer" class="form-toggle">
+                            <input id="is_organizer" type="checkbox" name="is_organizer" value="1" x-model="isOrganizer">
+                            <span>I am the organizer of this event</span>
+                        </label>
+                        <p class="form-hint">Uncheck if you are sharing a community event hosted by someone else.</p>
+                    </div>
+
+                    <div class="form-group" x-show="!isOrganizer" style="display: none;" x-transition>
+                        <x-input-label for="external_organizer_name" :value="__('Organizer Name (if not you)')" />
+                        <x-text-input id="external_organizer_name" type="text" name="external_organizer_name"
+                            :value="old('external_organizer_name')" placeholder="e.g. Local Mushroom Society" />
+                        <x-input-error :messages="$errors->get('external_organizer_name')" />
+                    </div>
+                </div>
+
+                <hr class="form-divider">
+
                 {{-- Event Title --}}
                 <div class="form-group">
                     <x-input-label for="title" :value="__('Event Title')" />

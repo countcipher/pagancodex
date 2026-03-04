@@ -58,6 +58,7 @@ class EventBrowser extends Component
             $query->where(function ($q) use ($term) {
                 $q->where('title', 'like', "%{$term}%")
                     ->orWhere('details', 'like', "%{$term}%")
+                    ->orWhere('external_organizer_name', 'like', "%{$term}%")
                     ->orWhereHas('user', fn($uq) => $uq->where('name', 'like', "%{$term}%"));
             });
         }

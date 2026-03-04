@@ -16,12 +16,22 @@
             <div class="profile-header__info">
                 <h1 class="profile-name">{{ $event->title }}</h1>
                 <p class="profile-tradition">
-                    Hosted by
-                    @if($event->user->profile?->is_public)
-                        <a href="{{ route('practitioners.show', $event->user->profile) }}"
-                            class="profile-tradition-link">{{ $event->user->name }}</a>
+                    @if($event->is_organizer)
+                        Hosted by
+                        @if($event->user->profile?->is_public)
+                            <a href="{{ route('practitioners.show', $event->user->profile) }}"
+                                class="profile-tradition-link">{{ $event->user->name }}</a>
+                        @else
+                            <strong>{{ $event->user->name }}</strong>
+                        @endif
                     @else
-                        <strong>{{ $event->user->name }}</strong>
+                        Submitted by
+                        @if($event->user->profile?->is_public)
+                            <a href="{{ route('practitioners.show', $event->user->profile) }}"
+                                class="profile-tradition-link">{{ $event->user->name }}</a>
+                        @else
+                            <strong>{{ $event->user->name }}</strong>
+                        @endif
                     @endif
                 </p>
             </div>
@@ -52,26 +62,30 @@
             {{-- Organizer Info --}}
             <div class="profile-card">
                 <h3>Organizer</h3>
-                <p>
-                    <strong>Name:</strong>
-                    @if($event->user->profile?->is_public)
-                        <a href="{{ route('practitioners.show', $event->user->profile) }}"
-                            class="profile-link">{{ $event->user->name }}</a>
-                    @else
-                        {{ $event->user->name }}
-                    @endif
-                </p>
-                @if($event->user->profile?->tradition)
-                    <p><strong>Tradition:</strong> {{ $event->user->profile->tradition }}</p>
-                @endif
-                @if($event->user->profile?->public_email)
-                    <p><strong>Email:</strong> {{ $event->user->profile->public_email }}</p>
-                @endif
-                @if($event->user->profile?->website)
-                    <p><strong>Website:</strong>
-                        <a href="{{ $event->user->profile->website }}" target="_blank" rel="noopener"
-                            class="profile-link">{{ $event->user->profile->website }}</a>
+                @if($event->is_organizer)
+                    <p>
+                        <strong>Name:</strong>
+                        @if($event->user->profile?->is_public)
+                            <a href="{{ route('practitioners.show', $event->user->profile) }}"
+                                class="profile-link">{{ $event->user->name }}</a>
+                        @else
+                            {{ $event->user->name }}
+                        @endif
                     </p>
+                    @if($event->user->profile?->tradition)
+                        <p><strong>Tradition:</strong> {{ $event->user->profile->tradition }}</p>
+                    @endif
+                    @if($event->user->profile?->public_email)
+                        <p><strong>Email:</strong> {{ $event->user->profile->public_email }}</p>
+                    @endif
+                    @if($event->user->profile?->website)
+                        <p><strong>Website:</strong>
+                            <a href="{{ $event->user->profile->website }}" target="_blank" rel="noopener"
+                                class="profile-link">{{ $event->user->profile->website }}</a>
+                        </p>
+                    @endif
+                @else
+                    <p><strong>Name:</strong> {{ $event->external_organizer_name ?? 'Community Organizer' }}</p>
                 @endif
             </div>
 
