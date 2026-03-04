@@ -20,4 +20,3 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
-          # server-dir: /pagancodex.com/ # Uncomment and adjust if your FTP user doesn't land directly in your app's folder
