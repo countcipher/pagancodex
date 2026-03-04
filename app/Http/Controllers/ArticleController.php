@@ -85,14 +85,14 @@ class ArticleController extends Controller
 
     public function edit(Article $article)
     {
-        abort_if(request()->user()->id !== $article->user_id, 403, 'Unauthorized action.');
+        abort_if(request()->user()->id != $article->user_id, 403, 'Unauthorized action.');
 
         return view('articles.edit', compact('article'));
     }
 
     public function update(Request $request, Article $article): RedirectResponse
     {
-        abort_if($request->user()->id !== $article->user_id, 403, 'Unauthorized action.');
+        abort_if($request->user()->id != $article->user_id, 403, 'Unauthorized action.');
 
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
@@ -141,7 +141,7 @@ class ArticleController extends Controller
 
     public function destroy(Article $article): RedirectResponse
     {
-        abort_if(request()->user()->id !== $article->user_id, 403, 'Unauthorized action.');
+        abort_if(request()->user()->id != $article->user_id, 403, 'Unauthorized action.');
 
         // Delete the associated image from storage
         if ($article->image_path) {
