@@ -66,3 +66,5 @@ Route::middleware('auth')->group(function () {
 Route::get('/articles/{article:slug}', [\App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
 
 require __DIR__ . '/auth.php';
+
+//Testing to push to Actions
