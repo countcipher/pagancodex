@@ -65,7 +65,7 @@ class EventController extends Controller
     public function edit(\App\Models\Event $event): View
     {
         // Security check: ensure the currently authenticated user actually owns this event
-        if ($event->user_id !== request()->user()->id) {
+        if ($event->user_id != request()->user()->id) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -80,7 +80,7 @@ class EventController extends Controller
     public function update(Request $request, \App\Models\Event $event): RedirectResponse
     {
         // Security check: ensure the currently authenticated user actually owns this event
-        if ($event->user_id !== request()->user()->id) {
+        if ($event->user_id != request()->user()->id) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -116,7 +116,7 @@ class EventController extends Controller
     public function destroy(\App\Models\Event $event): RedirectResponse
     {
         // Security check: ensure the currently authenticated user actually owns this event
-        if ($event->user_id !== request()->user()->id) {
+        if ($event->user_id != request()->user()->id) {
             abort(403, 'Unauthorized action.');
         }
 

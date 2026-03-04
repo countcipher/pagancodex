@@ -71,7 +71,7 @@ class ShopController extends Controller
     public function edit(Shop $shop): \Illuminate\View\View
     {
         // Security check: ensure the currently authenticated user actually owns this shop
-        if ($shop->user_id !== request()->user()->id) {
+        if ($shop->user_id != request()->user()->id) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -86,7 +86,7 @@ class ShopController extends Controller
     public function update(Request $request, Shop $shop): \Illuminate\Http\RedirectResponse
     {
         // Security check: ensure the currently authenticated user actually owns this shop
-        if ($shop->user_id !== request()->user()->id) {
+        if ($shop->user_id != request()->user()->id) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -128,7 +128,7 @@ class ShopController extends Controller
     public function destroy(Shop $shop): \Illuminate\Http\RedirectResponse
     {
         // Security check: ensure the currently authenticated user actually owns this shop
-        if ($shop->user_id !== request()->user()->id) {
+        if ($shop->user_id != request()->user()->id) {
             abort(403, 'Unauthorized action.');
         }
 

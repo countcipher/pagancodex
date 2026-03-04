@@ -66,7 +66,7 @@ class GroupController extends Controller
     public function edit(\App\Models\Group $group): \Illuminate\View\View
     {
         // Security check: ensure the currently authenticated user actually owns this group
-        if ($group->user_id !== request()->user()->id) {
+        if ($group->user_id != request()->user()->id) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -81,7 +81,7 @@ class GroupController extends Controller
     public function update(Request $request, \App\Models\Group $group): \Illuminate\Http\RedirectResponse
     {
         // Security check: ensure the currently authenticated user actually owns this group
-        if ($group->user_id !== request()->user()->id) {
+        if ($group->user_id != request()->user()->id) {
             abort(403, 'Unauthorized action.');
         }
 
@@ -119,7 +119,7 @@ class GroupController extends Controller
     public function destroy(\App\Models\Group $group): \Illuminate\Http\RedirectResponse
     {
         // Security check: ensure the currently authenticated user actually owns this group
-        if ($group->user_id !== request()->user()->id) {
+        if ($group->user_id != request()->user()->id) {
             abort(403, 'Unauthorized action.');
         }
 
