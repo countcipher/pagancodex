@@ -30,6 +30,7 @@ class EventController extends Controller
             'start_date' => ['required', 'date'],
             'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
             'external_organizer_name' => ['nullable', 'string', 'max:255'],
+            'event_url' => ['nullable', 'url', 'max:2000'],
         ]);
 
         // Clean up any empty strings sent by form
@@ -93,6 +94,7 @@ class EventController extends Controller
             'start_date' => ['required', 'date'],
             'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
             'external_organizer_name' => ['nullable', 'string', 'max:255'],
+            'event_url' => ['nullable', 'url', 'max:2000'],
         ]);
 
         // Clean up any empty strings sent by form

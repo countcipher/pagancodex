@@ -19,6 +19,7 @@ class Event extends Model
         'is_public',
         'is_organizer',
         'external_organizer_name',
+        'event_url',
     ];
 
     public function user()

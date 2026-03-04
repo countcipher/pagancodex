@@ -87,6 +87,15 @@
                 @else
                     <p><strong>Name:</strong> {{ $event->external_organizer_name ?? 'Community Organizer' }}</p>
                 @endif
+
+                @if($event->event_url)
+                    <div style="margin-top: 1.5rem;">
+                        <a href="{{ $event->event_url }}" target="_blank" rel="noopener" class="btn btn--primary"
+                            style="width: 100%; text-align: center;">
+                            View Official Event Page
+                        </a>
+                    </div>
+                @endif
             </div>
 
             {{-- Full Event Details --}}

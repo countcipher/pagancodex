@@ -65,6 +65,16 @@
 
                 <hr class="form-divider">
 
+                {{-- Event Link --}}
+                <div class="form-group">
+                    <x-input-label for="event_url" :value="__('Event Link / Official Website (Optional)')" />
+                    <x-text-input id="event_url" type="url" name="event_url" :value="old('event_url', $event->event_url)"
+                        placeholder="https://facebook.com/events/... or official site" />
+                    <x-input-error :messages="$errors->get('event_url')" />
+                </div>
+
+                <hr class="form-divider">
+
                 {{-- Event Title --}}
                 <div class="form-group">
                     <x-input-label for="title" :value="__('Event Title')" />
