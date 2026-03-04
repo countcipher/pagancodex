@@ -10,7 +10,7 @@
 
             <img style="display: block; margin: auto" src="{{ asset('images/logo_cropped.jpg') }}" />
 
-            <h1 id="hero-title" class="hero-panel__title">The Wheel is Turning. Connect with Your Community.</h1>
+            <h1 id="hero-title" class="hero-panel__title">The Wheel Turns. Connect with Your Community.</h1>
 
 
 
