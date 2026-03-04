@@ -40,6 +40,13 @@
             {!! $article->content !!}
         </div>
 
+        {{-- Call to Action / Submit Article --}}
+        <div class="article-display__cta">
+            <h3>Have Wisdom to Share?</h3>
+            <p>Interested in submitting an article to the Codex? We'd love to read it.<br> Contact Sickle at <a
+                    href="mailto:sickle@pagancodex.com">sickle@pagancodex.com</a> to discuss your submission.</p>
+        </div>
+
         {{-- Previous / Next Article Navigation --}}
         <nav class="article-display__nav" aria-label="Article navigation">
             @if($previous)
