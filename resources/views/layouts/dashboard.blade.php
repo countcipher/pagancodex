@@ -38,7 +38,7 @@
             <a href="{{ url('/') }}" class="site-nav__logo" aria-label="Pagan Codex — Home">
                 {{-- <img src="{{ asset('images/logo.png') }}" alt="" class="site-nav__logo-img" aria-hidden="true">
                 --}}
-                Pagan<span>Codex</span>
+                <div>Pagan<span>Codex</span></div>
             </a>
 
             {{-- Mobile: hamburger toggle --}}
