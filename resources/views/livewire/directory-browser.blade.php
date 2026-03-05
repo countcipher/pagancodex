@@ -65,8 +65,18 @@
             </label>
         </div>
 
+        {{-- Contact Info Filter --}}
+        <div class="directory-filters__group directory-filters__group--toggle">
+            <label class="directory-toggle">
+                <input type="checkbox" wire:model.live="contactOnly" wire:key="contact-{{ $contactOnly ? 'on' : 'off' }}"
+                    class="directory-toggle__input">
+                <span class="directory-toggle__switch"></span>
+                <span class="directory-toggle__label">Show Only With Contact Info</span>
+            </label>
+        </div>
+
         {{-- Reset Filters --}}
-        @if($search || $country || $state || $city || $clergyOnly)
+        @if($search || $country || $state || $city || $clergyOnly || $contactOnly)
             <button wire:click="clearFilters" class="directory-filters__reset">
                 Clear Filters
             </button>

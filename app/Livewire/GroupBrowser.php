@@ -17,18 +17,19 @@ class GroupBrowser extends Component
     public string $state = '';
     public string $city = '';
     public bool $clergyOnly = false;
+    public bool $contactOnly = false;
 
     // Reset pagination whenever any filter changes
     public function updating(string $field): void
     {
-        if (in_array($field, ['search', 'country', 'state', 'city', 'clergyOnly'])) {
+        if (in_array($field, ['search', 'country', 'state', 'city', 'clergyOnly', 'contactOnly'])) {
             $this->resetPage();
         }
     }
 
     public function clearFilters(): void
     {
-        $this->reset(['search', 'country', 'state', 'city', 'clergyOnly']);
+        $this->reset(['search', 'country', 'state', 'city', 'clergyOnly', 'contactOnly']);
         $this->resetPage();
     }
 
@@ -74,6 +75,18 @@ class GroupBrowser extends Component
         // Clergy Filter
         if ($this->clergyOnly) {
             $query->where('has_clergy', true);
+        }
+
+        // Contact Info Filter
+        if ($this->contactOnly) {
+            $query->where(function ($q) {
+                $q->whereNotNull('contact_email')
+                    ->orWhereNotNull('phone_number')
+                    ->orWhereNotNull('website')
+                    ->orWhereNotNull('facebook_url')
+                    ->orWhereNotNull('instagram_url')
+                    ->orWhereNotNull('x_url');
+            });
         }
 
         $query->orderBy('name', 'asc');
