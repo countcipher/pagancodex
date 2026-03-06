@@ -26,6 +26,10 @@
             <x-heroicon-o-shopping-bag class="action-card__icon" aria-hidden="true" />
             New Shop
         </a>
+        <a href="{{ route('bulletins.browse') }}" class="action-card" role="listitem">
+            <x-heroicon-o-megaphone class="action-card__icon" aria-hidden="true" />
+            New Bulletin
+        </a>
         @if (auth()->user()->role >= 10)
             <a href="{{ route('articles.create') }}" class="action-card" role="listitem">
                 <x-heroicon-o-newspaper class="action-card__icon" aria-hidden="true" />

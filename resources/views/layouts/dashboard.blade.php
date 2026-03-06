@@ -55,6 +55,7 @@
                 <li><a href="{{ route('groups.browse') }}">Groups</a></li>
                 <li><a href="{{ route('shops.browse') }}">Shops</a></li>
                 <li><a href="{{ route('articles.browse') }}">Articles</a></li>
+                <li><a href="{{ route('bulletins.browse') }}">Bulletin</a></li>
                 <li><a href="{{ route('about') }}">About</a></li>
                 @auth
                     <li>
@@ -135,6 +136,13 @@
                                 class="{{ request()->routeIs('shops.*') ? 'active' : '' }}">
                                 <x-heroicon-o-shopping-bag class="nav-icon" aria-hidden="true" />
                                 Shops
+                            </a>
+                        </li>
+                        <li class="sidebar__item">
+                            <a href="{{ route('bulletins.index') }}"
+                                class="{{ request()->routeIs('bulletins.*') ? 'active' : '' }}">
+                                <x-heroicon-o-megaphone class="nav-icon" aria-hidden="true" />
+                                Bulletins
                             </a>
                         </li>
                         @if (auth()->user()->role >= 10)

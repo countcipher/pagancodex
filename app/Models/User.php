@@ -86,6 +86,13 @@ class User extends Authenticatable
         return $this->hasMany(Article::class);
     }
 
+    /**
+     * Get the bulletins posted by the user.
+     */
+    public function bulletins()
+    {
+        return $this->hasMany(Bulletin::class);
+    }
 
 
     /**

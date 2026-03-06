@@ -1,0 +1,239 @@
+// ============================================================
+// Pagan Codex — Bulletin Board
+// ============================================================
+@use '../variables' as *;
+
+.bulletin-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+// ---- New Bulletin Form Card ----
+.bulletin-form-card {
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    padding: $spacing-lg;
+    margin-bottom: $spacing-xl;
+
+    &__row {
+        display: flex;
+        gap: $spacing-md;
+        align-items: flex-start;
+    }
+
+    &__avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid $color-bg;
+        box-shadow: 0 0 0 1px $color-border;
+        flex-shrink: 0;
+    }
+
+    &__fields {
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__textarea {
+        width: 100%;
+        padding: 0.6rem 0.75rem;
+        border: 1px solid $color-border;
+        border-radius: $radius-sm;
+        background: $color-bg;
+        font-family: $font-body;
+        font-size: 0.95rem;
+        color: $color-text;
+        resize: vertical;
+        min-height: 60px;
+        box-sizing: border-box;
+        line-height: 1.5;
+
+        &:focus {
+            outline: none;
+            border-color: $color-green-dark;
+            box-shadow: 0 0 0 2px rgba($color-green-dark, 0.15);
+        }
+    }
+
+    &__counter {
+        display: block;
+        text-align: right;
+        font-size: 0.75rem;
+        color: $color-text-muted;
+        font-family: $font-ui;
+        margin-top: 0.25rem;
+
+        &--warn {
+            color: $color-danger;
+            font-weight: 600;
+        }
+    }
+
+    &__link-row {
+        display: flex;
+        gap: $spacing-sm;
+        align-items: center;
+        margin-top: $spacing-sm;
+    }
+
+    &__link-input {
+        flex: 1;
+        padding: 0.45rem 0.65rem;
+        border: 1px solid $color-border;
+        border-radius: $radius-sm;
+        background: $color-bg;
+        font-size: 0.85rem;
+        color: $color-text;
+        box-sizing: border-box;
+
+        &:focus {
+            outline: none;
+            border-color: $color-green-dark;
+        }
+    }
+}
+
+// ---- Guest Login Prompt ----
+.bulletin-login-prompt {
+    background: $color-bg;
+    border: 1px dashed $color-border;
+    border-radius: $radius-md;
+    padding: $spacing-lg;
+    text-align: center;
+    font-family: $font-ui;
+    color: $color-text-muted;
+    margin-bottom: $spacing-xl;
+
+    a {
+        color: $color-green-dark;
+        font-weight: 600;
+    }
+}
+
+// ---- Bulletin Feed ----
+.bulletin-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.bulletin-post {
+    display: flex;
+    gap: $spacing-md;
+    padding: $spacing-lg 0;
+    border-bottom: 1px solid $color-border;
+    align-items: flex-start;
+
+    &:first-child {
+        padding-top: 0;
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &__avatar-col {
+        flex-shrink: 0;
+    }
+
+    &__avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid $color-bg;
+        box-shadow: 0 0 0 1px $color-border;
+    }
+
+    &__content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        margin-bottom: 0.25rem;
+        flex-wrap: wrap;
+    }
+
+    &__name {
+        font-family: $font-ui;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: $color-brown-dark;
+    }
+
+    &__time {
+        font-family: $font-ui;
+        font-size: 0.8rem;
+        color: $color-text-muted;
+    }
+
+    &__body {
+        font-family: $font-body;
+        font-size: 0.95rem;
+        color: $color-text;
+        line-height: 1.5;
+        margin: 0;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    &__link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-family: $font-ui;
+        font-size: 0.85rem;
+        color: $color-green-dark;
+        text-decoration: none;
+        margin-top: $spacing-sm;
+        padding: 0.3rem 0.6rem;
+        background: rgba($color-green-dark, 0.06);
+        border-radius: $radius-sm;
+        transition: background 0.2s, color 0.2s;
+
+        &:hover {
+            background: rgba($color-green-dark, 0.12);
+            color: $color-brown-dark;
+            text-decoration: none;
+        }
+    }
+
+    &__link-icon {
+        width: 0.9rem;
+        height: 0.9rem;
+        flex-shrink: 0;
+    }
+
+    // Admin delete
+    &__admin-delete {
+        margin-left: auto;
+    }
+
+    &__delete-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: $color-text-muted;
+        padding: 0.2rem;
+        border-radius: $radius-sm;
+        transition: color 0.2s;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            color: $color-danger;
+        }
+    }
+
+    &__delete-icon {
+        width: 1rem;
+        height: 1rem;
+    }
+}

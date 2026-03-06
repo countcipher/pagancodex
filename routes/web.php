@@ -15,6 +15,7 @@ Route::get('/browse-shops', \App\Livewire\ShopBrowser::class)->name('shops.brows
 Route::get('/browse-shops/{shop}', [PublicShopController::class, 'show'])->name('shops.show');
 Route::get('/member/{profile}', [PublicProfileController::class, 'show'])->name('practitioners.show');
 Route::get('/browse-articles', \App\Livewire\ArticleBrowser::class)->name('articles.browse');
+Route::get('/bulletin-board', \App\Livewire\BulletinBrowser::class)->name('bulletins.browse');
 
 // Static Pages
 Route::view('/about', 'pages.about')->name('about');
@@ -61,6 +62,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/shops/{shop}', [\App\Http\Controllers\ShopController::class, 'destroy'])->name('shops.destroy');
 
     Route::resource('articles', \App\Http\Controllers\ArticleController::class)->except(['show']);
+
+    Route::get('/bulletins', [\App\Http\Controllers\BulletinController::class, 'index'])->name('bulletins.index');
+    Route::post('/bulletins', [\App\Http\Controllers\BulletinController::class, 'store'])->name('bulletins.store');
+    Route::get('/bulletins/{bulletin}/edit', [\App\Http\Controllers\BulletinController::class, 'edit'])->name('bulletins.edit');
+    Route::put('/bulletins/{bulletin}', [\App\Http\Controllers\BulletinController::class, 'update'])->name('bulletins.update');
+    Route::delete('/bulletins/{bulletin}', [\App\Http\Controllers\BulletinController::class, 'destroy'])->name('bulletins.destroy');
 });
 
 Route::get('/articles/{article:slug}', [\App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
