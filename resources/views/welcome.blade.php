@@ -36,6 +36,11 @@
                 </div>
             </div>
 
+            <div class="hero-panel__callout">
+                📢 <strong>Community Bulletin Board</strong> — Share news, ask questions, and connect.
+                <a href="{{ route('bulletins.browse') }}">Check it out &rarr;</a>
+            </div>
+
             @guest
                 <div class="hero-panel__actions">
                     <a href="{{ route('register') }}" class="btn btn--primary hero-panel__btn">Join the Directory</a>

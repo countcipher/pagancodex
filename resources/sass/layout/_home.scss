@@ -7,6 +7,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: $spacing-xl;
+    overflow-x: hidden;
 
     @media (max-width: $breakpoint-tablet) {
         padding: $spacing-md;
@@ -22,9 +23,20 @@
     text-align: center;
     margin-bottom: $spacing-2xl;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
 
     @media (max-width: $breakpoint-tablet) {
         padding: 3rem 1.5rem;
+    }
+
+    @media (max-width: 400px) {
+        padding: 2rem 1rem;
     }
 
     &__title {
@@ -57,19 +69,61 @@
         @media (max-width: $breakpoint-tablet) {
             gap: 1.5rem;
         }
+
+        @media (max-width: 400px) {
+            gap: 1rem 2rem;
+        }
+    }
+
+    &__callout {
+        font-family: $font-ui;
+        font-size: 0.95rem;
+        color: $color-text-muted;
+        margin-bottom: 1.5rem;
+        border-top: 1px dotted $color-border;
+        padding-top: 1.5rem;
+
+        strong {
+            color: $color-brown-dark;
+        }
+
+        a {
+            color: $color-green-dark;
+            font-weight: 600;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     }
 
     &__actions {
         margin-top: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
     }
 
     &__btn {
         font-size: 1.1rem;
         padding: 0.75rem 2rem;
 
+        @media (max-width: 400px) {
+            font-size: 1rem;
+            padding: 0.65rem 1.5rem;
+            width: 100%;
+            text-align: center;
+        }
+
         // Target the second button if it's placed after another
         &.btn--secondary {
             margin-left: 0.5rem;
+
+            @media (max-width: 400px) {
+                margin-left: 0;
+            }
         }
     }
 }
@@ -85,6 +139,10 @@
         color: $color-brown-dark;
         line-height: 1;
         margin-bottom: 0.25rem;
+
+        @media (max-width: 400px) {
+            font-size: 1.75rem;
+        }
     }
 
     &__label {
@@ -94,6 +152,10 @@
         letter-spacing: 0.05em;
         font-weight: 600;
         font-family: $font-ui;
+
+        @media (max-width: 400px) {
+            font-size: 0.75rem;
+        }
     }
 }
 
@@ -172,7 +234,8 @@
     text-decoration: none;
     color: inherit;
     flex: 0 1 calc(33.333% - #{$spacing-lg});
-    min-width: 280px;
+    min-width: 0; // Prevent overflow on small screens while flex-basis does the heavy lifting
+    width: 100%;
     transition: transform $transition-speed $transition-ease,
                 box-shadow $transition-speed $transition-ease,
                 border-color $transition-speed $transition-ease;
