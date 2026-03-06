@@ -108,7 +108,7 @@
     }
 
     // --- Responsive: tablet and below ---
-    @media (max-width: $breakpoint-tablet) {
+    @media (max-width: 868px) {
         padding: 0 $spacing-md;
 
         &__toggle {
