@@ -8,7 +8,7 @@
         <div class="directory-filters__group">
             <label for="dir-search" class="directory-filters__label">Search</label>
             <input id="dir-search" type="search" wire:model.live.debounce.350ms="search"
-                class="directory-filters__input" placeholder="Name, tradition…">
+                class="directory-filters__input" placeholder="Name, tradition">
         </div>
 
         {{-- Country --}}

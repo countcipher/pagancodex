@@ -6,7 +6,7 @@
         <div class="directory-filters__group">
             <label for="search" class="directory-filters__label">Keywords</label>
             <input type="search" id="search" wire:model.live.debounce.300ms="search" class="directory-filters__input"
-                placeholder="Search by name, tradition...">
+                placeholder="Name, tradition">
         </div>
 
         <div class="directory-filters__group">

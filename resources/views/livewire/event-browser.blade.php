@@ -10,7 +10,7 @@
         <div class="directory-filters__group">
             <label for="ev-search" class="directory-filters__label">Search</label>
             <input id="ev-search" type="search" wire:model.live.debounce.300ms="search"
-                placeholder="Search events or organizers…" class="directory-filters__input">
+                placeholder="Event or organizer" class="directory-filters__input">
         </div>
 
         {{-- Date Quick-Filter Pills --}}
