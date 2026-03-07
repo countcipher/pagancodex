@@ -367,8 +367,13 @@
     border: 1px solid transparent;
     cursor: pointer;
     transition: background-color $transition-speed $transition-ease,
-                color $transition-speed $transition-ease,
                 border-color $transition-speed $transition-ease;
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
 
     &--primary {
         background-color: $color-brown-dark;
