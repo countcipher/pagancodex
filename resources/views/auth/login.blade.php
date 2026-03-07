@@ -33,11 +33,11 @@
         </div>
 
         <div class="auth-links">
-            <!-- @if (Route::has('password.request'))
+            @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>
-            @endif -->
+            @endif
 
             <x-primary-button>
                 {{ __('Log in') }}
